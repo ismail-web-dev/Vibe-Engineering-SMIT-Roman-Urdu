@@ -1,6 +1,6 @@
 <!doctype html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Lab 1 · One prompt, one app · Vibe Engineering — SMIT</title>
+<title>Getting started with the CLI · Vibe Engineering — SMIT</title>
 <meta name="description" content="Vibe Engineering with AI Coding Agents — SMIT course by Muhammad Uzair Khan.">
 <style>
 :root{
@@ -240,98 +240,112 @@ h2:hover .anchor{opacity:1}
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
 .reveal.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
-</style></head><body>
-<header class="site-head">
+.daybadge.d5{background:#fbe0ea;color:#9f1239}
+:root[data-theme=dark] .daybadge.d5{background:#3a0f1e;color:#f7789f}
+</style></head><body><header class="site-head">
   <div style="height:3px;background:var(--hair)"><div id="prog" style="height:3px;width:0;background:linear-gradient(90deg,var(--violet-600),var(--amber-400));transition:width .1s"></div></div>
   <div class="bar">
     <a class="brand" href="index.html">
       <span class="glyph">◆</span>
       <span>Vibe Engineering<small>SMIT · AI Agentic Engineering</small></span>
     </a>
-    <nav class="head-nav"><a class="" href="index.html">Home</a><a class="" href="day1-welcome.html">Class 2</a><a class="" href="day2-how-llms-work.html">Class 3</a><a class="" href="day3-tooling-setup.html">Class 4</a><a class="" href="class5-model-choice.html">Class 5</a><a class="" href="class6-rise-of-claude-code.html">Class 6</a><a class="active" href="lab1-first-prompt.html">Labs</a></nav>
+    <nav class="head-nav"><a class="" href="index.html">Home</a><a class="" href="day1-welcome.html">Class 2</a><a class="" href="day2-how-llms-work.html">Class 3</a><a class="" href="day3-tooling-setup.html">Class 4</a><a class="" href="class5-model-choice.html">Class 5</a><a class="active" href="class6-rise-of-claude-code.html">Class 6</a><a class="" href="lab1-first-prompt.html">Labs</a></nav>
     <button class="icon-btn" id="themeBtn" title="Toggle light / dark" aria-label="Toggle theme">☾</button>
     <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu">☰</button>
   </div>
-  <div id="mnav" class="side" style="display:none;max-height:70vh;padding:12px 22px;border-top:1px solid var(--hair)"><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome & first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages & cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows & models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools & agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Labs</div><a class="active" href="lab1-first-prompt.html">Lab 1 · One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 · agents.md + YOLO</a></div>
+  <div id="mnav" class="side" style="display:none;max-height:70vh;padding:12px 22px;border-top:1px solid var(--hair)"><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome &amp; first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages &amp; cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows &amp; models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools &amp; agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="active" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Labs</div><a class="" href="lab1-first-prompt.html">Lab 1 · One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 · agents.md + YOLO</a></div>
 </header>
-<div class="layout"><aside class="side"><nav><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome & first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages & cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows & models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools & agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Labs</div><a class="active" href="lab1-first-prompt.html">Lab 1 · One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 · agents.md + YOLO</a></nav><div class="grp" style="margin-top:26px">On this page</div><div class="toc"><a href="#s1">1 · Open a tool</a><a href="#s2">2 · Paste the prompt</a><a href="#s3">3 · Make it yours</a><a href="#s4">4 · Run it twice</a><a href="#s5">5 · Reflect</a><a href="#trouble">If something goes wrong</a></div></aside><main><div class="content"><div class="reveal in">
-  <span class="daybadge lab">Hands-on Lab 1 · ~35 min</span>
-  <h1 class="page">One prompt, one app</h1>
-  <p class="lede">Build a small, working app just by describing it in plain English — no setup, no code editor, no account gymnastics. Then run the exact same prompt again and watch the two results diverge. That surprise is the lesson.</p>
-  <div class="meta"><span>🎯 <b>Outcome:</b> a running app + a feel for non-determinism</span><span>⏱ ~35 min</span><span>💸 Free tiers only</span></div></div>
-<div class="call idea reveal"><div class="t">Before you start</div>
-<p>Everything here runs in your browser. Nothing to install. If one tool is slow or asks for too much, jump to the next
-one — they’re interchangeable for this lab.</p></div>
+<div class="layout"><aside class="side"><nav><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome &amp; first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages &amp; cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows &amp; models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools &amp; agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="active" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Labs</div><a class="" href="lab1-first-prompt.html">Lab 1 · One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 · agents.md + YOLO</a></nav><div class="grp" style="margin-top:26px">On this page</div><div class="toc"><a href="#launch">Launch Claude</a><a href="#init">/login &amp; /init</a><a href="#context">/context</a><a href="#testing">Run the tests</a></div></aside><main><div class="content"><div class="reveal in">
+  <span class="daybadge d5">Class 6 · 6.2</span>
+  <h1 class="page">Getting started with the CLI: init, context &amp; testing</h1>
+  <p class="lede">Open a project, launch Claude, and meet the commands you'll use every day — /login, /init and /context — then let it run your whole test suite.</p>
+  <div class="meta"><span>🎯 <b>Goal:</b> drive the Claude Code CLI</span><span>⏱ <b>Read:</b> 8 min</span><span>🧭 <b>Type:</b> hands-on</span></div></div>
 
-<h2 id="s1"><span class="num">01</span>Open a free browser tool <span class="subtle" style="font-size:16px;font-weight:500">· 3 min</span></h2>
-<p>Pick <strong>one</strong>. All run in the browser:</p>
-<div class="grid c2 reveal">
-  <div class="card"><h4>Google AI Studio</h4><p class="subtle">aistudio.google.com</p>
-    <p>Prompt-to-app with instant preview and minimal friction. Great first choice.</p></div>
-  <div class="card"><h4>bolt.new</h4><p class="subtle">bolt.new</p>
-    <p>Type an app idea and watch it build in a live editor + preview.</p></div>
-  <div class="card"><h4>Claude.ai (Artifacts)</h4><p class="subtle">claude.ai</p>
-    <p>Describe an app; it generates a working single-page version you can run and tweak inline.</p></div>
-  <div class="card"><h4>Replit</h4><p class="subtle">replit.com</p>
-    <p>Prompt-to-deployed-app in one tab if you already have a login.</p></div>
+
+<h2 id="launch"><span class="num">01</span>Open a project and launch Claude</h2>
+<p>Open the project you built last week (our PM app) with <em>File → Open</em>. Before doing anything,
+it's worth committing your work so you have a clean baseline — then let Claude loose on it.</p>
+<div class="code term"><div class="cbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">VS Code · terminal</span></div>
+<pre><span class="k">git</span> status
+<span class="k">git</span> add .
+<span class="k">git</span> commit -m <span class="s">"step 10 complete"</span>
+<span class="c"># start absolutely fresh, then launch:</span>
+exit
+<span class="c"># open a new terminal (the + button), then:</span>
+<span class="k">claude</span></pre></div>
+<p>Up comes the <strong>Claude Code CLI</strong> — characters and lines printed in a very old-school way,
+like a previous decade of computing. The throwback feel is <em>intentional</em>: it's meant to feel like a
+raw, native interaction with the LLM. To talk to Claude, just type. To give it a command, start with a
+<strong>slash</strong> (<code class="inl">/</code>).</p>
+
+<h2 id="init"><span class="num">02</span><code class="inl">/login</code> and <code class="inl">/init</code></h2>
+<p>Your first command is <code class="inl">/login</code> — it opens a web page to sign in with your Anthropic
+credentials, then drops you back logged in. (If you want free models instead, hang on until later.)</p>
+<div class="call def reveal"><div class="t">Claude uses CLAUDE.md, not agents.md</div>
+<p>Claude Code has its own memory file, <code class="inl">CLAUDE.md</code>. You could simply rename your
+<code class="inl">agents.md</code> to <code class="inl">CLAUDE.md</code> — or run
+<code class="inl">/init</code>, which asks Claude to explore the project and organise itself.</p></div>
+<p>Run <code class="inl">/init</code> and Claude shows one of its playful processing words, then searches,
+analyses and explores the directory structure — reading your existing <code class="inl">agents.md</code>
+along the way — before writing a <code class="inl">CLAUDE.md</code>. You'll see the diff in VS Code (even
+from the terminal, Claude can drive the editor), and then its famous edit prompt:</p>
+<div class="steps reveal">
+  <div class="step"><h4>Press 1 — Yes</h4><p>Accept this single edit.</p></div>
+  <div class="step"><h4>Press 2 — Yes, and allow all this session</h4><p><kbd>Shift</kbd>+<kbd>Tab</kbd> is the shortcut. Your finger lives over this area when you use Claude Code.</p></div>
+  <div class="step"><h4>Press 3 — No</h4><p>Reject the edit. You can also press <kbd>Tab</kbd> to add a comment — "yes, but also think about…".</p></div>
 </div>
+<div class="call warn reveal"><div class="t">Don't let it write its own CLAUDE.md as a rule</div>
+<p>As a general principle, write <code class="inl">CLAUDE.md</code> yourself — just as we did for
+<code class="inl">agents.md</code>. It's the most crucial thing for the human supervisor to get right, so
+invest your time there. Letting <code class="inl">/init</code> draft it and then improving it is fine; letting
+it own the file forever is not.</p></div>
 
-<h2 id="s2"><span class="num">02</span>Paste the starter prompt <span class="subtle" style="font-size:16px;font-weight:500">· 5 min</span></h2>
-<p>Copy this in exactly as written and run it:</p>
-<div class="code reveal"><div class="cbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-  <span class="fname">starter prompt</span></div>
-<pre>Build a small web app: a daily habit tracker. I can add a habit,
-check it off for today, and see a simple streak count for each one.
-Make it a single page with a clean, modern look and a friendly empty
-state. Start it with two example habits so it isn’t blank.</pre></div>
-<p>Watch what the agent does: it <strong>plans, writes files, and shows a running preview</strong>. You didn’t write a
-single line of code.</p>
-<div class="call def reveal"><div class="t">Prefer something playful?</div>
-<p>Swap in the Class 2 demo prompt instead: <em>“Please build a website for a 3D first-person shooter game in an arena
-against one computer opponent, controlled by arrow keys and space bar to shoot.”</em> Either works for this lab.</p></div>
-
-<h2 id="s3"><span class="num">03</span>Make it yours <span class="subtle" style="font-size:16px;font-weight:500">· 15 min</span></h2>
-<p>Now improve it through conversation. Send at least <strong>two</strong> follow-up messages. Try:</p>
-<div class="grid c3 reveal">
-  <div class="card"><div class="k">Design</div><p>“Make the design more colorful and add a dark-mode toggle.”</p></div>
-  <div class="card"><div class="k">Feature</div><p>“Add a button to clear all entries, with a confirmation.”</p></div>
-  <div class="card"><div class="k">Bug fix</div><p>“The Save button doesn’t clear the text box after saving — fix that.”</p></div>
+<h2 id="context"><span class="num">03</span><code class="inl">/context</code> — mind the window</h2>
+<p>A command you'll run constantly: <code class="inl">/context</code> gives a quick visual of how much of the
+context window is being used. Claude's window is <strong>200,000 tokens</strong> — deliberately not huge.
+Anthropic wants a smart, powerful model with carefully managed context.</p>
+<div class="diagram reveal">
+<svg viewBox="0 0 720 78" width="100%" role="img" aria-label="Context window breakdown">
+  <g style="font:700 11px system-ui;fill:#fff">
+  <rect x="20" y="22" width="150" height="34" rx="6" fill="var(--brand)"/><text x="95" y="44" text-anchor="middle">Memory (CLAUDE.md)</text>
+  <rect x="176" y="22" width="150" height="34" rx="6" fill="var(--violet-500)"/><text x="251" y="44" text-anchor="middle">Messages</text>
+  <rect x="332" y="22" width="286" height="34" rx="6" fill="var(--hair)"/><text x="475" y="44" text-anchor="middle" style="fill:var(--ink-2)">Free space</text>
+  <rect x="624" y="22" width="76" height="34" rx="6" fill="var(--accent)"/><text x="662" y="44" text-anchor="middle" style="fill:#5b3b00">Buffer</text>
+  </g>
+</svg>
+<div class="cap">Memory + messages eat into a fixed 200k window; the buffer is kept free for compaction.</div>
 </div>
-<p class="subtle">Pick your own idea from the menu, or invent one. The goal is to feel how the app changes when you simply
-<em>describe</em> what you want.</p>
+<p>Memory holds things like your <code class="inl">CLAUDE.md</code>; <em>messages</em> are your interactions so
+far — even basic setup uses a fair amount. The buffer at the end is reserved room so Claude can maneuver.</p>
+<div class="call def reveal"><div class="t">Compaction</div>
+<p>When the window fills, Claude <strong>compacts</strong> — compressing the conversation down to something
+smaller so it can keep going. The buffer is the wiggle room it needs to do that.</p></div>
 
-<h2 id="s4"><span class="num">04</span>The twist: run it twice <span class="subtle" style="font-size:16px;font-weight:500">· 7 min</span></h2>
-<div class="call warn reveal"><div class="t">This is the real lesson</div>
-<p>Open a <strong>fresh chat / new project</strong> and paste your <strong>original</strong> prompt again — unchanged.
-Compare the two results side by side.</p></div>
+<h2 id="testing"><span class="num">04</span>Put it to work — run the tests</h2>
+<p>Now instruct Claude the way you learned last week. First, make sure it understands the project:</p>
+<div class="call quote reveal"><p>Please read <code class="inl">plan.md</code> in the docs folder to understand everything that's been
+built, and any supporting docs.</p></div>
+<p>Then ask it to verify the project actually works:</p>
+<div class="call quote reveal"><p>Please run all tests to confirm everything is working — bringing the server up as needed and back
+down at the end.</p></div>
+<p>You'll hit the familiar permission prompt (<em>allow this <code class="inl">docker build</code> command?</em>).
+Press <strong>2</strong> to say yes and not be asked again for docker builds. In one memorable moment, Docker
+wasn't running after a restart — and Claude knew how to <strong>launch Docker Desktop itself</strong>.</p>
+<div class="call tip reveal"><div class="t">Opus is that good</div>
+<p>Auto-launching Docker is the kind of thing earlier models couldn't reliably do. Claude ran every backend
+<em>and</em> frontend test, and reported them all passing — two harmless deprecation warnings aside. A quick
+<code class="inl">/context</code> afterward shows how fast messages fill the window, so keep a healthy eye on it.</p></div>
+
+<div class="takeaways reveal"><h3><span class="p">✓</span> Key takeaways</h3>
 <ul>
-  <li>Did the layout change? The colors? The wording of the buttons?</li>
-  <li>Did one version have a feature the other missed?</li>
-  <li>Did one work perfectly while the other broke?</li>
-</ul>
-<p>That divergence is <strong>non-determinism</strong> — the same input can produce different output every time. It’s not
-a bug; it’s a property of how these models work, and designing around it is what <a href="day2-context-engineering.html">context
-engineering</a> is all about.</p>
-
-<h2 id="s5"><span class="num">05</span>Reflect <span class="subtle" style="font-size:16px;font-weight:500">· 5 min</span></h2>
-<p>Jot down answers — you’ll reuse these when we talk context engineering:</p>
-<div class="takeaways reveal"><h3><span class="p">?</span> Three questions</h3><ul>
-  <li>What did the agent get impressively <strong>right</strong> on the first try?</li>
-  <li>Where did it get <strong>confused</strong> or make a wrong assumption?</li>
-  <li>What one instruction, added up front, would have <strong>prevented</strong> that mistake?</li>
+  <li>Commit first, then launch Claude Code with <code class="inl">claude</code> in a fresh terminal — the retro CLI feel is intentional.</li>
+  <li><code class="inl">/login</code> signs you in; <code class="inl">/init</code> explores the repo and drafts a <code class="inl">CLAUDE.md</code> — but own that file yourself.</li>
+  <li>The edit prompt: <strong>1</strong> yes · <strong>2</strong> yes &amp; allow all · <strong>3</strong> no · <kbd>Tab</kbd> to add a comment.</li>
+  <li><code class="inl">/context</code> visualises a fixed <strong>200k-token</strong> window — memory, messages, free space and a compaction buffer.</li>
+  <li>Instruct Claude to read the docs and run the full test suite; a strong model can even start Docker for you.</li>
 </ul></div>
 
-<h2 id="trouble"><span class="num">06</span>If something goes wrong</h2>
-<table class="tbl reveal"><thead><tr><th>Symptom</th><th>What to do</th></tr></thead><tbody>
-  <tr><td>Tool is rate-limited or slow</td><td>Switch to a different tool from Step 1 and re-paste your prompt.</td></tr>
-  <tr><td>App won’t run</td><td>Tell the agent exactly what’s broken (“the buttons don’t do anything when clicked”) and let
-    it fix itself.</td></tr>
-  <tr><td>Output looks nothing like you asked</td><td>Expected and useful — note it for the reflection. It’s data, not failure.</td></tr>
-</tbody></table>
-<div class="call tip reveal"><div class="t">Take-home (optional, no grade)</div>
-<p>Run your original prompt one more time at home and write three sentences on what varied between runs. Bring it along —
-it’s the perfect on-ramp to context engineering.</p></div>
-<div class="pager"><a href="day3-kanban-build.html"><div class="l">← Previous</div><div class="t">4.2 Build the Kanban app</div></a><a class="nx" href="lab2-kanban-agents-md.html"><div class="l">Next →</div><div class="t">Lab 2 · agents.md + YOLO</div></a></div></div></main></div>
+<div class="pager"><a href="class6-rise-of-claude-code.html"><div class="l">← Previous</div><div class="t">6.1 The rise of Claude Code</div></a><a class="nx" href="class6-opencode.html"><div class="l">Next →</div><div class="t">6.3 OpenCode &amp; free models</div></a></div></div></main></div>
 <footer class="footer">
   <strong>Vibe Engineering with AI Coding Agents</strong> · SMIT — Saylani Mass IT Training.
   Instructor: <strong>Muhammad Uzair Khan</strong>. Course material for learners at every level.<br>

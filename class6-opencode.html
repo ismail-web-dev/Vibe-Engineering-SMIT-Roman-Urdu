@@ -1,6 +1,6 @@
 <!doctype html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Lab 1 · One prompt, one app · Vibe Engineering — SMIT</title>
+<title>OpenCode &amp; free models · Vibe Engineering — SMIT</title>
 <meta name="description" content="Vibe Engineering with AI Coding Agents — SMIT course by Muhammad Uzair Khan.">
 <style>
 :root{
@@ -240,98 +240,117 @@ h2:hover .anchor{opacity:1}
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
 .reveal.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
-</style></head><body>
-<header class="site-head">
+.daybadge.d5{background:#fbe0ea;color:#9f1239}
+:root[data-theme=dark] .daybadge.d5{background:#3a0f1e;color:#f7789f}
+</style></head><body><header class="site-head">
   <div style="height:3px;background:var(--hair)"><div id="prog" style="height:3px;width:0;background:linear-gradient(90deg,var(--violet-600),var(--amber-400));transition:width .1s"></div></div>
   <div class="bar">
     <a class="brand" href="index.html">
       <span class="glyph">◆</span>
       <span>Vibe Engineering<small>SMIT · AI Agentic Engineering</small></span>
     </a>
-    <nav class="head-nav"><a class="" href="index.html">Home</a><a class="" href="day1-welcome.html">Class 2</a><a class="" href="day2-how-llms-work.html">Class 3</a><a class="" href="day3-tooling-setup.html">Class 4</a><a class="" href="class5-model-choice.html">Class 5</a><a class="" href="class6-rise-of-claude-code.html">Class 6</a><a class="active" href="lab1-first-prompt.html">Labs</a></nav>
+    <nav class="head-nav"><a class="" href="index.html">Home</a><a class="" href="day1-welcome.html">Class 2</a><a class="" href="day2-how-llms-work.html">Class 3</a><a class="" href="day3-tooling-setup.html">Class 4</a><a class="" href="class5-model-choice.html">Class 5</a><a class="active" href="class6-rise-of-claude-code.html">Class 6</a><a class="" href="lab1-first-prompt.html">Labs</a></nav>
     <button class="icon-btn" id="themeBtn" title="Toggle light / dark" aria-label="Toggle theme">☾</button>
     <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu">☰</button>
   </div>
-  <div id="mnav" class="side" style="display:none;max-height:70vh;padding:12px 22px;border-top:1px solid var(--hair)"><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome & first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages & cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows & models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools & agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Labs</div><a class="active" href="lab1-first-prompt.html">Lab 1 · One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 · agents.md + YOLO</a></div>
+  <div id="mnav" class="side" style="display:none;max-height:70vh;padding:12px 22px;border-top:1px solid var(--hair)"><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome &amp; first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages &amp; cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows &amp; models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools &amp; agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="active" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Labs</div><a class="" href="lab1-first-prompt.html">Lab 1 · One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 · agents.md + YOLO</a></div>
 </header>
-<div class="layout"><aside class="side"><nav><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome & first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages & cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows & models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools & agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Labs</div><a class="active" href="lab1-first-prompt.html">Lab 1 · One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 · agents.md + YOLO</a></nav><div class="grp" style="margin-top:26px">On this page</div><div class="toc"><a href="#s1">1 · Open a tool</a><a href="#s2">2 · Paste the prompt</a><a href="#s3">3 · Make it yours</a><a href="#s4">4 · Run it twice</a><a href="#s5">5 · Reflect</a><a href="#trouble">If something goes wrong</a></div></aside><main><div class="content"><div class="reveal in">
-  <span class="daybadge lab">Hands-on Lab 1 · ~35 min</span>
-  <h1 class="page">One prompt, one app</h1>
-  <p class="lede">Build a small, working app just by describing it in plain English — no setup, no code editor, no account gymnastics. Then run the exact same prompt again and watch the two results diverge. That surprise is the lesson.</p>
-  <div class="meta"><span>🎯 <b>Outcome:</b> a running app + a feel for non-determinism</span><span>⏱ ~35 min</span><span>💸 Free tiers only</span></div></div>
-<div class="call idea reveal"><div class="t">Before you start</div>
-<p>Everything here runs in your browser. Nothing to install. If one tool is slow or asks for too much, jump to the next
-one — they’re interchangeable for this lab.</p></div>
+<div class="layout"><aside class="side"><nav><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome &amp; first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages &amp; cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows &amp; models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools &amp; agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="active" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Labs</div><a class="" href="lab1-first-prompt.html">Lab 1 · One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 · agents.md + YOLO</a></nav><div class="grp" style="margin-top:26px">On this page</div><div class="toc"><a href="#what">What OpenCode is</a><a href="#models">Models &amp; modes</a><a href="#review">GLM 4.7 review</a><a href="#connect">Other providers</a></div></aside><main><div class="content"><div class="reveal in">
+  <span class="daybadge d5">Class 6 · 6.3</span>
+  <h1 class="page">OpenCode: run free models like GLM 4.7</h1>
+  <p class="lede">An open-source alternative to Claude Code — the easiest way to try genuinely free, near-frontier models, and to connect any provider you like.</p>
+  <div class="meta"><span>🎯 <b>Goal:</b> run a free-model code review</span><span>⏱ <b>Read:</b> 8 min</span><span>🧭 <b>Type:</b> tools</span></div></div>
 
-<h2 id="s1"><span class="num">01</span>Open a free browser tool <span class="subtle" style="font-size:16px;font-weight:500">· 3 min</span></h2>
-<p>Pick <strong>one</strong>. All run in the browser:</p>
-<div class="grid c2 reveal">
-  <div class="card"><h4>Google AI Studio</h4><p class="subtle">aistudio.google.com</p>
-    <p>Prompt-to-app with instant preview and minimal friction. Great first choice.</p></div>
-  <div class="card"><h4>bolt.new</h4><p class="subtle">bolt.new</p>
-    <p>Type an app idea and watch it build in a live editor + preview.</p></div>
-  <div class="card"><h4>Claude.ai (Artifacts)</h4><p class="subtle">claude.ai</p>
-    <p>Describe an app; it generates a working single-page version you can run and tweak inline.</p></div>
-  <div class="card"><h4>Replit</h4><p class="subtle">replit.com</p>
-    <p>Prompt-to-deployed-app in one tab if you already have a login.</p></div>
+
+<h2 id="what"><span class="num">01</span>What OpenCode is — and how to install it</h2>
+<p>And now for something completely different: <strong>OpenCode</strong> (<code class="inl">opencode.ai</code>).
+It's a popular <strong>open-source competitor</strong> to Claude Code, and the easiest way to use genuinely
+free models — with free models included out of the box, plus the ability to connect any model from any
+provider (Claude, GPT, Gemini and more).</p>
+<p>Installation looks familiar. You can use the one-line installer for your OS, or — since we already have
+Node — install it with npm. On Windows, <code class="inl">choco</code> is the easy route; otherwise npm works
+everywhere.</p>
+<div class="code term"><div class="cbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">VS Code · terminal</span></div>
+<pre><span class="c"># install (npm route — Node already installed):</span>
+<span class="k">npm</span> install -g opencode-ai
+<span class="c"># then, inside your project:</span>
+<span class="k">cd</span> your-project
+<span class="k">opencode</span></pre></div>
+<p>Open the PM project again, open a fresh terminal so it picks up the new PATH, and run
+<code class="inl">opencode</code> to launch.</p>
+
+<h2 id="models"><span class="num">02</span>Models and modes</h2>
+<p>The first thing you notice: OpenCode detects environments you're already signed in to. Here it spotted an
+existing OpenAI subscription and opened with <strong>GPT-5.2</strong> selected. A few key controls:</p>
+<div class="grid c3">
+  <div class="card"><div class="k">Tab</div><h4>Plan ↔ Build</h4><p>Switch between the two agent modes — think first, or act.</p></div>
+  <div class="card"><div class="k">Ctrl + T</div><h4>Reasoning level</h4><p>Cycle low → medium → high → extra-high. GPT-5.2 can go far more thoughtful than the "high" we capped at in Copilot.</p></div>
+  <div class="card"><div class="k">/models</div><h4>Switch model</h4><p>Like Claude Code, a slash opens commands. <code class="inl">/models</code> lets you change the model.</p></div>
 </div>
+<p>Scroll the model list and you'll find the free open-source all-stars:</p>
+<div class="tbl-wrap" style="overflow-x:auto">
+<table class="tbl">
+<thead><tr><th>Model</th><th>From</th><th>Reputation</th></tr></thead>
+<tbody>
+<tr><td><strong>GLM 4.7</strong></td><td>Z.ai (Zhipu, China)</td><td>Incredibly powerful; lots of excitement around it.</td></tr>
+<tr><td><strong>Kimi K2 / K2.5</strong></td><td>Moonshot AI</td><td>Arguably the strongest open-source model right now.</td></tr>
+<tr><td><strong>MiniMax</strong></td><td>MiniMax</td><td>Another genuinely strong open-source option.</td></tr>
+</tbody></table></div>
 
-<h2 id="s2"><span class="num">02</span>Paste the starter prompt <span class="subtle" style="font-size:16px;font-weight:500">· 5 min</span></h2>
-<p>Copy this in exactly as written and run it:</p>
-<div class="code reveal"><div class="cbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-  <span class="fname">starter prompt</span></div>
-<pre>Build a small web app: a daily habit tracker. I can add a habit,
-check it off for today, and see a simple streak count for each one.
-Make it a single page with a clean, modern look and a friendly empty
-state. Start it with two example habits so it isn’t blank.</pre></div>
-<p>Watch what the agent does: it <strong>plans, writes files, and shows a running preview</strong>. You didn’t write a
-single line of code.</p>
-<div class="call def reveal"><div class="t">Prefer something playful?</div>
-<p>Swap in the Class 2 demo prompt instead: <em>“Please build a website for a 3D first-person shooter game in an arena
-against one computer opponent, controlled by arrow keys and space bar to shoot.”</em> Either works for this lab.</p></div>
+<h2 id="review"><span class="num">03</span>A free code review with GLM 4.7</h2>
+<p>Let's pick <strong>GLM 4.7</strong> and get our first taste of a free model. Put it in <strong>plan mode</strong>
+(<kbd>Tab</kbd>), delete any existing review first so it gets no hints, then ask:</p>
+<div class="call quote reveal"><p>Please review the entire project, carry out a code review, and write your feedback to
+<code class="inl">code-review.md</code> in the docs directory.</p></div>
+<p>Off it goes — its own distinct look, but plenty in common with Claude Code: a thinking indicator, scanning
+files, all <strong>running for free</strong> on GLM 4.7. Because it's in plan mode it thinks without acting,
+so switch to <strong>build mode</strong> to actually write the file:</p>
+<div class="call quote reveal"><p>Please go ahead and write the code review to <code class="inl">docs/code-review.md</code>, but don't
+start any further work yet.</p></div>
+<p>Context climbs from ~34% to ~37%, and the review lands: an executive summary ("overall assessment: good"),
+strengths (modular architecture), and real findings — <strong>hard-coded auth credentials</strong>, TypeScript
+strictness, some code duplication, error handling. A long, genuinely impressive document.</p>
+<div class="call idea reveal"><div class="t">Impressive — but not frontier</div>
+<p>Even a well-regarded model like GLM 4.7 is far from the very frontier. The review reads well, but you
+typically won't get the same <em>independence and reliability</em> — it's doubtful it could have implemented
+and refactored all the changes as cleanly as Claude Opus 4.5 did.</p></div>
+<div class="call warn reveal"><div class="t">"Free" has fuzzy limits</div>
+<p>OpenCode isn't entirely clear about the free allowance — there's no visible quota right now. Use it a lot
+and you may slow down, get rate-limited, or hit an error. This is liable to change; they might not always
+offer these free models.</p></div>
 
-<h2 id="s3"><span class="num">03</span>Make it yours <span class="subtle" style="font-size:16px;font-weight:500">· 15 min</span></h2>
-<p>Now improve it through conversation. Send at least <strong>two</strong> follow-up messages. Try:</p>
-<div class="grid c3 reveal">
-  <div class="card"><div class="k">Design</div><p>“Make the design more colorful and add a dark-mode toggle.”</p></div>
-  <div class="card"><div class="k">Feature</div><p>“Add a button to clear all entries, with a confirmation.”</p></div>
-  <div class="card"><div class="k">Bug fix</div><p>“The Save button doesn’t clear the text box after saving — fix that.”</p></div>
+<h2 id="connect"><span class="num">04</span>Connecting other providers</h2>
+<p><code class="inl">/models</code> shows what you can reach; <code class="inl">/connect</code> adds a new
+provider. By default you're on <strong>OpenCode Zen</strong> — their curated set of free models — plus
+anything it auto-detected (OpenAI, in this case).</p>
+<div class="pill-row">
+  <span class="pill">OpenCode Zen (free)</span><span class="pill">OpenAI</span>
+  <span class="pill">Anthropic (Max or API key)</span><span class="pill">GitHub Copilot</span>
+  <span class="pill">Google</span><span class="pill">Azure</span><span class="pill">Bedrock</span>
+  <span class="pill">LM Studio</span><span class="pill">OpenRouter</span><span class="pill">Ollama (local)</span>
 </div>
-<p class="subtle">Pick your own idea from the menu, or invent one. The goal is to feel how the app changes when you simply
-<em>describe</em> what you want.</p>
+<p>You can point it at OpenRouter with your key (a great way to run free or cheap models), or at models
+running <strong>locally via Ollama</strong> — but local needs a serious machine: at least 64&nbsp;GB of GPU
+RAM (or 64&nbsp;GB unified memory on a Mac), since <code class="inl">gpt-oss-20B</code> isn't enough and you'd
+want <code class="inl">gpt-oss-120B</code>. Few people can run that.</p>
+<div class="call tip reveal"><div class="t">The practical recommendation</div>
+<p>For free models, use the ones offered through <strong>OpenCode Zen</strong>, or connect <strong>OpenRouter</strong>
+with your key. Almost everything you do in Claude Code, you can do in OpenCode too — with more flexibility to
+switch between (and run multiple) models in a session.</p></div>
+<p>Lots of people love OpenCode. The instructor's favourite is still Claude Code — the whole platform is
+organised around what Claude's models are effective at — but you can follow the entire course in OpenCode if
+you prefer.</p>
 
-<h2 id="s4"><span class="num">04</span>The twist: run it twice <span class="subtle" style="font-size:16px;font-weight:500">· 7 min</span></h2>
-<div class="call warn reveal"><div class="t">This is the real lesson</div>
-<p>Open a <strong>fresh chat / new project</strong> and paste your <strong>original</strong> prompt again — unchanged.
-Compare the two results side by side.</p></div>
+<div class="takeaways reveal"><h3><span class="p">✓</span> Key takeaways</h3>
 <ul>
-  <li>Did the layout change? The colors? The wording of the buttons?</li>
-  <li>Did one version have a feature the other missed?</li>
-  <li>Did one work perfectly while the other broke?</li>
-</ul>
-<p>That divergence is <strong>non-determinism</strong> — the same input can produce different output every time. It’s not
-a bug; it’s a property of how these models work, and designing around it is what <a href="day2-context-engineering.html">context
-engineering</a> is all about.</p>
-
-<h2 id="s5"><span class="num">05</span>Reflect <span class="subtle" style="font-size:16px;font-weight:500">· 5 min</span></h2>
-<p>Jot down answers — you’ll reuse these when we talk context engineering:</p>
-<div class="takeaways reveal"><h3><span class="p">?</span> Three questions</h3><ul>
-  <li>What did the agent get impressively <strong>right</strong> on the first try?</li>
-  <li>Where did it get <strong>confused</strong> or make a wrong assumption?</li>
-  <li>What one instruction, added up front, would have <strong>prevented</strong> that mistake?</li>
+  <li><strong>OpenCode</strong> is an open-source Claude Code alternative — the easiest way to run genuinely free models, or connect any provider.</li>
+  <li>Install via npm (or the OS installer), then run <code class="inl">opencode</code> in your project; <kbd>Tab</kbd> = plan/build, <kbd>Ctrl</kbd>+<kbd>T</kbd> = reasoning level.</li>
+  <li>Free all-stars: <strong>GLM 4.7</strong>, <strong>Kimi K2.5</strong>, <strong>MiniMax</strong> — impressive, but not frontier-reliable.</li>
+  <li>Plan mode thinks before acting; switch to build mode to actually write files.</li>
+  <li>Use <code class="inl">/connect</code> for other providers; the best free routes are <strong>OpenCode Zen</strong> or <strong>OpenRouter</strong> — local Ollama needs a very beefy machine.</li>
 </ul></div>
 
-<h2 id="trouble"><span class="num">06</span>If something goes wrong</h2>
-<table class="tbl reveal"><thead><tr><th>Symptom</th><th>What to do</th></tr></thead><tbody>
-  <tr><td>Tool is rate-limited or slow</td><td>Switch to a different tool from Step 1 and re-paste your prompt.</td></tr>
-  <tr><td>App won’t run</td><td>Tell the agent exactly what’s broken (“the buttons don’t do anything when clicked”) and let
-    it fix itself.</td></tr>
-  <tr><td>Output looks nothing like you asked</td><td>Expected and useful — note it for the reflection. It’s data, not failure.</td></tr>
-</tbody></table>
-<div class="call tip reveal"><div class="t">Take-home (optional, no grade)</div>
-<p>Run your original prompt one more time at home and write three sentences on what varied between runs. Bring it along —
-it’s the perfect on-ramp to context engineering.</p></div>
-<div class="pager"><a href="day3-kanban-build.html"><div class="l">← Previous</div><div class="t">4.2 Build the Kanban app</div></a><a class="nx" href="lab2-kanban-agents-md.html"><div class="l">Next →</div><div class="t">Lab 2 · agents.md + YOLO</div></a></div></div></main></div>
+<div class="pager"><a href="class6-cli-basics.html"><div class="l">← Previous</div><div class="t">6.2 CLI: init, context &amp; testing</div></a><a class="nx" href="class6-providers.html"><div class="l">Next →</div><div class="t">6.4 AMP, OpenRouter &amp; Ollama</div></a></div></div></main></div>
 <footer class="footer">
   <strong>Vibe Engineering with AI Coding Agents</strong> · SMIT — Saylani Mass IT Training.
   Instructor: <strong>Muhammad Uzair Khan</strong>. Course material for learners at every level.<br>

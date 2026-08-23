@@ -1,6 +1,6 @@
 <!doctype html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Lab 1 · One prompt, one app · Vibe Engineering — SMIT</title>
+<title>AMP, OpenRouter &amp; Ollama · Vibe Engineering — SMIT</title>
 <meta name="description" content="Vibe Engineering with AI Coding Agents — SMIT course by Muhammad Uzair Khan.">
 <style>
 :root{
@@ -240,98 +240,147 @@ h2:hover .anchor{opacity:1}
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
 .reveal.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
-</style></head><body>
-<header class="site-head">
+.daybadge.d5{background:#fbe0ea;color:#9f1239}
+:root[data-theme=dark] .daybadge.d5{background:#3a0f1e;color:#f7789f}
+</style></head><body><header class="site-head">
   <div style="height:3px;background:var(--hair)"><div id="prog" style="height:3px;width:0;background:linear-gradient(90deg,var(--violet-600),var(--amber-400));transition:width .1s"></div></div>
   <div class="bar">
     <a class="brand" href="index.html">
       <span class="glyph">◆</span>
       <span>Vibe Engineering<small>SMIT · AI Agentic Engineering</small></span>
     </a>
-    <nav class="head-nav"><a class="" href="index.html">Home</a><a class="" href="day1-welcome.html">Class 2</a><a class="" href="day2-how-llms-work.html">Class 3</a><a class="" href="day3-tooling-setup.html">Class 4</a><a class="" href="class5-model-choice.html">Class 5</a><a class="" href="class6-rise-of-claude-code.html">Class 6</a><a class="active" href="lab1-first-prompt.html">Labs</a></nav>
+    <nav class="head-nav"><a class="" href="index.html">Home</a><a class="" href="day1-welcome.html">Class 2</a><a class="" href="day2-how-llms-work.html">Class 3</a><a class="" href="day3-tooling-setup.html">Class 4</a><a class="" href="class5-model-choice.html">Class 5</a><a class="active" href="class6-rise-of-claude-code.html">Class 6</a><a class="" href="lab1-first-prompt.html">Labs</a></nav>
     <button class="icon-btn" id="themeBtn" title="Toggle light / dark" aria-label="Toggle theme">☾</button>
     <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu">☰</button>
   </div>
-  <div id="mnav" class="side" style="display:none;max-height:70vh;padding:12px 22px;border-top:1px solid var(--hair)"><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome & first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages & cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows & models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools & agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Labs</div><a class="active" href="lab1-first-prompt.html">Lab 1 · One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 · agents.md + YOLO</a></div>
+  <div id="mnav" class="side" style="display:none;max-height:70vh;padding:12px 22px;border-top:1px solid var(--hair)"><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome &amp; first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages &amp; cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows &amp; models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools &amp; agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="active" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Labs</div><a class="" href="lab1-first-prompt.html">Lab 1 · One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 · agents.md + YOLO</a></div>
 </header>
-<div class="layout"><aside class="side"><nav><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome & first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages & cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows & models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools & agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Labs</div><a class="active" href="lab1-first-prompt.html">Lab 1 · One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 · agents.md + YOLO</a></nav><div class="grp" style="margin-top:26px">On this page</div><div class="toc"><a href="#s1">1 · Open a tool</a><a href="#s2">2 · Paste the prompt</a><a href="#s3">3 · Make it yours</a><a href="#s4">4 · Run it twice</a><a href="#s5">5 · Reflect</a><a href="#trouble">If something goes wrong</a></div></aside><main><div class="content"><div class="reveal in">
-  <span class="daybadge lab">Hands-on Lab 1 · ~35 min</span>
-  <h1 class="page">One prompt, one app</h1>
-  <p class="lede">Build a small, working app just by describing it in plain English — no setup, no code editor, no account gymnastics. Then run the exact same prompt again and watch the two results diverge. That surprise is the lesson.</p>
-  <div class="meta"><span>🎯 <b>Outcome:</b> a running app + a feel for non-determinism</span><span>⏱ ~35 min</span><span>💸 Free tiers only</span></div></div>
-<div class="call idea reveal"><div class="t">Before you start</div>
-<p>Everything here runs in your browser. Nothing to install. If one tool is slow or asks for too much, jump to the next
-one — they’re interchangeable for this lab.</p></div>
+<div class="layout"><aside class="side"><nav><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome &amp; first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages &amp; cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows &amp; models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools &amp; agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="active" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Labs</div><a class="" href="lab1-first-prompt.html">Lab 1 · One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 · agents.md + YOLO</a></nav><div class="grp" style="margin-top:26px">On this page</div><div class="toc"><a href="#amp">AMP Code</a><a href="#openrouter">Claude Code + OpenRouter</a><a href="#ollama">Local with Ollama</a><a href="#recipes">Config recipes</a></div></aside><main><div class="content"><div class="reveal in">
+  <span class="daybadge d5">Class 6 · 6.4</span>
+  <h1 class="page">AMP, OpenRouter &amp; Ollama: more ways to run agents</h1>
+  <p class="lede">Three more routes to (nearly) free frontier coding — AMP's ad-supported credits, Claude Code pointed at OpenRouter, and models running locally with Ollama.</p>
+  <div class="meta"><span>🎯 <b>Goal:</b> run agents on any provider</span><span>⏱ <b>Read:</b> 10 min</span><span>🧭 <b>Type:</b> tools</span></div></div>
 
-<h2 id="s1"><span class="num">01</span>Open a free browser tool <span class="subtle" style="font-size:16px;font-weight:500">· 3 min</span></h2>
-<p>Pick <strong>one</strong>. All run in the browser:</p>
-<div class="grid c2 reveal">
-  <div class="card"><h4>Google AI Studio</h4><p class="subtle">aistudio.google.com</p>
-    <p>Prompt-to-app with instant preview and minimal friction. Great first choice.</p></div>
-  <div class="card"><h4>bolt.new</h4><p class="subtle">bolt.new</p>
-    <p>Type an app idea and watch it build in a live editor + preview.</p></div>
-  <div class="card"><h4>Claude.ai (Artifacts)</h4><p class="subtle">claude.ai</p>
-    <p>Describe an app; it generates a working single-page version you can run and tweak inline.</p></div>
-  <div class="card"><h4>Replit</h4><p class="subtle">replit.com</p>
-    <p>Prompt-to-deployed-app in one tab if you already have a login.</p></div>
+
+<h2 id="amp"><span class="num">01</span>AMP Code — frontier performance, ad-supported</h2>
+<p><strong>AMP</strong> is a bit like OpenCode: not affiliated with any single provider. It's an agentic coder
+that can attach to multiple providers and run different analyses. It's most famous as a terminal tool, but
+also ships as an extension for VS Code, Cursor or Windsurf (all basically the same thing anyway).</p>
+<div class="call money reveal"><div class="t">"AMP Free" = $10 a day for watching ads</div>
+<p>At first glance <strong>AMP Free</strong> looks like it costs $10/day — but it's the opposite. You get
+<strong>$10 of model credit per day</strong> in exchange for looking at ads. The tech community loves to get
+up in arms about ads, but this is a genuinely good deal: if the ads are inoffensive (maybe even useful),
+earning $10/day of frontier-level usage is hard to argue with.</p></div>
+<div class="steps reveal">
+  <div class="step"><h4>Install and launch</h4><p>Paste AMP's install command in the VS Code terminal, then type <code class="inl">amp</code>.</p></div>
+  <div class="step"><h4>Log in / sign up</h4><p>First launch opens a browser to log in. No account yet? Sign up with email/password or Google auth — then you're straight back in the terminal.</p></div>
+  <div class="step"><h4>Notice the ad</h4><p>An ad is served at the top — that's how you pay for the $10/day of free usage.</p></div>
+  <div class="step"><h4>Pick a thinking mode, not a model</h4><p><kbd>Ctrl</kbd>+<kbd>S</kbd> toggles <strong>smart → deep → rush</strong>. AMP chooses the underlying model for you; you trust it to serve the best for the task.</p></div>
 </div>
+<p>Running the same code-review prompt in <strong>deep</strong> mode, AMP found a <strong>critical</strong>
+issue — the hard-coded credentials again — and offered to fix it. The context readout suggests a high-end
+OpenAI-class model behind the scenes. This run cost about <strong>42¢</strong> of the daily $10. On
+<code class="inl">ampcode.com → settings</code> you can see your plan, remaining balance, buy credits, set
+auto-top-up, and connect GitHub.</p>
+<div class="call idea reveal"><div class="t">Cross-provider, Claude-Code-like</div>
+<p>AMP gives you an easy path to free, frontier-level performance via the daily ad-supported allotment. The
+experience is quite similar to Claude Code — though in practice Claude Code still has the edge.</p></div>
 
-<h2 id="s2"><span class="num">02</span>Paste the starter prompt <span class="subtle" style="font-size:16px;font-weight:500">· 5 min</span></h2>
-<p>Copy this in exactly as written and run it:</p>
-<div class="code reveal"><div class="cbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-  <span class="fname">starter prompt</span></div>
-<pre>Build a small web app: a daily habit tracker. I can add a habit,
-check it off for today, and see a simple streak count for each one.
-Make it a single page with a clean, modern look and a friendly empty
-state. Start it with two example habits so it isn’t blank.</pre></div>
-<p>Watch what the agent does: it <strong>plans, writes files, and shows a running preview</strong>. You didn’t write a
-single line of code.</p>
-<div class="call def reveal"><div class="t">Prefer something playful?</div>
-<p>Swap in the Class 2 demo prompt instead: <em>“Please build a website for a 3D first-person shooter game in an arena
-against one computer opponent, controlled by arrow keys and space bar to shoot.”</em> Either works for this lab.</p></div>
+<h2 id="openrouter"><span class="num">02</span>Claude Code, pointed at OpenRouter (Kimi K2)</h2>
+<p>You can also make <strong>Claude Code itself</strong> call a different provider. We'll point it at
+<strong>OpenRouter</strong> running <strong>Kimi K2.5</strong> — perhaps the strongest open-source model right
+now, from Moonshot AI.</p>
+<div class="call warn reveal"><div class="t">Not Anthropic's recommended path</div>
+<p>Claude Code is designed and optimised to run with Claude's models. Redirecting it elsewhere is a
+<em>janky</em> experience — even configuring it is fiddly. Unless you specifically want to experiment, watch
+rather than follow along; for open-source work, prefer OpenCode or AMP.</p></div>
+<p>The trick is a set of environment variables that tell the Anthropic tooling to call OpenRouter instead of
+Claude in the cloud. You set the default Haiku/Sonnet/Opus models all to your chosen model (otherwise it
+flips back to Claude's), point <code class="inl">ANTHROPIC_BASE_URL</code> at OpenRouter, use your OpenRouter
+key as the auth token, and blank out the real API key. Then launch with <code class="inl">--model</code>.</p>
+<div class="code"><div class="cbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">Kimi K2.5 via OpenRouter · macOS / Linux</span></div>
+<pre><span class="k">export</span> ANTHROPIC_DEFAULT_HAIKU_MODEL=<span class="s">"moonshotai/kimi-k2.5"</span>
+<span class="k">export</span> ANTHROPIC_DEFAULT_SONNET_MODEL=<span class="s">"moonshotai/kimi-k2.5"</span>
+<span class="k">export</span> ANTHROPIC_DEFAULT_OPUS_MODEL=<span class="s">"moonshotai/kimi-k2.5"</span>
+<span class="k">export</span> ANTHROPIC_BASE_URL=<span class="s">"https://openrouter.ai/api"</span>
+<span class="k">export</span> ANTHROPIC_AUTH_TOKEN=<span class="s">"&lt;PUT YOUR OPENROUTER KEY HERE&gt;"</span>
+<span class="k">export</span> ANTHROPIC_API_KEY=<span class="s">""</span>
+<span class="k">claude</span> --model moonshotai/kimi-k2.5</pre></div>
+<p>Launch, run <code class="inl">/model</code>, and you'll see Moonshot AI Kimi K2 as the model — it <em>thinks</em>
+it has the other models too, but we've mapped them all to Kimi K2. Ask it something simple ("describe the
+purpose of this project") and it answers correctly, using the same Claude Code tooling. Confirm on your
+OpenRouter <em>activity</em> page that the recent calls really went to Kimi K2.</p>
+<div class="call tip reveal"><div class="t">Experiment — and a rate-limit pro tip</div>
+<p>With open-source models, some things work and some don't; things change fast (people like the fast Grok
+variants too). If free OpenRouter models rate-limit you, set the model to <code class="inl">openrouter/free</code>
+to be routed automatically to a working free model.</p></div>
 
-<h2 id="s3"><span class="num">03</span>Make it yours <span class="subtle" style="font-size:16px;font-weight:500">· 15 min</span></h2>
-<p>Now improve it through conversation. Send at least <strong>two</strong> follow-up messages. Try:</p>
-<div class="grid c3 reveal">
-  <div class="card"><div class="k">Design</div><p>“Make the design more colorful and add a dark-mode toggle.”</p></div>
-  <div class="card"><div class="k">Feature</div><p>“Add a button to clear all entries, with a confirmation.”</p></div>
-  <div class="card"><div class="k">Bug fix</div><p>“The Save button doesn’t clear the text box after saving — fix that.”</p></div>
-</div>
-<p class="subtle">Pick your own idea from the menu, or invent one. The goal is to feel how the app changes when you simply
-<em>describe</em> what you want.</p>
+<h2 id="ollama"><span class="num">03</span>Running locally with Ollama (GPT-OSS)</h2>
+<p>Last, we point Claude Code at a model running <strong>locally</strong> on your own machine via
+<strong>Ollama</strong>. Same idea — but <code class="inl">ANTHROPIC_BASE_URL</code> now points at your
+computer at <code class="inl">http://localhost:11434</code> (Ollama's default port).</p>
+<div class="code"><div class="cbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">GPT-OSS via Ollama · macOS / Linux</span></div>
+<pre><span class="k">export</span> ANTHROPIC_DEFAULT_HAIKU_MODEL=<span class="s">"gpt-oss"</span>
+<span class="k">export</span> ANTHROPIC_DEFAULT_SONNET_MODEL=<span class="s">"gpt-oss"</span>
+<span class="k">export</span> ANTHROPIC_DEFAULT_OPUS_MODEL=<span class="s">"gpt-oss"</span>
+<span class="k">export</span> ANTHROPIC_BASE_URL=<span class="s">"http://localhost:11434"</span>
+<span class="k">export</span> ANTHROPIC_AUTH_TOKEN=<span class="s">"ollama"</span>
+<span class="k">export</span> ANTHROPIC_API_KEY=<span class="s">""</span>
+<span class="k">ollama</span> pull gpt-oss
+<span class="k">claude</span> --model gpt-oss</pre></div>
+<p>Ask it to summarise the project and — with a big enough machine — it works: it correctly identified a
+local-only project-management MVP, spotted the hard-coded password, and knew how to run it. You can literally
+watch the GPU go flat out, proving it ran locally. It needs a <strong>beefy computer</strong>, though.</p>
+<div class="call idea reveal"><div class="t">Local is cool, but usually not the smart choice</div>
+<p>For serious power, running models locally is rarely the best route — OpenRouter can serve far stronger
+models incredibly cheaply. Renting a cloud GPU is an option, but for most people OpenRouter wins on both cost
+and capability.</p></div>
+<div class="call warn reveal"><div class="t">Getting back to normal</div>
+<p>These environment variables only live in the current terminal. Close those terminals, open a
+<strong>fresh</strong> one, and your environment resets — you're back to Claude Code with Claude, which is
+where you want to be for tomorrow.</p></div>
 
-<h2 id="s4"><span class="num">04</span>The twist: run it twice <span class="subtle" style="font-size:16px;font-weight:500">· 7 min</span></h2>
-<div class="call warn reveal"><div class="t">This is the real lesson</div>
-<p>Open a <strong>fresh chat / new project</strong> and paste your <strong>original</strong> prompt again — unchanged.
-Compare the two results side by side.</p></div>
+<h2 id="recipes"><span class="num">04</span>Config recipes (reference)</h2>
+<p>The full set of copy-paste recipes. Replace the key placeholder with your own OpenRouter key — never
+commit a real key to a repo.</p>
+<div class="code"><div class="cbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">Kimi K2.5 via OpenRouter · Windows PowerShell</span></div>
+<pre><span class="k">$env:</span>ANTHROPIC_DEFAULT_HAIKU_MODEL=<span class="s">"moonshotai/kimi-k2.5"</span>
+<span class="k">$env:</span>ANTHROPIC_DEFAULT_SONNET_MODEL=<span class="s">"moonshotai/kimi-k2.5"</span>
+<span class="k">$env:</span>ANTHROPIC_DEFAULT_OPUS_MODEL=<span class="s">"moonshotai/kimi-k2.5"</span>
+<span class="k">$env:</span>ANTHROPIC_BASE_URL=<span class="s">"https://openrouter.ai/api"</span>
+<span class="k">$env:</span>ANTHROPIC_AUTH_TOKEN=<span class="s">"&lt;PUT YOUR OPENROUTER KEY HERE&gt;"</span>
+<span class="k">$env:</span>ANTHROPIC_API_KEY=<span class="s">""</span>
+<span class="k">claude</span> --model moonshotai/kimi-k2.5</pre></div>
+<div class="code"><div class="cbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">GPT-OSS via Ollama · Windows PowerShell</span></div>
+<pre><span class="k">$env:</span>ANTHROPIC_DEFAULT_HAIKU_MODEL=<span class="s">"gpt-oss"</span>
+<span class="k">$env:</span>ANTHROPIC_DEFAULT_SONNET_MODEL=<span class="s">"gpt-oss"</span>
+<span class="k">$env:</span>ANTHROPIC_DEFAULT_OPUS_MODEL=<span class="s">"gpt-oss"</span>
+<span class="k">$env:</span>ANTHROPIC_BASE_URL=<span class="s">"http://localhost:11434"</span>
+<span class="k">$env:</span>ANTHROPIC_AUTH_TOKEN=<span class="s">"ollama"</span>
+<span class="k">$env:</span>ANTHROPIC_API_KEY=<span class="s">""</span>
+<span class="k">ollama</span> pull gpt-oss
+<span class="k">claude</span> --model gpt-oss</pre></div>
+<div class="call def reveal"><div class="t">Links</div>
+<p>OpenCode: <a href="https://opencode.ai/">opencode.ai</a> &nbsp;·&nbsp;
+AMP: <a href="https://ampcode.com/">ampcode.com</a> &nbsp;·&nbsp;
+OpenRouter: <a href="https://openrouter.ai/">openrouter.ai</a></p></div>
+
+<div class="call idea reveal" style="margin-top:26px"><div class="t">🎉 40% of the way there</div>
+<p>That's enough messing around with platforms for today. You've seen Claude Code, OpenCode and AMP Code, and
+run Claude Code against OpenRouter and Ollama. Reset your terminals and you're back to Claude Code with
+Claude — where we need to be for tomorrow, as we dig deep and become advanced users. You're now
+<strong>40% of the way</strong> through the program to becoming an expert agentic engineer.</p></div>
+
+<div class="takeaways reveal"><h3><span class="p">✓</span> Key takeaways</h3>
 <ul>
-  <li>Did the layout change? The colors? The wording of the buttons?</li>
-  <li>Did one version have a feature the other missed?</li>
-  <li>Did one work perfectly while the other broke?</li>
-</ul>
-<p>That divergence is <strong>non-determinism</strong> — the same input can produce different output every time. It’s not
-a bug; it’s a property of how these models work, and designing around it is what <a href="day2-context-engineering.html">context
-engineering</a> is all about.</p>
-
-<h2 id="s5"><span class="num">05</span>Reflect <span class="subtle" style="font-size:16px;font-weight:500">· 5 min</span></h2>
-<p>Jot down answers — you’ll reuse these when we talk context engineering:</p>
-<div class="takeaways reveal"><h3><span class="p">?</span> Three questions</h3><ul>
-  <li>What did the agent get impressively <strong>right</strong> on the first try?</li>
-  <li>Where did it get <strong>confused</strong> or make a wrong assumption?</li>
-  <li>What one instruction, added up front, would have <strong>prevented</strong> that mistake?</li>
+  <li><strong>AMP Free</strong> gives $10/day of frontier-level credit in exchange for ads; it picks the model for you (<kbd>Ctrl</kbd>+<kbd>S</kbd> = smart/deep/rush).</li>
+  <li>Claude Code can be redirected to <strong>OpenRouter</strong> via environment variables — janky and not recommended, but it works (Kimi K2.5).</li>
+  <li><strong>Ollama</strong> runs models locally (GPT-OSS) if your machine is beefy enough — but OpenRouter is usually cheaper and stronger.</li>
+  <li>Always use a <strong>placeholder</strong> for your OpenRouter key, and never commit a real key.</li>
+  <li>Open a fresh terminal to clear the env vars and return to standard Claude Code with Claude.</li>
 </ul></div>
 
-<h2 id="trouble"><span class="num">06</span>If something goes wrong</h2>
-<table class="tbl reveal"><thead><tr><th>Symptom</th><th>What to do</th></tr></thead><tbody>
-  <tr><td>Tool is rate-limited or slow</td><td>Switch to a different tool from Step 1 and re-paste your prompt.</td></tr>
-  <tr><td>App won’t run</td><td>Tell the agent exactly what’s broken (“the buttons don’t do anything when clicked”) and let
-    it fix itself.</td></tr>
-  <tr><td>Output looks nothing like you asked</td><td>Expected and useful — note it for the reflection. It’s data, not failure.</td></tr>
-</tbody></table>
-<div class="call tip reveal"><div class="t">Take-home (optional, no grade)</div>
-<p>Run your original prompt one more time at home and write three sentences on what varied between runs. Bring it along —
-it’s the perfect on-ramp to context engineering.</p></div>
-<div class="pager"><a href="day3-kanban-build.html"><div class="l">← Previous</div><div class="t">4.2 Build the Kanban app</div></a><a class="nx" href="lab2-kanban-agents-md.html"><div class="l">Next →</div><div class="t">Lab 2 · agents.md + YOLO</div></a></div></div></main></div>
+<div class="pager"><a href="class6-opencode.html"><div class="l">← Previous</div><div class="t">6.3 OpenCode &amp; free models</div></a><a class="nx" href="lab1-first-prompt.html"><div class="l">Next →</div><div class="t">Lab 1 · One prompt, one app</div></a></div></div></main></div>
 <footer class="footer">
   <strong>Vibe Engineering with AI Coding Agents</strong> · SMIT — Saylani Mass IT Training.
   Instructor: <strong>Muhammad Uzair Khan</strong>. Course material for learners at every level.<br>
