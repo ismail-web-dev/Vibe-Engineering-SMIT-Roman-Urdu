@@ -1,0 +1,450 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Workflows & choosing a model · Vibe Engineering — SMIT</title>
+<meta name="description" content="Vibe Engineering with AI Coding Agents — SMIT course by Muhammad Uzair Khan.">
+<style>
+:root{
+  --violet-50:#f5f3ff; --violet-100:#ede9fe; --violet-200:#ddd6fe; --violet-300:#c4b5fd;
+  --violet-400:#a78bfa; --violet-500:#8b5cf6; --violet-600:#7c3aed; --violet-700:#6d28d9;
+  --violet-800:#5b21b6; --violet-900:#4c1d95;
+  --amber-300:#fcd34d; --amber-400:#fbbf24; --amber-500:#f59e0b; --amber-600:#d97706;
+  --em:#10b981; --em-d:#047857; --rose:#e11d48; --rose-d:#9f1239;
+
+  --bg:#faf9fc; --plane:#f2eff8; --surface:#ffffff; --surface-2:#faf8fe;
+  --ink:#17141f; --ink-2:#4a4658; --muted:#7c7790; --hair:#e7e2f0; --hair-2:#efeaf7;
+  --brand:var(--violet-700); --brand-soft:var(--violet-100); --brand-ink:var(--violet-800);
+  --accent:var(--amber-500);
+  --shadow-sm:0 1px 2px rgba(24,16,44,.06),0 1px 3px rgba(24,16,44,.05);
+  --shadow-md:0 6px 24px -8px rgba(60,30,110,.22),0 2px 8px -3px rgba(60,30,110,.12);
+  --shadow-lg:0 24px 60px -18px rgba(60,20,120,.34);
+  --r:14px; --r-lg:20px; --maxw:1180px;
+  --code-bg:#1c162b; --code-ink:#e9e3fb;
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  --bg:#0c0a12; --plane:#0a0810; --surface:#151122; --surface-2:#191428;
+  --ink:#f4f1fb; --ink-2:#c3bcd6; --muted:#918aa8; --hair:#2a2340; --hair-2:#231d36;
+  --brand:var(--violet-400); --brand-soft:#241a3d; --brand-ink:var(--violet-200);
+  --accent:var(--amber-400);
+  --shadow-sm:0 1px 2px rgba(0,0,0,.4); --shadow-md:0 8px 30px -10px rgba(0,0,0,.6);
+  --shadow-lg:0 30px 70px -20px rgba(0,0,0,.7);
+  --code-bg:#0f0b1a; --code-ink:#e9e3fb;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{
+  margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.65;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+a{color:var(--brand);text-decoration:none}
+a:hover{text-decoration:underline}
+img{max-width:100%}
+
+/* ---------- header ---------- */
+.site-head{
+  position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);
+  backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--hair);
+}
+.site-head .bar{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;gap:18px;
+  padding:12px 22px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.02em;
+  color:var(--ink);white-space:nowrap}
+.brand .glyph{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--violet-600),var(--violet-800));color:#fff;
+  font-size:15px;box-shadow:0 4px 12px -3px rgba(109,40,217,.6)}
+.brand small{display:block;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.02em}
+.head-nav{margin-left:auto;display:flex;gap:4px;align-items:center}
+.head-nav a{padding:7px 12px;border-radius:9px;font-weight:650;font-size:14px;color:var(--ink-2)}
+.head-nav a:hover{background:var(--brand-soft);color:var(--brand-ink);text-decoration:none}
+.head-nav a.active{background:var(--brand);color:#fff}
+.icon-btn{border:1px solid var(--hair);background:var(--surface);color:var(--ink-2);
+  width:38px;height:38px;border-radius:10px;cursor:pointer;display:grid;place-items:center;
+  font-size:17px;transition:.15s}
+.icon-btn:hover{border-color:var(--brand);color:var(--brand)}
+.menu-btn{display:none}
+@media(max-width:900px){
+  .head-nav{display:none}
+  .menu-btn{display:grid}
+}
+
+/* ---------- layout ---------- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+.layout{display:grid;grid-template-columns:238px minmax(0,1fr);gap:44px;
+  max-width:var(--maxw);margin:0 auto;padding:0 22px}
+.side{position:sticky;top:84px;align-self:start;height:calc(100vh - 96px);overflow:auto;
+  padding:26px 0 40px;font-size:13.5px}
+.side::-webkit-scrollbar{width:8px}.side::-webkit-scrollbar-thumb{background:var(--hair);border-radius:8px}
+.side .grp{font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--muted);margin:18px 0 8px}
+.side a{display:block;padding:6px 12px;border-radius:8px;color:var(--ink-2);font-weight:600;
+  border-left:2px solid transparent}
+.side a:hover{background:var(--brand-soft);text-decoration:none;color:var(--brand-ink)}
+.side a.active{color:var(--brand);background:var(--brand-soft);border-left-color:var(--brand)}
+.side .toc a{font-weight:550;color:var(--muted);padding:5px 12px}
+.side .toc a.here{color:var(--brand)}
+main{padding:30px 0 90px;min-width:0}
+.content{max-width:760px}
+@media(max-width:900px){.layout{grid-template-columns:1fr;gap:0}.side{display:none}}
+
+/* ---------- hero ---------- */
+.daybadge{display:inline-flex;align-items:center;gap:8px;font-weight:750;font-size:12.5px;
+  letter-spacing:.05em;text-transform:uppercase;padding:6px 13px;border-radius:999px;
+  background:var(--brand-soft);color:var(--brand-ink)}
+.daybadge.d2{background:#fde6c8;color:#8a5a00}
+:root[data-theme=dark] .daybadge.d2{background:#3a2c0d;color:var(--amber-300)}
+.daybadge.d3{background:#d3f5e6;color:#06603f}
+:root[data-theme=dark] .daybadge.d3{background:#0c3327;color:#54e0aa}
+.daybadge.d4{background:#e4ecfb;color:#1e4fa3}
+:root[data-theme=dark] .daybadge.d4{background:#0e1a30;color:#7db0f4}
+.daybadge.lab{background:#111;color:#fff}
+:root[data-theme=dark] .daybadge.lab{background:#2a2340;color:#fff}
+h1.page{font-size:clamp(30px,4.6vw,46px);line-height:1.06;letter-spacing:-.03em;font-weight:820;
+  margin:16px 0 12px}
+.lede{font-size:19px;color:var(--ink-2);max-width:64ch;margin:0 0 14px}
+.meta{display:flex;flex-wrap:wrap;gap:16px;color:var(--muted);font-size:14px;font-weight:600;
+  padding:14px 0 4px;border-top:1px solid var(--hair);margin-top:22px}
+.meta b{color:var(--ink-2)}
+
+/* ---------- typography ---------- */
+.content h2{font-size:27px;letter-spacing:-.02em;font-weight:780;margin:52px 0 6px;scroll-margin-top:84px}
+.content h2 .num{color:var(--brand);font-variant-numeric:tabular-nums;margin-right:10px;font-weight:800}
+.content h3{font-size:19.5px;font-weight:720;margin:32px 0 4px;letter-spacing:-.01em}
+.content p{margin:14px 0}
+.content ul,.content ol{margin:14px 0;padding-left:22px}
+.content li{margin:7px 0}
+.content li::marker{color:var(--brand)}
+.rule{height:1px;background:var(--hair);border:0;margin:40px 0}
+strong{font-weight:720;color:var(--ink)}
+.subtle{color:var(--muted)}
+mark{background:linear-gradient(transparent 58%,var(--amber-300) 58%);color:inherit;padding:0 1px}
+:root[data-theme=dark] mark{background:linear-gradient(transparent 58%,rgba(251,191,36,.45) 58%)}
+
+/* ---------- callouts ---------- */
+.call{border-radius:var(--r);padding:18px 20px 18px 52px;margin:24px 0;position:relative;
+  background:var(--surface);border:1px solid var(--hair);box-shadow:var(--shadow-sm);font-size:15.5px}
+.call:before{position:absolute;left:16px;top:17px;font-size:20px;line-height:1}
+.call .t{font-weight:780;letter-spacing:-.01em;margin:0 0 3px;font-size:15px}
+.call p:first-of-type{margin-top:0}.call p:last-child{margin-bottom:0}
+.call.idea{background:var(--brand-soft);border-color:transparent}
+.call.idea:before{content:"💡"}.call.idea .t{color:var(--brand-ink)}
+.call.warn{background:#fff5e6;border-color:#f6e3bf}.call.warn:before{content:"⚠️"}.call.warn .t{color:#9a6100}
+:root[data-theme=dark] .call.warn{background:#2c2109;border-color:#4a3813}:root[data-theme=dark] .call.warn .t{color:var(--amber-300)}
+.call.tip{background:#e9f9f1;border-color:#c4ebd8}.call.tip:before{content:"✅"}.call.tip .t{color:#06603f}
+:root[data-theme=dark] .call.tip{background:#0c2a20;border-color:#124534}:root[data-theme=dark] .call.tip .t{color:#54e0aa}
+.call.def{background:var(--surface-2)}.call.def:before{content:"📘"}.call.def .t{color:var(--brand)}
+.call.quote{background:var(--surface);border-left:4px solid var(--brand);padding-left:22px}
+.call.quote:before{content:""}
+.call.money{background:#eef4ff;border-color:#cfe0fb}.call.money:before{content:"💳"}.call.money .t{color:#1e4fa3}
+:root[data-theme=dark] .call.money{background:#0e1a30;border-color:#1b3358}:root[data-theme=dark] .call.money .t{color:#7db0f4}
+
+/* ---------- tweet card ---------- */
+.tweet{border:1px solid var(--hair);border-radius:var(--r-lg);padding:20px 22px;margin:26px 0;
+  background:var(--surface);box-shadow:var(--shadow-md)}
+.tweet .who{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.tweet .av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#6d28d9,#0ea5e9);
+  color:#fff;display:grid;place-items:center;font-weight:800;font-size:18px;flex:none}
+.tweet .name{font-weight:780;line-height:1.15}
+.tweet .handle{color:var(--muted);font-size:13.5px}
+.tweet .body{font-size:16.5px;line-height:1.55}
+.tweet .bird{margin-left:auto;color:#1d9bf0;font-size:20px}
+
+/* ---------- cards ---------- */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid.c2{grid-template-columns:repeat(2,1fr)}
+.grid.c3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:640px){.grid.c2,.grid.c3{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--hair);border-radius:var(--r);padding:18px 18px;
+  box-shadow:var(--shadow-sm)}
+.card h4{margin:0 0 5px;font-size:16px;font-weight:730;letter-spacing:-.01em}
+.card p{margin:0;color:var(--ink-2);font-size:14.5px}
+.card .k{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--brand);margin-bottom:8px}
+.card.hl{background:linear-gradient(160deg,var(--violet-700),var(--violet-900));color:#fff;border:0}
+.card.hl h4,.card.hl p,.card.hl .k{color:#fff}.card.hl .k{color:var(--amber-300)}
+
+/* ---------- code ---------- */
+.code{background:var(--code-bg);border-radius:var(--r);margin:22px 0;overflow:hidden;
+  box-shadow:var(--shadow-md);border:1px solid rgba(255,255,255,.06)}
+.code .cbar{display:flex;align-items:center;gap:8px;padding:10px 14px;
+  background:rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.07)}
+.code .dot{width:11px;height:11px;border-radius:50%}
+.code .dot.r{background:#ff5f57}.code .dot.y{background:#febc2e}.code .dot.g{background:#28c840}
+.code .fname{margin-left:8px;color:#b9aee0;font-size:12.5px;font-weight:600;font-family:ui-monospace,monospace}
+.code pre{margin:0;padding:16px 18px;overflow:auto;color:var(--code-ink);
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:13.5px;line-height:1.6}
+.code pre .c{color:#8a7fb0}.code pre .h{color:#c4b5fd;font-weight:700}
+.code pre .s{color:#fcd34d}.code pre .k{color:#7dd3fc}.code pre .g{color:#6ee7b7}
+.term{background:#0d0a17}.term .fname{color:#7dd3fc}
+kbd{font-family:ui-monospace,monospace;font-size:.82em;background:var(--surface-2);
+  border:1px solid var(--hair);border-bottom-width:2px;border-radius:6px;padding:1px 7px;color:var(--ink)}
+code.inl{font-family:ui-monospace,monospace;font-size:.86em;background:var(--brand-soft);
+  color:var(--brand-ink);padding:1.5px 6px;border-radius:6px}
+
+/* ---------- steps ---------- */
+.steps{counter-reset:s;margin:26px 0;display:grid;gap:14px}
+.step{background:var(--surface);border:1px solid var(--hair);border-radius:var(--r);
+  padding:18px 20px 18px 62px;position:relative;box-shadow:var(--shadow-sm)}
+.step:before{counter-increment:s;content:counter(s);position:absolute;left:16px;top:16px;
+  width:32px;height:32px;border-radius:9px;background:var(--brand);color:#fff;font-weight:800;
+  display:grid;place-items:center;font-size:15px;box-shadow:0 4px 10px -3px rgba(109,40,217,.6)}
+.step h4{margin:0 0 4px;font-size:16.5px;font-weight:730}
+.step .time{float:right;font-size:12px;font-weight:750;color:var(--brand);background:var(--brand-soft);
+  padding:3px 9px;border-radius:999px}
+.step p{margin:8px 0 0;font-size:14.5px;color:var(--ink-2)}
+
+/* ---------- table ---------- */
+.tbl{width:100%;border-collapse:collapse;margin:24px 0;font-size:14.5px;
+  border:1px solid var(--hair);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-sm)}
+.tbl th{background:var(--surface-2);text-align:left;font-weight:750;padding:12px 14px;
+  border-bottom:1px solid var(--hair);font-size:13px;letter-spacing:.02em}
+.tbl td{padding:11px 14px;border-bottom:1px solid var(--hair-2);vertical-align:top}
+.tbl tr:last-child td{border-bottom:0}
+.tbl tbody tr:hover{background:var(--surface-2)}
+.tag{display:inline-block;font-size:11.5px;font-weight:750;padding:2px 9px;border-radius:999px;
+  background:var(--brand-soft);color:var(--brand-ink)}
+
+/* ---------- takeaways ---------- */
+.takeaways{background:linear-gradient(165deg,var(--surface),var(--surface-2));
+  border:1px solid var(--hair);border-radius:var(--r-lg);padding:24px 26px;margin:44px 0 10px;
+  box-shadow:var(--shadow-md)}
+.takeaways h3{margin:0 0 10px;font-size:18px;display:flex;align-items:center;gap:9px}
+.takeaways h3 .p{width:26px;height:26px;border-radius:8px;background:var(--brand);color:#fff;
+  display:grid;place-items:center;font-size:14px}
+.takeaways ul{margin:0;padding-left:4px;list-style:none}
+.takeaways li{padding-left:28px;position:relative;margin:9px 0}
+.takeaways li:before{content:"→";position:absolute;left:2px;color:var(--brand);font-weight:800}
+
+/* ---------- prev/next ---------- */
+.pager{display:flex;gap:14px;margin-top:56px;border-top:1px solid var(--hair);padding-top:26px}
+.pager a{flex:1;border:1px solid var(--hair);border-radius:var(--r);padding:14px 18px;background:var(--surface);
+  box-shadow:var(--shadow-sm);transition:.15s}
+.pager a:hover{border-color:var(--brand);text-decoration:none;transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.pager .l{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.pager .t{font-weight:730;color:var(--ink);margin-top:3px}
+.pager .nx{text-align:right}
+
+/* ---------- misc ---------- */
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+.pill{font-size:13px;font-weight:650;padding:6px 12px;border-radius:999px;background:var(--surface);
+  border:1px solid var(--hair);color:var(--ink-2)}
+.footer{max-width:var(--maxw);margin:0 auto;padding:30px 22px 50px;color:var(--muted);font-size:13.5px;
+  border-top:1px solid var(--hair)}
+.footlinks{display:inline-flex;flex-wrap:wrap;gap:16px;margin-top:10px}
+.footlinks a{font-weight:650}
+.anchor{color:var(--muted);opacity:0;margin-left:8px;font-weight:500;text-decoration:none}
+h2:hover .anchor{opacity:1}
+.diagram{background:var(--surface);border:1px solid var(--hair);border-radius:var(--r-lg);
+  padding:22px;margin:26px 0;box-shadow:var(--shadow-sm)}
+.diagram .cap{color:var(--muted);font-size:13px;text-align:center;margin-top:12px;font-weight:600}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+</style></head><body>
+<header class="site-head">
+  <div style="height:3px;background:var(--hair)"><div id="prog" style="height:3px;width:0;background:linear-gradient(90deg,var(--violet-600),var(--amber-400));transition:width .1s"></div></div>
+  <div class="bar">
+    <a class="brand" href="index.html">
+      <span class="glyph">◆</span>
+      <span>Vibe Engineering<small>SMIT · AI Agentic Engineering</small></span>
+    </a>
+    <nav class="head-nav"><a class="" href="index.html">Home</a><a class="" href="day1-welcome.html">Class 2</a><a class="active" href="day2-how-llms-work.html">Class 3</a><a class="" href="day3-tooling-setup.html">Class 4</a><a class="" href="class5-model-choice.html">Class 5</a><a class="" href="lab1-first-prompt.html">Labs</a></nav>
+    <button class="icon-btn" id="themeBtn" title="Toggle light / dark" aria-label="Toggle theme">☾</button>
+    <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+  </div>
+  <div id="mnav" class="side" style="display:none;max-height:70vh;padding:12px 22px;border-top:1px solid var(--hair)"><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome & first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages & cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="active" href="day2-workflows.html">3.3 Workflows & models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools & agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Labs</div><a class="" href="lab1-first-prompt.html">Lab 1 · One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 · agents.md + YOLO</a></div>
+</header>
+<div class="layout"><aside class="side"><nav><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome & first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages & cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="active" href="day2-workflows.html">3.3 Workflows & models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools & agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Labs</div><a class="" href="lab1-first-prompt.html">Lab 1 · One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 · agents.md + YOLO</a></nav><div class="grp" style="margin-top:26px">On this page</div><div class="toc"><a href="#evolution">Evolution of workflows</a><a href="#choose">Which approach is right?</a><a href="#hype">Beyond the hype</a><a href="#models">Comparing models</a></div></aside><main><div class="content"><div class="reveal in">
+  <span class="daybadge d2">Class 3 · 3.3</span>
+  <h1 class="page">Workflows &amp; choosing a model</h1>
+  <p class="lede">How you organise your work around an agent has evolved fast — from micromanaging every diff to leaving a Ralph Loop running overnight. Here are the six workflows, how to pick one, and how to compare models honestly.</p>
+  <div class="meta"><span>🔄 <b>Goal:</b> pick the right workflow for the job</span><span>⏱ <b>Read:</b> 11 min</span></div></div>
+<h2 id="evolution"><span class="num">01</span>The evolution of workflows</h2>
+<p>A <em>workflow</em> is how you organise your activity around the agent. It’s exactly what Karpathy’s tweet was about,
+and it has shifted with the two mindsets. Think of six levels of trust — loosely mirroring yesterday’s eight stages.</p>
+
+<h3>The 2025 mindset — three levels of trust</h3>
+<div class="steps reveal">
+  <div class="step"><span class="time">lowest trust</span><h4>1 · Micromanagement</h4>
+    <p>Very specific instructions in <code class="inl">agents.md</code>, approve every change, frequently stop, rewrite,
+    reset and re-run. Careful and hands-on — where most people (and the instructor) began.</p></div>
+  <div class="step"><h4>2 · Plan → execute → review → test</h4>
+    <p>Use <strong>plan mode</strong>: the agent writes a to-do plan; you agree, then switch to execution. Build in phases —
+    for each phase: build, code-review (stop it making a mountain out of a molehill), test, review results, mark complete,
+    move on. A bit more rope, still on top of things.</p></div>
+  <div class="step"><h4>3 · Spec-driven development (“trust but verify”)</h4>
+    <p>Specify precisely what’s needed — sometimes in a formal spec language — then let it run. You verify at the end rather
+    than reviewing every step. A real step back in oversight.</p></div>
+</div>
+
+<h3>The 2026 mindset — three more levels</h3>
+<div class="steps reveal" style="counter-reset:s 3">
+  <div class="step"><span class="time">for real now</span><h4>4 · YOLO</h4>
+    <p>No approvals — the agent does whatever it wants, no permissions. “Trust but verify” taken further: set it going, go
+    have dinner, come back and see what it did. Around most of 2025 this was hobby-only; now people use it for real.</p></div>
+  <div class="step"><h4>5 · Ralph Loops</h4>
+    <p>Named after Ralph Wiggum (naive, optimistic) and invented by Geoffrey Huntley. An agent already loops internally;
+    a Ralph Loop <strong>wraps that whole loop in a bigger loop</strong>: run it, test “is this good enough?”, generate
+    feedback, add it to the objectives, and run again — up to, say, 10 big loops. Leave it overnight; come back to a lot done.</p></div>
+  <div class="step"><h4>6 · Multi-agent / swarms</h4>
+    <p>Many agents with different roles — testing, feedback, manager and worker agents in a hierarchy. Spawned in numbers
+    and orchestrated. This is the frontier in 2026.</p></div>
+</div>
+
+<div class="diagram reveal">
+<svg viewBox="0 0 720 120" width="100%" role="img" aria-label="Six workflows from low to high trust">
+  <defs><linearGradient id="tr" x1="0" x2="1"><stop offset="0" stop-color="var(--violet-700)"/><stop offset="1" stop-color="var(--amber-400)"/></linearGradient></defs>
+  <rect x="20" y="52" width="680" height="8" rx="4" fill="url(#tr)"/>
+<circle cx="20" cy="56" r="9" fill="#fff" stroke="var(--brand)" stroke-width="3"/><text x="20" y="40" text-anchor="middle" style="font:700 12px system-ui;fill:var(--ink)">Micro-
+manage</text><circle cx="156" cy="56" r="9" fill="#fff" stroke="var(--brand)" stroke-width="3"/><text x="156" y="40" text-anchor="middle" style="font:700 12px system-ui;fill:var(--ink)">Plan/
+execute</text><circle cx="292" cy="56" r="9" fill="#fff" stroke="var(--brand)" stroke-width="3"/><text x="292" y="40" text-anchor="middle" style="font:700 12px system-ui;fill:var(--ink)">Spec-
+driven</text><circle cx="428" cy="56" r="9" fill="#fff" stroke="var(--brand)" stroke-width="3"/><text x="428" y="40" text-anchor="middle" style="font:700 12px system-ui;fill:var(--ink)">YOLO</text><circle cx="564" cy="56" r="9" fill="#fff" stroke="var(--brand)" stroke-width="3"/><text x="564" y="40" text-anchor="middle" style="font:700 12px system-ui;fill:var(--ink)">Ralph
+Loops</text><circle cx="700" cy="56" r="9" fill="#fff" stroke="var(--brand)" stroke-width="3"/><text x="700" y="40" text-anchor="middle" style="font:700 12px system-ui;fill:var(--ink)">Swarms</text>
+  <text x="20" y="96" text-anchor="start" style="font:700 12px system-ui;fill:var(--violet-700)">◀ less trust · 2025 mindset</text>
+  <text x="700" y="96" text-anchor="end" style="font:700 12px system-ui;fill:var(--amber-600)">2026 mindset · more trust ▶</text>
+</svg><div class="cap">The Ralph Loop lets a task run for hours or overnight; swarms are the current frontier.</div></div>
+
+<h2 id="choose"><span class="num">02</span>Which approach is right?</h2>
+<p>The classic answer: no single approach is “right” — different approaches suit different tasks. Split it in two:</p>
+<div class="grid c2 reveal">
+  <div class="card"><div class="k">Mission-critical → 2025 approaches</div><h4>Stay hands-on (levels 1–3)</h4>
+    <p>Enterprise software, commercial SaaS, large codebases, or highly innovative code (e.g. new MCP servers models
+    handle poorly). Precision and oversight matter most.</p></div>
+  <div class="card"><div class="k">Greenfield / low-risk → 2026 approaches</div><h4>Let it run (levels 4–6)</h4>
+    <p>MVPs, prototypes, pilots, brand-new empty directories, lots of boilerplate (HTML, a React app, CRUD backends), and
+    some risk appetite. Great fit for YOLO and Ralph Loops.</p></div>
+</div>
+<p class="subtle">In practice the instructor lives mostly in the top category — mission-critical, often highly innovative
+work like MCP integrations, where current LLMs write non-idiomatic code because the pattern is too new. But yesterday’s
+game was the other category: essentially YOLO to start, then a Ralph Loop for the fancier version. The course leans toward
+mission-critical, large-codebase, real enterprise patterns — with a solid nod to the 2026 techniques.</p>
+
+<div class="call warn reveal"><div class="t">The line that matters most — especially early in your career</div>
+<p>Your job is to <strong>deliver code that’s proven to work.</strong> “The LLM wrote it” is no excuse. Use LLMs freely —
+they let you do far more — but it’s still your responsibility to check, validate, and pick the right approach for the task.
+<mark>Take accountability for what you ship, whether or not an AI helped you get there.</mark></p></div>
+
+<h2 id="hype"><span class="num">03</span>Beyond the hype</h2>
+<p>A sobering, honest note from a genuine enthusiast. There <em>is</em> unwarranted hype out there.</p>
+<div class="grid c2 reveal">
+  <div class="card"><div class="k">Where it’s transformational</div><h4>Order-of-magnitude faster</h4>
+    <p>Boilerplate-heavy work with a clear target — a React front end with lots of components. Minutes instead of a day
+    for a strong front-end dev; days-into-minutes for greenfield projects.</p></div>
+  <div class="card"><div class="k">Where it’s marginal</div><h4>Only incrementally faster — or slower</h4>
+    <p>Highly innovative work on large codebases. Sometimes it has actually <em>slowed</em> things down — a subtle,
+    unexpected mistake that had to be found and rewritten.</p></div>
+</div>
+<p>Net-net: LLMs are a genuine multiplier — but <strong>not a flat 10×</strong>. How much depends heavily on the project.
+Our job is to learn the tools, use them, and set the record straight — for both the over-hyped and the newly anti-AI crowd
+— explaining where they shine and where they still need to grow.</p>
+
+<h2 id="models"><span class="num">04</span>Comparing models — artificialanalysis.ai</h2>
+<p>If you keep one bookmark, make it <a href="https://artificialanalysis.ai">artificialanalysis.ai</a>. It compares
+models on intelligence, speed and price, dimensioned every way you’d want.</p>
+
+<div class="diagram reveal">
+  <div style="font:700 14px system-ui;margin-bottom:4px">Intelligence Index — relative ranking</div>
+  <div class="subtle" style="font-size:13px;margin-bottom:16px">As seen around the Nov 2025 inflection point. This is
+    <strong>ordering, not scores</strong> — check the live site for today’s exact numbers (yours will be newer, and higher).</div>
+<div style="display:flex;align-items:center;gap:14px;margin:11px 0">
+      <div style="width:26px;text-align:center;font-weight:800;font-size:16px">🥇</div>
+      <div style="flex:1">
+        <div style="display:flex;justify-content:space-between;align-items:baseline">
+          <span style="font-weight:730">GPT-5.2 <span class="subtle" style="font-weight:500;font-size:13px">· OpenAI</span></span>
+          <span class="subtle" style="font-size:12.5px">Top of the index</span></div>
+        <div style="height:12px;background:var(--hair-2);border-radius:7px;margin-top:5px;overflow:hidden">
+          <div style="height:100%;width:100%;background:var(--violet-700);border-radius:7px"></div></div>
+      </div></div><div style="display:flex;align-items:center;gap:14px;margin:11px 0">
+      <div style="width:26px;text-align:center;font-weight:800;font-size:16px">🥈</div>
+      <div style="flex:1">
+        <div style="display:flex;justify-content:space-between;align-items:baseline">
+          <span style="font-weight:730">Claude Opus 4.5 <span class="subtle" style="font-weight:500;font-size:13px">· Anthropic</span></span>
+          <span class="subtle" style="font-size:12.5px">Instructor’s pick — shines inside Claude Code</span></div>
+        <div style="height:12px;background:var(--hair-2);border-radius:7px;margin-top:5px;overflow:hidden">
+          <div style="height:100%;width:92%;background:var(--violet-600);border-radius:7px"></div></div>
+      </div></div><div style="display:flex;align-items:center;gap:14px;margin:11px 0">
+      <div style="width:26px;text-align:center;font-weight:800;font-size:16px">🥉</div>
+      <div style="flex:1">
+        <div style="display:flex;justify-content:space-between;align-items:baseline">
+          <span style="font-weight:730">GPT-5.2 Codex <span class="subtle" style="font-weight:500;font-size:13px">· OpenAI</span></span>
+          <span class="subtle" style="font-size:12.5px">Coding-tuned GPT-5.2 variant</span></div>
+        <div style="height:12px;background:var(--hair-2);border-radius:7px;margin-top:5px;overflow:hidden">
+          <div style="height:100%;width:86%;background:var(--violet-500);border-radius:7px"></div></div>
+      </div></div><div style="display:flex;align-items:center;gap:14px;margin:11px 0">
+      <div style="width:26px;text-align:center;font-weight:800;font-size:16px">4</div>
+      <div style="flex:1">
+        <div style="display:flex;justify-content:space-between;align-items:baseline">
+          <span style="font-weight:730">Gemini 3 Pro <span class="subtle" style="font-weight:500;font-size:13px">· Google</span></span>
+          <span class="subtle" style="font-size:12.5px">Latest, strong; 1M-token window</span></div>
+        <div style="height:12px;background:var(--hair-2);border-radius:7px;margin-top:5px;overflow:hidden">
+          <div style="height:100%;width:80%;background:var(--violet-400);border-radius:7px"></div></div>
+      </div></div><div class="cap">Bar lengths show <em>relative</em> position only — not measured scores. The real, current index lives on the site.</div></div>
+
+<div class="call idea reveal"><div class="t">Why November 2025 matters</div>
+<p>The top models cluster around a late-2025 inflection point when coding agents took a step-change in reliability. Some
+sceptics still carry scar tissue from the pre-November era — it’s worth encouraging them to try again, because so much has
+changed. On the same site you’ll also find a frontier-intelligence-over-time chart (it looks like an ever-steepening curve;
+the instructor’s bet is that the recent jump came from reasoning techniques and won’t keep sharpening forever — go check
+whether that prediction holds), plus coding- and tool-use-specific tests, where the open-source <strong>GLM-4.7 from Z.ai</strong>
+scores surprisingly strongly.</p></div>
+
+<div class="call tip reveal"><div class="t">That wraps Class 3</div>
+<p>You’ve put up with more talking than anywhere else in the course — thank you. You now understand what’s under the hood.
+Tomorrow: tools, tools, tools — Cursor, Copilot, Codex, Antigravity — and your first real build. You’re ~13% through the
+journey. 🎉</p></div>
+
+<div class="takeaways reveal"><h3><span class="p">✓</span> Key takeaways</h3><ul>
+  <li>Six workflows run from <strong>micromanagement</strong> to <strong>swarms</strong>, across the 2025 and 2026 mindsets.</li>
+  <li><strong>Ralph Loops</strong> wrap an agent’s loop in an outer feedback loop — run for hours, even overnight.</li>
+  <li>Match the workflow to the task: hands-on for mission-critical, let-it-run for greenfield/boilerplate.</li>
+  <li>LLMs are a real multiplier, <strong>not a flat 10×</strong> — and “the LLM wrote it” is never an excuse.</li>
+  <li>Bookmark <strong>artificialanalysis.ai</strong> to compare intelligence, speed and price.</li>
+</ul></div>
+<div class="pager"><a href="day2-context-engineering.html"><div class="l">← Previous</div><div class="t">3.2 Context engineering</div></a><a class="nx" href="day3-tooling-setup.html"><div class="l">Next →</div><div class="t">4.1 Tools & agents.md</div></a></div></div></main></div>
+<footer class="footer">
+  <strong>Vibe Engineering with AI Coding Agents</strong> · SMIT — Saylani Mass IT Training.
+  Instructor: <strong>Muhammad Uzair Khan</strong>. Course material for learners at every level.<br>
+  <span class="footlinks">
+    <a href="https://github.com/MuhammadUzair1/Vibe-Engineering-SMIT">Course GitHub ↗</a>
+    <a href="https://github.com/MuhammadUzair1/">GitHub profile ↗</a>
+    <a href="https://www.linkedin.com/in/muhammaduzairkhan1/">LinkedIn ↗</a>
+  </span>
+</footer>
+<script>
+(function(){
+  // theme
+  var root=document.documentElement;
+  try{var s=localStorage.getItem('ve-theme'); if(s) root.setAttribute('data-theme',s);}catch(e){}
+  function setT(t){root.setAttribute('data-theme',t);try{localStorage.setItem('ve-theme',t);}catch(e){}
+    var b=document.getElementById('themeBtn'); if(b) b.textContent = t==='dark'?'☀':'☾';}
+  window.__toggleTheme=function(){setT(root.getAttribute('data-theme')==='dark'?'light':'dark');};
+  document.addEventListener('DOMContentLoaded',function(){
+    var b=document.getElementById('themeBtn');
+    if(b){b.textContent=root.getAttribute('data-theme')==='dark'?'☀':'☾';b.onclick=window.__toggleTheme;}
+    var m=document.getElementById('menuBtn'),sd=document.getElementById('mnav');
+    if(m&&sd){m.onclick=function(){sd.style.display=sd.style.display==='block'?'none':'block';};}
+    // scroll reveal
+    var els=document.querySelectorAll('.reveal');
+    if('IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.08});
+      els.forEach(function(e){io.observe(e);});
+    } else els.forEach(function(e){e.classList.add('in');});
+    // active TOC on scroll
+    var links=[].slice.call(document.querySelectorAll('.toc a'));
+    var heads=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));}).filter(Boolean);
+    function onScroll(){
+      var y=window.scrollY+120,cur=null;
+      heads.forEach(function(h){if(h.offsetTop<=y)cur=h.id;});
+      links.forEach(function(a){a.classList.toggle('here',a.getAttribute('href')==='#'+cur);});
+    }
+    window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+    // progress bar
+    var pb=document.getElementById('prog');
+    if(pb){window.addEventListener('scroll',function(){
+      var h=document.body.scrollHeight-window.innerHeight;
+      pb.style.width=(h>0?(window.scrollY/h*100):0)+'%';
+    },{passive:true});}
+  });
+})();
+</script>
+</body></html>
