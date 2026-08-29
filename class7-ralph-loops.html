@@ -1,7 +1,7 @@
 <!doctype html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>The rise of Claude Code · Vibe Engineering — SMIT</title>
-<meta name="description" content="Vibe Engineering with AI Coding Agents — SMIT course by Muhammad Uzair Khan.">
+<title>Ralph Loops · Vibe Engineering — SMIT</title>
+<meta name="description" content="Ralph loops: wrap an outer loop around the agent so it keeps building — autonomous coding on autopilot.">
 <style>
 :root{
   --violet-50:#f5f3ff; --violet-100:#ede9fe; --violet-200:#ddd6fe; --violet-300:#c4b5fd;
@@ -242,6 +242,8 @@ h2:hover .anchor{opacity:1}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 .daybadge.d5{background:#fbe0ea;color:#9f1239}
 :root[data-theme=dark] .daybadge.d5{background:#3a0f1e;color:#f7789f}
+
+.daybadge.d6{background:#fde4c0;color:#8a5300}:root[data-theme=dark] .daybadge.d6{background:#3a2a0b;color:#fcc858}.daybadge.d7{background:#ece7ff;color:#5b21b6}:root[data-theme=dark] .daybadge.d7{background:#241a3d;color:#c4b5fd}
 </style></head><body><header class="site-head">
   <div style="height:3px;background:var(--hair)"><div id="prog" style="height:3px;width:0;background:linear-gradient(90deg,var(--violet-600),var(--amber-400));transition:width .1s"></div></div>
   <div class="bar">
@@ -249,136 +251,107 @@ h2:hover .anchor{opacity:1}
       <span class="glyph">◆</span>
       <span>Vibe Engineering<small>SMIT · AI Agentic Engineering</small></span>
     </a>
-    <nav class="head-nav"><a class="" href="index.html">Home</a><a class="" href="day1-welcome.html">Class 2</a><a class="" href="day2-how-llms-work.html">Class 3</a><a class="" href="day3-tooling-setup.html">Class 4</a><a class="" href="class5-model-choice.html">Class 5</a><a class="active" href="class6-rise-of-claude-code.html">Class 6</a><a class="" href="class7-commands.html">Class 7</a><a class="" href="class8-big-three.html">Class 8</a><a class="" href="lab1-first-prompt.html">Labs</a></nav>
+    <nav class="head-nav"><a class="" href="index.html">Home</a><a class="" href="day1-welcome.html">Class 2</a><a class="" href="day2-how-llms-work.html">Class 3</a><a class="" href="day3-tooling-setup.html">Class 4</a><a class="" href="class5-model-choice.html">Class 5</a><a class="" href="class6-rise-of-claude-code.html">Class 6</a><a class="active" href="class7-commands.html">Class 7</a><a class="" href="class8-big-three.html">Class 8</a><a class="" href="lab1-first-prompt.html">Labs</a></nav>
     <button class="icon-btn" id="themeBtn" title="Toggle light / dark" aria-label="Toggle theme">☾</button>
     <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu">☰</button>
   </div>
-  <div id="mnav" class="side" style="display:none;max-height:70vh;padding:12px 22px;border-top:1px solid var(--hair)"><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome &amp; first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages &amp; cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows &amp; models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools &amp; agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="active" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Class 7</div><a class="" href="class7-commands.html">7.1 Commands, shortcuts &amp; config</a><a class="" href="class7-sessions-git.html">7.2 Sessions, checkpoints &amp; Git</a><a class="" href="class7-rewind-yolo.html">7.3 Rewind &amp; YOLO mode</a><a class="" href="class7-ralph-loops.html">7.4 Ralph Loops</a><div class="grp">Class 8</div><a class="" href="class8-big-three.html">8.1 The big three &amp; tools</a><a class="" href="class8-mcp-explained.html">8.2 MCP under the hood</a><a class="" href="class8-adding-mcp.html">8.3 Adding MCP servers</a><a class="" href="class8-skills.html">8.4 Skills — a simpler way</a><a class="" href="class8-skills-marketplaces.html">8.5 Skills marketplaces &amp; Agent Browser</a><a class="" href="class8-plugins.html">8.6 Plugins &amp; your setup</a><div class="grp">Labs</div><a class="" href="lab1-first-prompt.html">Lab 1 · One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 · agents.md + YOLO</a></div>
+  <div id="mnav" class="side" style="display:none;max-height:70vh;padding:12px 22px;border-top:1px solid var(--hair)"><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome &amp; first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages &amp; cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows &amp; models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools &amp; agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Class 7</div><a class="" href="class7-commands.html">7.1 Commands, shortcuts &amp; config</a><a class="" href="class7-sessions-git.html">7.2 Sessions, checkpoints &amp; Git</a><a class="" href="class7-rewind-yolo.html">7.3 Rewind &amp; YOLO mode</a><a class="active" href="class7-ralph-loops.html">7.4 Ralph Loops</a><div class="grp">Class 8</div><a class="" href="class8-big-three.html">8.1 The big three &amp; tools</a><a class="" href="class8-mcp-explained.html">8.2 MCP under the hood</a><a class="" href="class8-adding-mcp.html">8.3 Adding MCP servers</a><a class="" href="class8-skills.html">8.4 Skills — a simpler way</a><a class="" href="class8-skills-marketplaces.html">8.5 Skills marketplaces &amp; Agent Browser</a><a class="" href="class8-plugins.html">8.6 Plugins &amp; your setup</a><div class="grp">Labs</div><a class="" href="lab1-first-prompt.html">Lab 1 · One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 · agents.md + YOLO</a></div>
 </header>
-<div class="layout"><aside class="side"><nav><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome &amp; first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages &amp; cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows &amp; models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools &amp; agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="active" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Class 7</div><a class="" href="class7-commands.html">7.1 Commands, shortcuts &amp; config</a><a class="" href="class7-sessions-git.html">7.2 Sessions, checkpoints &amp; Git</a><a class="" href="class7-rewind-yolo.html">7.3 Rewind &amp; YOLO mode</a><a class="" href="class7-ralph-loops.html">7.4 Ralph Loops</a><div class="grp">Class 8</div><a class="" href="class8-big-three.html">8.1 The big three &amp; tools</a><a class="" href="class8-mcp-explained.html">8.2 MCP under the hood</a><a class="" href="class8-adding-mcp.html">8.3 Adding MCP servers</a><a class="" href="class8-skills.html">8.4 Skills — a simpler way</a><a class="" href="class8-skills-marketplaces.html">8.5 Skills marketplaces &amp; Agent Browser</a><a class="" href="class8-plugins.html">8.6 Plugins &amp; your setup</a><div class="grp">Labs</div><a class="" href="lab1-first-prompt.html">Lab 1 · One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 · agents.md + YOLO</a></nav><div class="grp" style="margin-top:26px">On this page</div><div class="toc"><a href="#story">History</a><a href="#pricing">Pricing</a><a href="#install">Install in VS Code</a><a href="#ext-vs-terminal">Extension vs terminal</a></div></aside><main><div class="content"><div class="reveal in">
-  <span class="daybadge d5">Class 6 · 6.1</span>
-  <h1 class="page">The rise of Claude Code: history, setup &amp; installation</h1>
-  <p class="lede">From a late-2024 side project to a billion-dollar tool — the story of Claude Code, why it matters, and how to install it inside VS Code.</p>
-  <div class="meta"><span>🎯 <b>Goal:</b> install Claude Code &amp; know its story</span><span>⏱ <b>Read:</b> 9 min</span><span>🧭 <b>Type:</b> setup</span></div></div>
+<div class="layout"><aside class="side"><nav><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome &amp; first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages &amp; cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows &amp; models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools &amp; agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Class 7</div><a class="" href="class7-commands.html">7.1 Commands, shortcuts &amp; config</a><a class="" href="class7-sessions-git.html">7.2 Sessions, checkpoints &amp; Git</a><a class="" href="class7-rewind-yolo.html">7.3 Rewind &amp; YOLO mode</a><a class="active" href="class7-ralph-loops.html">7.4 Ralph Loops</a><div class="grp">Class 8</div><a class="" href="class8-big-three.html">8.1 The big three &amp; tools</a><a class="" href="class8-mcp-explained.html">8.2 MCP under the hood</a><a class="" href="class8-adding-mcp.html">8.3 Adding MCP servers</a><a class="" href="class8-skills.html">8.4 Skills — a simpler way</a><a class="" href="class8-skills-marketplaces.html">8.5 Skills marketplaces &amp; Agent Browser</a><a class="" href="class8-plugins.html">8.6 Plugins &amp; your setup</a><div class="grp">Labs</div><a class="" href="lab1-first-prompt.html">Lab 1 · One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 · agents.md + YOLO</a></nav><div class="grp" style="margin-top:26px">On this page</div><div class="toc"><a href="#idea">A loop around the loop</a><a href="#run">Running one</a><a href="#result">What an hour produced</a><a href="#when">When to use it</a></div></aside><main><div class="content"><div class="reveal in">
+  <span class="daybadge d6">Class 7 · 7.4</span>
+  <h1 class="page">Ralph Loops: autonomous coding on autopilot</h1>
+  <p class="lede">Put the agent in a loop so that every time it thinks it's finished, it goes again. It's how an eight-minute task becomes an overnight build — where the idea came from, how to run it, and when it's the wrong tool.</p>
+  <div class="meta"><span>🎯 <b>Goal:</b> understand autonomous looping</span><span>⏱ <b>Read:</b> 10 min</span><span>🧭 <b>Type:</b> hands-on</span></div></div>
 
+<p>The finale for the day is genuinely a little crazy: put the agent in a loop so that whenever it thinks it's
+<em>finished</em>, it's nudged to start again and do more. This is a <strong>Ralph loop</strong> — and it turns
+an eight-minute task into an eight-<em>hour</em> one.</p>
 
-<h2 id="story"><span class="num">01</span>From a side project to a billion-dollar tool</h2>
-<p>The phenomenon that is <strong>Claude Code</strong> began in late 2024, when Boris Cherny — an engineer
-at Anthropic — built a side project, originally called Claude CLI, just to drive coding with Claude in an
-<em>agent loop</em>. It took off from there.</p>
+<h2 id="idea"><span class="num">01</span>The idea: a loop around the loop</h2>
+<p>The agent already runs an inner loop — think, act, observe, repeat — until it decides the job is done. A
+Ralph loop wraps an <em>outer</em> loop around that: on "done," it re-prompts Claude (carefully, to keep the
+context from ballooning) to repeat the task from wherever it is and do it better, over and over, for a set
+number of iterations.</p>
 <div class="diagram reveal">
-<svg viewBox="0 0 720 128" width="100%" role="img" aria-label="Claude Code timeline">
-  <defs><marker id="ah" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--brand)"/></marker></defs>
-  <line x1="24" y1="64" x2="700" y2="64" stroke="var(--hair)" stroke-width="3"/>
-  <g style="font:700 11px system-ui;fill:var(--ink-2)">
-  <circle cx="60" cy="64" r="7" fill="var(--brand)"/><text x="60" y="40" text-anchor="middle">Late 2024</text><text x="60" y="92" text-anchor="middle">Side project</text>
-  <circle cx="230" cy="64" r="7" fill="var(--brand)"/><text x="230" y="40" text-anchor="middle">Apr 2025</text><text x="230" y="92" text-anchor="middle">General release</text>
-  <circle cx="400" cy="64" r="7" fill="var(--brand)"/><text x="400" y="40" text-anchor="middle">Sep 2025</text><text x="400" y="92" text-anchor="middle">V2 ecosystem</text>
-  <circle cx="545" cy="64" r="7" fill="var(--accent)"/><text x="545" y="40" text-anchor="middle">Nov 2025</text><text x="545" y="92" text-anchor="middle">Opus 4.5</text>
-  <circle cx="670" cy="64" r="7" fill="var(--brand)"/><text x="670" y="40" text-anchor="middle">Jan 2026</text><text x="670" y="92" text-anchor="middle">Cowork</text>
+<svg viewBox="0 0 720 200" width="100%" role="img" aria-label="Ralph loop = outer loop around the agent loop">
+  <style>.t{font:700 12px system-ui}.w{fill:#fff}</style>
+  <ellipse cx="360" cy="100" rx="330" ry="86" fill="none" stroke="var(--amber-500)" stroke-width="3" stroke-dasharray="8 6"/>
+  <text x="360" y="30" text-anchor="middle" class="t" fill="var(--amber-600)">OUTER LOOP · Ralph — "not done, go again" ×N</text>
+  <circle cx="360" cy="112" r="66" fill="none" stroke="var(--violet-600)" stroke-width="3"/>
+  <text x="360" y="88" text-anchor="middle" class="t" fill="var(--brand)">agent loop</text>
+  <g class="t w">
+    <rect x="300" y="98" width="56" height="26" rx="6" fill="var(--violet-600)"/><text x="328" y="115" text-anchor="middle" class="w" style="font:700 10px system-ui">think</text>
+    <rect x="364" y="98" width="56" height="26" rx="6" fill="var(--violet-600)"/><text x="392" y="115" text-anchor="middle" class="w" style="font:700 10px system-ui">act</text>
+    <rect x="332" y="130" width="56" height="24" rx="6" fill="var(--violet-600)"/><text x="360" y="146" text-anchor="middle" class="w" style="font:700 10px system-ui">observe</text>
   </g>
+  <text x="360" y="190" text-anchor="middle" style="font:600 11px system-ui;fill:var(--ink-2)">Named after Ralph Wiggum — the optimist who just keeps going. (h/t Geoffrey Huntley.)</text>
 </svg>
-<div class="cap">The first CLI coding tool to really take hold — and the wave that followed.</div>
 </div>
-<p>Anthropic released it generally in <strong>April 2025</strong> (available to most people from around
-February). It was the first time one of these CLI tools came out and truly took hold — there are dozens
-now, but Claude Code is where it began. Then in <strong>September 2025</strong>, <mark>V2</mark> brought a
-whole robust ecosystem: <strong>checkpointing, sub-agents, hooks, skills and background tasks</strong>.
-Many features had rolled out over the preceding months but matured in V2. There's also a <strong>Claude
-Code SDK</strong> for writing code that works <em>within</em> the Claude Code ecosystem — not a general
-agent framework like the OpenAI Agents SDK, but a way to build on top of Claude Code itself.</p>
+<div class="call def reveal"><div class="t">Where it came from</div>
+<p>The Ralph loop is the brainchild of Australian engineer <strong>Geoffrey Huntley</strong>, named in homage
+to Ralph Wiggum from <em>The Simpsons</em> — the endlessly optimistic character who just keeps going. Couple a
+Ralph loop with YOLO and you can set something running for hours, each pass building on the last.</p></div>
 
-<div class="call idea reveal"><div class="t">The inflection point</div>
-<p>In <strong>November 2025</strong>, Anthropic released <strong>Opus 4.5</strong> — their strongest model,
-and what many see as an inflection point in agentic coding. Coming after it, Google's <strong>Gemini 3
-Pro</strong> and OpenAI's <strong>Codex / GPT-5.2</strong> land in the same tier — but Opus 4.5 was the
-first that had people saying <em>something has changed</em>: agents reliable enough to trust with real
-code, without checking every diff.</p></div>
+<h2 id="run"><span class="num">02</span>Running one — via a plugin</h2>
+<p>Ralph loops ship as an official Anthropic <strong>plugin</strong> (we cover plugins properly next class).
+Install it, then call its command with a prompt and an iteration count.</p>
+<div class="code term"><div class="cbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">Claude Code</span></div>
+<pre><span class="c"># install the official plugin</span>
+/plugin install ralph-loop@claude-plugins-official
 
-<p>Around the same time, Anthropic passed <strong>$1&nbsp;billion of run-rate revenue</strong> (ARR) with
-Claude Code — a real milestone. And as of <strong>January 2026</strong>, they released <strong>Cowork</strong>,
-which takes the same idea beyond coding. We won't cover Cowork here — this course is all about coding — but
-it's worth a look. Running alongside all of this is the story of <strong>MCP</strong> (the Model Context
-Protocol): it emerged in late 2024, took hold, and now sees <strong>100&nbsp;million downloads a month</strong>.
-MCP is a big part of the Claude Code ecosystem, and we'll cover it later.</p>
+<span class="c"># then kick it off: prompt + how many times to loop</span>
+/ralph-loop:ralph-loop <span class="s">"Significantly improve this project. Add users and
+  user management, multiple Kanban boards per user, and other
+  features to build a comprehensive PM app. Test thoroughly and
+  keep strong coverage and integration tests."</span> --max-iterations 10</pre></div>
+<p>It writes a <code class="inl">ralph-loop-local.md</code> file inside <code class="inl">.claude</code> and
+sets off. Because the demo ran it <em>without</em> full YOLO, it paused for approvals — always press
+<strong>2</strong> for things you're happy with, so you keep a hand on the wheel and avoid anything destructive.</p>
+<div class="call warn reveal"><div class="t">Ralph + YOLO belongs in a sandbox</div>
+<p>Running a Ralph loop on plain YOLO with no sandbox is not a best practice — it's a lot of unattended,
+unapproved action. Do it only inside a sandbox (covered next week), or stay present and approve as it goes.</p></div>
 
-<div class="call warn reveal"><div class="t">Don't get lost in the hype</div>
-<p>Big things happen almost weekly, and it can feel overwhelming. The powerful, compelling tools are the
-ones that live for a few months. Claude Code has been around long enough for us to know it's here to stay.</p></div>
-
-<h2 id="pricing"><span class="num">02</span>Pricing: what you actually need</h2>
-<p>Like most of these AIs, there are two ways to think about pricing — two different products.
-The <strong>API</strong> is for making repeated calls to build your own products (that's what we used with
-OpenRouter last week). The <strong>consumer subscription</strong> is for you as a <em>user</em> — and that's
-the plan we care about here.</p>
-<div class="tbl-wrap" style="overflow-x:auto">
-<table class="tbl">
-<thead><tr><th>Plan</th><th>Price</th><th>What you get</th></tr></thead>
-<tbody>
-<tr><td><span class="tag">Free</span></td><td>$0</td><td>Just chatting with Claude, like ChatGPT. <strong>Not</strong> what we're using.</td></tr>
-<tr><td><span class="tag">Pro</span></td><td>~$20 / mo</td><td>Claude Code on the web <em>and</em> in your terminal — this is what the course uses.</td></tr>
-<tr><td><span class="tag">Max</span></td><td>$100 or $200 / mo</td><td>Much higher limits for heavy daily use. Optional — most learners don't need it.</td></tr>
-</tbody></table></div>
-<div class="call money reveal"><div class="t">It's optional</div>
-<p>You can pay nothing and still follow along — later today we'll set up free and very cheap models through
-Claude Code. But the experience is better on a paid model. If there's one thing worth investing in for this
-course, an Anthropic subscription might be it — cheaper than a laptop for an enormous amount of capability.
-Start free, and choose whether to add a paid model later.</p></div>
-
-<h2 id="install"><span class="num">03</span>Install Claude Code in VS Code</h2>
-<p>Getting Claude Code onto your computer is genuinely simple — one line of code that the website generates
-for your operating system.</p>
-<div class="steps reveal">
-  <div class="step"><h4>Sign in to Anthropic</h4>
-    <p>Go to <code class="inl">claude.ai</code>, press <em>Try Claude</em>, and sign up (Google or email).
-    This is the account Claude Code will log in with.</p></div>
-  <div class="step"><h4>Grab the install command</h4>
-    <p>Go to <code class="inl">code.claude.com</code> — it redirects to the Claude Code site, which detects
-    your OS and shows the right one-line command. Click through for full docs if you want them.</p></div>
-  <div class="step"><h4>Paste it into the VS Code terminal</h4>
-    <p>In VS Code, open a terminal (<kbd>Ctrl</kbd>+<kbd>`</kbd>, or <kbd>Ctrl/Cmd</kbd>+<kbd>J</kbd>),
-    paste the command, and press Enter. It installs Claude Code.</p></div>
-  <div class="step"><h4>PC permissions?</h4>
-    <p>If Windows complains you're not authorised to run scripts, search it or ask an assistant — it's the
-    standard, harmless step to allow scripts. Once done, re-run the command.</p></div>
+<h2 id="result"><span class="num">03</span>What an hour of looping produced</h2>
+<p>The demo ran for just under an hour and changed <strong>~1,300 lines of code</strong> — compacting itself
+along the way. The result was a real step-change: proper authentication with account creation, per-user
+<strong>multiple Kanban boards</strong> you can flip between, persistence across logout/login. It had crossed
+from "toy" toward "platform you could actually ship."</p>
+<div class="grid c3 reveal">
+  <div class="card"><div class="k">Before</div><h4>Single board</h4><p>One hard-coded board, a demo login, no real persistence.</p></div>
+  <div class="card"><div class="k">≈1 hour later</div><h4>Multi-board app</h4><p>Sign-up, auth, per-user boards, switch between them, data that survives logout.</p></div>
+  <div class="card hl"><div class="k">The point</div><h4>Autonomy scales</h4><p>Bigger iteration counts = overnight builds. Tens of thousands of lines, unattended.</p></div>
 </div>
-<div class="code term"><div class="cbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">VS Code · terminal</span></div>
-<pre><span class="c"># paste the one-line command from code.claude.com</span>
-<span class="c"># ...installs, then:</span>
-<span class="g">✓</span> Claude Code installed — version <span class="s">2.1.29</span>
-<span class="c"># your version may be newer — that's fine</span></pre></div>
 
-<h2 id="ext-vs-terminal"><span class="num">04</span>The extension vs. the terminal</h2>
-<p>We'll also install the <strong>Claude Code extension for VS Code</strong>. Open the Extensions panel
-(<kbd>Ctrl/Cmd</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd>), search <em>Claude Code</em> — it's the top result,
-from Anthropic, with the verified tick and millions of downloads — and install it. Now there are
-<strong>two ways</strong> to use Claude Code inside VS Code:</p>
-<div class="grid c2">
-  <div class="card"><div class="k">The sidebar extension</div>
-    <h4>More built-in, more constrained</h4>
-    <p>Press the Claude button in the top bar to open it as a sidebar — like the Codex sidebar. It's more
-    baked into VS Code and controls the editor a little better, but it's a more packaged, novice-friendly
-    version <em>without all the pro features</em>.</p></div>
-  <div class="card"><div class="k">The terminal CLI</div>
-    <h4>The full-featured product</h4>
-    <p>Run <code class="inl">claude</code> in the VS Code terminal. You keep the file explorer and VS Code
-    tooling around you, it's still aware it's inside VS Code — and you get the <strong>full-featured</strong>
-    Claude Code. This is what we use all week.</p></div>
-</div>
-<div class="call tip reveal"><div class="t">We're pros now</div>
-<p>Week one was for sidebars and agent chats. This week we're becoming vibe engineers — so we work directly
-in the terminal to get the complete, unconstrained Claude Code experience.</p></div>
+<h2 id="when"><span class="num">04</span>When to reach for Ralph loops — and when not to</h2>
+<p>"Why not always use them?" Because you trade control for reach. The answer is the same one that runs through
+this whole course: match the tool to the job.</p>
+<table class="tbl reveal">
+  <thead><tr><th>Reach for a Ralph loop</th><th>Stick with a regimented process</th></tr></thead>
+  <tbody>
+    <tr><td>Prototypes, MVPs, "out-there" experiments</td><td>Work needing predictable, reliable outcomes</td></tr>
+    <tr><td>You want maximum autonomy and reach</td><td>You want to play a primary, hands-on role</td></tr>
+    <tr><td>Overnight "just keep building" sessions (sandboxed)</td><td>Production code you'll own line by line</td></tr>
+  </tbody>
+</table>
+<div class="call idea reveal"><div class="t">A teaser for what's coming</div>
+<p>Ralph loops are a first taste of multi-agent, autonomous coding. Over the next week and a half we'll make
+this <em>robust</em> — with sub-agents in defined roles, testing baked into the process, and sandboxes for
+safety. This was the fun, slightly reckless preview.</p></div>
 
 <div class="takeaways reveal"><h3><span class="p">✓</span> Key takeaways</h3>
 <ul>
-  <li>Claude Code began as Boris Cherny's late-2024 side project; general release <strong>April 2025</strong>, the V2 ecosystem in <strong>September 2025</strong>.</li>
-  <li><strong>Opus 4.5</strong> (Nov 2025) was the inflection point — reliable enough to trust agents with real code; Anthropic passed $1B ARR on Claude Code.</li>
-  <li>For the course you only need the <strong>Pro</strong> plan (~$20/mo) — and free/cheap model routes come later, so paying is optional.</li>
-  <li>Install from <code class="inl">code.claude.com</code> with a single command pasted into the VS Code terminal.</li>
-  <li>Prefer the <strong>terminal CLI</strong> over the sidebar extension — it's the full-featured product.</li>
+  <li>A Ralph loop wraps an outer "not done — go again" loop around the agent's normal loop, for N iterations.</li>
+  <li>It's an official plugin: <code class="inl">/plugin install ralph-loop@claude-plugins-official</code>, then <code class="inl">/ralph-loop:ralph-loop "&lt;prompt&gt;" --max-iterations N</code>.</li>
+  <li>Without YOLO you approve as it goes (press 2); with YOLO, only inside a sandbox.</li>
+  <li>An hour turned a single-board toy into a multi-user, multi-board app — scale the iterations for overnight builds.</li>
+  <li>Great for prototypes and MVPs; use a regimented process when you need predictable, ownable results.</li>
 </ul></div>
 
-<div class="pager"><a href="class5-karpathy-mvp.html"><div class="l">← Previous</div><div class="t">5.5 Karpathy &amp; the MVP</div></a><a class="nx" href="class6-cli-basics.html"><div class="l">Next →</div><div class="t">6.2 CLI: init, context &amp; testing</div></a></div></div></main></div>
+<div class="call tip reveal" style="margin-top:30px"><div class="t">That's a wrap on Class 7 — 47% of the way through</div>
+<p>You drove the commands, learned the shortcut keys, mastered sessions / checkpoints / Git, ran real YOLO,
+and let a Ralph loop build for you. Next is an <em>inflection point</em>: MCP, Skills &amp; Plugins — the
+three building blocks that take your Claude Code expertise to a new level.</p></div>
+<div class="pager"><a href="class7-rewind-yolo.html"><div class="l">← Previous</div><div class="t">7.3 Rewind &amp; YOLO mode</div></a><a class="nx" href="class8-big-three.html"><div class="l">Next →</div><div class="t">8.1 The big three &amp; tools</div></a></div></div></main></div>
 <footer class="footer">
   <strong>Vibe Engineering with AI Coding Agents</strong> · SMIT — Saylani Mass IT Training.
   Instructor: <strong>Muhammad Uzair Khan</strong>. Course material for learners at every level.<br>

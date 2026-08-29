@@ -1,7 +1,7 @@
 <!doctype html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>The rise of Claude Code · Vibe Engineering — SMIT</title>
-<meta name="description" content="Vibe Engineering with AI Coding Agents — SMIT course by Muhammad Uzair Khan.">
+<title>Skills marketplaces & Agent Browser · Vibe Engineering — SMIT</title>
+<meta name="description" content="Where to find skills, and installing Agent Browser so Claude Code can drive a real browser on your machine.">
 <style>
 :root{
   --violet-50:#f5f3ff; --violet-100:#ede9fe; --violet-200:#ddd6fe; --violet-300:#c4b5fd;
@@ -242,6 +242,8 @@ h2:hover .anchor{opacity:1}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 .daybadge.d5{background:#fbe0ea;color:#9f1239}
 :root[data-theme=dark] .daybadge.d5{background:#3a0f1e;color:#f7789f}
+
+.daybadge.d6{background:#fde4c0;color:#8a5300}:root[data-theme=dark] .daybadge.d6{background:#3a2a0b;color:#fcc858}.daybadge.d7{background:#ece7ff;color:#5b21b6}:root[data-theme=dark] .daybadge.d7{background:#241a3d;color:#c4b5fd}
 </style></head><body><header class="site-head">
   <div style="height:3px;background:var(--hair)"><div id="prog" style="height:3px;width:0;background:linear-gradient(90deg,var(--violet-600),var(--amber-400));transition:width .1s"></div></div>
   <div class="bar">
@@ -249,136 +251,85 @@ h2:hover .anchor{opacity:1}
       <span class="glyph">◆</span>
       <span>Vibe Engineering<small>SMIT · AI Agentic Engineering</small></span>
     </a>
-    <nav class="head-nav"><a class="" href="index.html">Home</a><a class="" href="day1-welcome.html">Class 2</a><a class="" href="day2-how-llms-work.html">Class 3</a><a class="" href="day3-tooling-setup.html">Class 4</a><a class="" href="class5-model-choice.html">Class 5</a><a class="active" href="class6-rise-of-claude-code.html">Class 6</a><a class="" href="class7-commands.html">Class 7</a><a class="" href="class8-big-three.html">Class 8</a><a class="" href="lab1-first-prompt.html">Labs</a></nav>
+    <nav class="head-nav"><a class="" href="index.html">Home</a><a class="" href="day1-welcome.html">Class 2</a><a class="" href="day2-how-llms-work.html">Class 3</a><a class="" href="day3-tooling-setup.html">Class 4</a><a class="" href="class5-model-choice.html">Class 5</a><a class="" href="class6-rise-of-claude-code.html">Class 6</a><a class="" href="class7-commands.html">Class 7</a><a class="active" href="class8-big-three.html">Class 8</a><a class="" href="lab1-first-prompt.html">Labs</a></nav>
     <button class="icon-btn" id="themeBtn" title="Toggle light / dark" aria-label="Toggle theme">☾</button>
     <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu">☰</button>
   </div>
-  <div id="mnav" class="side" style="display:none;max-height:70vh;padding:12px 22px;border-top:1px solid var(--hair)"><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome &amp; first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages &amp; cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows &amp; models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools &amp; agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="active" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Class 7</div><a class="" href="class7-commands.html">7.1 Commands, shortcuts &amp; config</a><a class="" href="class7-sessions-git.html">7.2 Sessions, checkpoints &amp; Git</a><a class="" href="class7-rewind-yolo.html">7.3 Rewind &amp; YOLO mode</a><a class="" href="class7-ralph-loops.html">7.4 Ralph Loops</a><div class="grp">Class 8</div><a class="" href="class8-big-three.html">8.1 The big three &amp; tools</a><a class="" href="class8-mcp-explained.html">8.2 MCP under the hood</a><a class="" href="class8-adding-mcp.html">8.3 Adding MCP servers</a><a class="" href="class8-skills.html">8.4 Skills — a simpler way</a><a class="" href="class8-skills-marketplaces.html">8.5 Skills marketplaces &amp; Agent Browser</a><a class="" href="class8-plugins.html">8.6 Plugins &amp; your setup</a><div class="grp">Labs</div><a class="" href="lab1-first-prompt.html">Lab 1 · One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 · agents.md + YOLO</a></div>
+  <div id="mnav" class="side" style="display:none;max-height:70vh;padding:12px 22px;border-top:1px solid var(--hair)"><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome &amp; first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages &amp; cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows &amp; models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools &amp; agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Class 7</div><a class="" href="class7-commands.html">7.1 Commands, shortcuts &amp; config</a><a class="" href="class7-sessions-git.html">7.2 Sessions, checkpoints &amp; Git</a><a class="" href="class7-rewind-yolo.html">7.3 Rewind &amp; YOLO mode</a><a class="" href="class7-ralph-loops.html">7.4 Ralph Loops</a><div class="grp">Class 8</div><a class="" href="class8-big-three.html">8.1 The big three &amp; tools</a><a class="" href="class8-mcp-explained.html">8.2 MCP under the hood</a><a class="" href="class8-adding-mcp.html">8.3 Adding MCP servers</a><a class="" href="class8-skills.html">8.4 Skills — a simpler way</a><a class="active" href="class8-skills-marketplaces.html">8.5 Skills marketplaces &amp; Agent Browser</a><a class="" href="class8-plugins.html">8.6 Plugins &amp; your setup</a><div class="grp">Labs</div><a class="" href="lab1-first-prompt.html">Lab 1 · One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 · agents.md + YOLO</a></div>
 </header>
-<div class="layout"><aside class="side"><nav><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome &amp; first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages &amp; cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows &amp; models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools &amp; agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="active" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Class 7</div><a class="" href="class7-commands.html">7.1 Commands, shortcuts &amp; config</a><a class="" href="class7-sessions-git.html">7.2 Sessions, checkpoints &amp; Git</a><a class="" href="class7-rewind-yolo.html">7.3 Rewind &amp; YOLO mode</a><a class="" href="class7-ralph-loops.html">7.4 Ralph Loops</a><div class="grp">Class 8</div><a class="" href="class8-big-three.html">8.1 The big three &amp; tools</a><a class="" href="class8-mcp-explained.html">8.2 MCP under the hood</a><a class="" href="class8-adding-mcp.html">8.3 Adding MCP servers</a><a class="" href="class8-skills.html">8.4 Skills — a simpler way</a><a class="" href="class8-skills-marketplaces.html">8.5 Skills marketplaces &amp; Agent Browser</a><a class="" href="class8-plugins.html">8.6 Plugins &amp; your setup</a><div class="grp">Labs</div><a class="" href="lab1-first-prompt.html">Lab 1 · One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 · agents.md + YOLO</a></nav><div class="grp" style="margin-top:26px">On this page</div><div class="toc"><a href="#story">History</a><a href="#pricing">Pricing</a><a href="#install">Install in VS Code</a><a href="#ext-vs-terminal">Extension vs terminal</a></div></aside><main><div class="content"><div class="reveal in">
-  <span class="daybadge d5">Class 6 · 6.1</span>
-  <h1 class="page">The rise of Claude Code: history, setup &amp; installation</h1>
-  <p class="lede">From a late-2024 side project to a billion-dollar tool — the story of Claude Code, why it matters, and how to install it inside VS Code.</p>
-  <div class="meta"><span>🎯 <b>Goal:</b> install Claude Code &amp; know its story</span><span>⏱ <b>Read:</b> 9 min</span><span>🧭 <b>Type:</b> setup</span></div></div>
+<div class="layout"><aside class="side"><nav><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome &amp; first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages &amp; cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows &amp; models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools &amp; agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Class 7</div><a class="" href="class7-commands.html">7.1 Commands, shortcuts &amp; config</a><a class="" href="class7-sessions-git.html">7.2 Sessions, checkpoints &amp; Git</a><a class="" href="class7-rewind-yolo.html">7.3 Rewind &amp; YOLO mode</a><a class="" href="class7-ralph-loops.html">7.4 Ralph Loops</a><div class="grp">Class 8</div><a class="" href="class8-big-three.html">8.1 The big three &amp; tools</a><a class="" href="class8-mcp-explained.html">8.2 MCP under the hood</a><a class="" href="class8-adding-mcp.html">8.3 Adding MCP servers</a><a class="" href="class8-skills.html">8.4 Skills — a simpler way</a><a class="active" href="class8-skills-marketplaces.html">8.5 Skills marketplaces &amp; Agent Browser</a><a class="" href="class8-plugins.html">8.6 Plugins &amp; your setup</a><div class="grp">Labs</div><a class="" href="lab1-first-prompt.html">Lab 1 · One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 · agents.md + YOLO</a></nav><div class="grp" style="margin-top:26px">On this page</div><div class="toc"><a href="#find">Where skills live</a><a href="#install">Install Agent Browser</a><a href="#use">Watch it drive</a></div></aside><main><div class="content"><div class="reveal in">
+  <span class="daybadge d7">Class 8 · 8.5</span>
+  <h1 class="page">Skills marketplaces &amp; installing Agent Browser</h1>
+  <p class="lede">Where skills live, how to read a real SKILL.md, and a hands-on install of Agent Browser — watch Claude Code launch and drive a browser on your own machine, purely from a folder of files.</p>
+  <div class="meta"><span>🎯 <b>Goal:</b> find &amp; install skills</span><span>⏱ <b>Read:</b> 9 min</span><span>🧭 <b>Type:</b> hands-on</span></div></div>
 
+<p>Skills are just files, so their "marketplaces" are simpler than MCP's. Let's tour where to find them, then
+install a genuinely useful one — <strong>Agent Browser</strong>, which lets Claude Code drive a real browser on
+your machine.</p>
 
-<h2 id="story"><span class="num">01</span>From a side project to a billion-dollar tool</h2>
-<p>The phenomenon that is <strong>Claude Code</strong> began in late 2024, when Boris Cherny — an engineer
-at Anthropic — built a side project, originally called Claude CLI, just to drive coding with Claude in an
-<em>agent loop</em>. It took off from there.</p>
-<div class="diagram reveal">
-<svg viewBox="0 0 720 128" width="100%" role="img" aria-label="Claude Code timeline">
-  <defs><marker id="ah" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--brand)"/></marker></defs>
-  <line x1="24" y1="64" x2="700" y2="64" stroke="var(--hair)" stroke-width="3"/>
-  <g style="font:700 11px system-ui;fill:var(--ink-2)">
-  <circle cx="60" cy="64" r="7" fill="var(--brand)"/><text x="60" y="40" text-anchor="middle">Late 2024</text><text x="60" y="92" text-anchor="middle">Side project</text>
-  <circle cx="230" cy="64" r="7" fill="var(--brand)"/><text x="230" y="40" text-anchor="middle">Apr 2025</text><text x="230" y="92" text-anchor="middle">General release</text>
-  <circle cx="400" cy="64" r="7" fill="var(--brand)"/><text x="400" y="40" text-anchor="middle">Sep 2025</text><text x="400" y="92" text-anchor="middle">V2 ecosystem</text>
-  <circle cx="545" cy="64" r="7" fill="var(--accent)"/><text x="545" y="40" text-anchor="middle">Nov 2025</text><text x="545" y="92" text-anchor="middle">Opus 4.5</text>
-  <circle cx="670" cy="64" r="7" fill="var(--brand)"/><text x="670" y="40" text-anchor="middle">Jan 2026</text><text x="670" y="92" text-anchor="middle">Cowork</text>
-  </g>
-</svg>
-<div class="cap">The first CLI coding tool to really take hold — and the wave that followed.</div>
-</div>
-<p>Anthropic released it generally in <strong>April 2025</strong> (available to most people from around
-February). It was the first time one of these CLI tools came out and truly took hold — there are dozens
-now, but Claude Code is where it began. Then in <strong>September 2025</strong>, <mark>V2</mark> brought a
-whole robust ecosystem: <strong>checkpointing, sub-agents, hooks, skills and background tasks</strong>.
-Many features had rolled out over the preceding months but matured in V2. There's also a <strong>Claude
-Code SDK</strong> for writing code that works <em>within</em> the Claude Code ecosystem — not a general
-agent framework like the OpenAI Agents SDK, but a way to build on top of Claude Code itself.</p>
+<h2 id="find"><span class="num">01</span>Where skills live</h2>
+<table class="tbl reveal">
+  <thead><tr><th>Place</th><th>What you'll find</th></tr></thead>
+  <tbody>
+    <tr><td>Anthropic's <code class="inl">skills</code> repo (GitHub)</td><td>The spec, a template to build your own, and first-party skills — PDF, PPTX (PowerPoint), even a "skill-creator" skill.</td></tr>
+    <tr><td>skills.sh (by Vercel)</td><td>A polished marketplace from the Next.js team — front-end design, PDF, brainstorming, "find-skills," Agent Browser and more.</td></tr>
+  </tbody>
+</table>
+<div class="call idea reveal"><div class="t">Read a real SKILL.md to make it click</div>
+<p>Open the PPTX skill on GitHub: the top is metadata ("presentation creation, editing and analysis — when
+Claude needs to work with presentations"), telling Claude exactly when to trigger it. Below is a long
+instructions body it only reads when needed, plus a <code class="inl">scripts/</code> folder — an HTML-to-PPTX
+converter, a Python "rearrange" script. Those are tools at a higher level of granularity. Browsing a couple of
+these first-hand is the fastest way to understand skills.</p></div>
 
-<div class="call idea reveal"><div class="t">The inflection point</div>
-<p>In <strong>November 2025</strong>, Anthropic released <strong>Opus 4.5</strong> — their strongest model,
-and what many see as an inflection point in agentic coding. Coming after it, Google's <strong>Gemini 3
-Pro</strong> and OpenAI's <strong>Codex / GPT-5.2</strong> land in the same tier — but Opus 4.5 was the
-first that had people saying <em>something has changed</em>: agents reliable enough to trust with real
-code, without checking every diff.</p></div>
+<h2 id="install"><span class="num">02</span>Install Agent Browser</h2>
+<div class="call def reveal"><div class="t">What Agent Browser does</div>
+<p>It equips Claude Code to launch and drive a browser on your computer — navigate, click, screenshot — often
+<em>headless</em> (invisible). Instead of only searching via the cloud, the agent can actually operate a browser.
+It's built on Playwright (Microsoft's browser-automation tool) and Chromium.</p></div>
+<p>Vercel ships an <code class="inl">npx skills</code> utility that installs any skill from a GitHub link. First
+install the underlying tool + Chromium, then add the skill:</p>
+<div class="code term"><div class="cbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">terminal</span></div>
+<pre><span class="c"># 1 · install the agent-browser tool and Chromium (via Playwright)</span>
+npx -y agent-browser install
+npx -y agent-browser install-chromium
 
-<p>Around the same time, Anthropic passed <strong>$1&nbsp;billion of run-rate revenue</strong> (ARR) with
-Claude Code — a real milestone. And as of <strong>January 2026</strong>, they released <strong>Cowork</strong>,
-which takes the same idea beyond coding. We won't cover Cowork here — this course is all about coding — but
-it's worth a look. Running alongside all of this is the story of <strong>MCP</strong> (the Model Context
-Protocol): it emerged in late 2024, took hold, and now sees <strong>100&nbsp;million downloads a month</strong>.
-MCP is a big part of the Claude Code ecosystem, and we'll cover it later.</p>
-
-<div class="call warn reveal"><div class="t">Don't get lost in the hype</div>
-<p>Big things happen almost weekly, and it can feel overwhelming. The powerful, compelling tools are the
-ones that live for a few months. Claude Code has been around long enough for us to know it's here to stay.</p></div>
-
-<h2 id="pricing"><span class="num">02</span>Pricing: what you actually need</h2>
-<p>Like most of these AIs, there are two ways to think about pricing — two different products.
-The <strong>API</strong> is for making repeated calls to build your own products (that's what we used with
-OpenRouter last week). The <strong>consumer subscription</strong> is for you as a <em>user</em> — and that's
-the plan we care about here.</p>
-<div class="tbl-wrap" style="overflow-x:auto">
-<table class="tbl">
-<thead><tr><th>Plan</th><th>Price</th><th>What you get</th></tr></thead>
-<tbody>
-<tr><td><span class="tag">Free</span></td><td>$0</td><td>Just chatting with Claude, like ChatGPT. <strong>Not</strong> what we're using.</td></tr>
-<tr><td><span class="tag">Pro</span></td><td>~$20 / mo</td><td>Claude Code on the web <em>and</em> in your terminal — this is what the course uses.</td></tr>
-<tr><td><span class="tag">Max</span></td><td>$100 or $200 / mo</td><td>Much higher limits for heavy daily use. Optional — most learners don't need it.</td></tr>
-</tbody></table></div>
-<div class="call money reveal"><div class="t">It's optional</div>
-<p>You can pay nothing and still follow along — later today we'll set up free and very cheap models through
-Claude Code. But the experience is better on a paid model. If there's one thing worth investing in for this
-course, an Anthropic subscription might be it — cheaper than a laptop for an enormous amount of capability.
-Start free, and choose whether to add a paid model later.</p></div>
-
-<h2 id="install"><span class="num">03</span>Install Claude Code in VS Code</h2>
-<p>Getting Claude Code onto your computer is genuinely simple — one line of code that the website generates
-for your operating system.</p>
+<span class="c"># 2 · add the skill straight from Vercel's marketplace</span>
+npx -y skills add <span class="s">github.com/&lt;path-to&gt;/agent-browser</span></pre></div>
+<p>The installer asks a few questions — and the answers reveal how portable skills have become:</p>
 <div class="steps reveal">
-  <div class="step"><h4>Sign in to Anthropic</h4>
-    <p>Go to <code class="inl">claude.ai</code>, press <em>Try Claude</em>, and sign up (Google or email).
-    This is the account Claude Code will log in with.</p></div>
-  <div class="step"><h4>Grab the install command</h4>
-    <p>Go to <code class="inl">code.claude.com</code> — it redirects to the Claude Code site, which detects
-    your OS and shows the right one-line command. Click through for full docs if you want them.</p></div>
-  <div class="step"><h4>Paste it into the VS Code terminal</h4>
-    <p>In VS Code, open a terminal (<kbd>Ctrl</kbd>+<kbd>`</kbd>, or <kbd>Ctrl/Cmd</kbd>+<kbd>J</kbd>),
-    paste the command, and press Enter. It installs Claude Code.</p></div>
-  <div class="step"><h4>PC permissions?</h4>
-    <p>If Windows complains you're not authorised to run scripts, search it or ask an assistant — it's the
-    standard, harmless step to allow scripts. Once done, re-run the command.</p></div>
+  <div class="step"><h4>Which agents? <span class="time">select</span></h4><p>It offers Claude Code, AMP, Antigravity, OpenCode, Cline, Codex, and more. Space-bar to pick <strong>Claude Code</strong>, Enter.</p></div>
+  <div class="step"><h4>Project or global?</h4><p>Create the files in this repo's <code class="inl">.claude</code> or your home directory. Choose <strong>project</strong>.</p></div>
+  <div class="step"><h4>Install method</h4><p>If unsure about symlinks, pick <strong>copy to all agents</strong>. Proceed.</p></div>
 </div>
-<div class="code term"><div class="cbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">VS Code · terminal</span></div>
-<pre><span class="c"># paste the one-line command from code.claude.com</span>
-<span class="c"># ...installs, then:</span>
-<span class="g">✓</span> Claude Code installed — version <span class="s">2.1.29</span>
-<span class="c"># your version may be newer — that's fine</span></pre></div>
+<p>"High-tech" as it felt on the command line, all it did was create <code class="inl">.claude/skills/agent-browser/</code>
+containing a single <code class="inl">SKILL.md</code> — the exact YAML header (name, description, optional
+allowed-tools) plus instructions you saw before. Launch Claude, run <code class="inl">/context</code>, and there's
+Agent Browser using a tiny ~68 tokens.</p>
 
-<h2 id="ext-vs-terminal"><span class="num">04</span>The extension vs. the terminal</h2>
-<p>We'll also install the <strong>Claude Code extension for VS Code</strong>. Open the Extensions panel
-(<kbd>Ctrl/Cmd</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd>), search <em>Claude Code</em> — it's the top result,
-from Anthropic, with the verified tick and millions of downloads — and install it. Now there are
-<strong>two ways</strong> to use Claude Code inside VS Code:</p>
-<div class="grid c2">
-  <div class="card"><div class="k">The sidebar extension</div>
-    <h4>More built-in, more constrained</h4>
-    <p>Press the Claude button in the top bar to open it as a sidebar — like the Codex sidebar. It's more
-    baked into VS Code and controls the editor a little better, but it's a more packaged, novice-friendly
-    version <em>without all the pro features</em>.</p></div>
-  <div class="card"><div class="k">The terminal CLI</div>
-    <h4>The full-featured product</h4>
-    <p>Run <code class="inl">claude</code> in the VS Code terminal. You keep the file explorer and VS Code
-    tooling around you, it's still aware it's inside VS Code — and you get the <strong>full-featured</strong>
-    Claude Code. This is what we use all week.</p></div>
-</div>
-<div class="call tip reveal"><div class="t">We're pros now</div>
-<p>Week one was for sidebars and agent chats. This week we're becoming vibe engineers — so we work directly
-in the terminal to get the complete, unconstrained Claude Code experience.</p></div>
+<h2 id="use"><span class="num">03</span>Watch it drive a browser</h2>
+<p>Because Claude can already search the web with its built-in tools, you often have to nudge it to use this
+skill — match the words from the skill's description.</p>
+<div class="call quote reveal"><p>Please interact with the browser to look for restaurant experiences in NYC next week, perhaps on Resy or
+OpenTable.</p></div>
+<p>It triggers <code class="inl">agent-browser</code>, and — surprise — the browser window actually appears (a
+setting controls headless vs. visible). Hands off the keyboard, you watch Claude search Resy, then OpenTable,
+take screenshots, read them back, and summarise the options. It's a vivid demonstration that Claude Code is
+truly in the driving seat, using a skill you equipped with nothing more than a folder of files.</p>
+<div class="call tip reveal"><div class="t">The real magic: it's just files</div>
+<p>Check that folder into GitHub and every teammate who pulls it gets the skill instantly — they'd only need to
+run the one <code class="inl">npx</code> command to install the underlying browser tool. That effortless sharing
+is exactly why skills are catching on.</p></div>
 
 <div class="takeaways reveal"><h3><span class="p">✓</span> Key takeaways</h3>
 <ul>
-  <li>Claude Code began as Boris Cherny's late-2024 side project; general release <strong>April 2025</strong>, the V2 ecosystem in <strong>September 2025</strong>.</li>
-  <li><strong>Opus 4.5</strong> (Nov 2025) was the inflection point — reliable enough to trust agents with real code; Anthropic passed $1B ARR on Claude Code.</li>
-  <li>For the course you only need the <strong>Pro</strong> plan (~$20/mo) — and free/cheap model routes come later, so paying is optional.</li>
-  <li>Install from <code class="inl">code.claude.com</code> with a single command pasted into the VS Code terminal.</li>
-  <li>Prefer the <strong>terminal CLI</strong> over the sidebar extension — it's the full-featured product.</li>
+  <li>Find skills in Anthropic's <code class="inl">skills</code> repo (spec, template, first-party) and on <strong>skills.sh</strong> (Vercel).</li>
+  <li>Reading a real <code class="inl">SKILL.md</code> (e.g. PPTX) — metadata, instructions, <code class="inl">scripts/</code> — makes the model concrete.</li>
+  <li>Install with Vercel's utility: <code class="inl">npx skills add &lt;github-link&gt;</code>; choose agent, scope and method.</li>
+  <li>Agent Browser lets Claude Code drive a real (often headless) browser via Playwright + Chromium.</li>
+  <li>Installing a skill just drops a folder into <code class="inl">.claude/skills/</code> — check it into Git to share with the team.</li>
 </ul></div>
-
-<div class="pager"><a href="class5-karpathy-mvp.html"><div class="l">← Previous</div><div class="t">5.5 Karpathy &amp; the MVP</div></a><a class="nx" href="class6-cli-basics.html"><div class="l">Next →</div><div class="t">6.2 CLI: init, context &amp; testing</div></a></div></div></main></div>
+<div class="pager"><a href="class8-skills.html"><div class="l">← Previous</div><div class="t">8.4 Skills — a simpler way</div></a><a class="nx" href="class8-plugins.html"><div class="l">Next →</div><div class="t">8.6 Plugins &amp; your setup</div></a></div></div></main></div>
 <footer class="footer">
   <strong>Vibe Engineering with AI Coding Agents</strong> · SMIT — Saylani Mass IT Training.
   Instructor: <strong>Muhammad Uzair Khan</strong>. Course material for learners at every level.<br>
