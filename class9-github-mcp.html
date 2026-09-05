@@ -1,7 +1,7 @@
 <!doctype html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sessions, checkpoints & Git · Vibe Engineering — SMIT</title>
-<meta name="description" content="Sessions vs checkpoints vs Git — three ways to move through a Claude Code project, and a workflow that works.">
+<title>GitHub repo, token &amp; MCP &middot; Vibe Engineering &mdash; SMIT</title>
+<meta name="description" content="Create the pre-legal repo, mint a least-privilege fine-grained token, connect the GitHub MCP server, and run the issue-to-PR-to-merge loop.">
 <style>
 :root{
   --violet-50:#f5f3ff; --violet-100:#ede9fe; --violet-200:#ddd6fe; --violet-300:#c4b5fd;
@@ -244,115 +244,116 @@ h2:hover .anchor{opacity:1}
 :root[data-theme=dark] .daybadge.d5{background:#3a0f1e;color:#f7789f}
 
 .daybadge.d6{background:#fde4c0;color:#8a5300}:root[data-theme=dark] .daybadge.d6{background:#3a2a0b;color:#fcc858}.daybadge.d7{background:#ece7ff;color:#5b21b6}:root[data-theme=dark] .daybadge.d7{background:#241a3d;color:#c4b5fd}
+.daybadge.d8{background:#fbe2f6;color:#9d1c8f}:root[data-theme=dark] .daybadge.d8{background:#33103a;color:#f3a6e6}
+.daybadge.d9{background:#dbeafe;color:#1e478a}:root[data-theme=dark] .daybadge.d9{background:#0e1e3a;color:#93bdf7}
 </style></head><body><header class="site-head">
   <div style="height:3px;background:var(--hair)"><div id="prog" style="height:3px;width:0;background:linear-gradient(90deg,var(--violet-600),var(--amber-400));transition:width .1s"></div></div>
   <div class="bar">
     <a class="brand" href="index.html">
-      <span class="glyph">◆</span>
-      <span>Vibe Engineering<small>SMIT · AI Agentic Engineering</small></span>
+      <span class="glyph">&#9670;</span>
+      <span>Vibe Engineering<small>SMIT &middot; AI Agentic Engineering</small></span>
     </a>
-    <nav class="head-nav"><a class="" href="index.html">Home</a><a class="" href="day1-welcome.html">Class 2</a><a class="" href="day2-how-llms-work.html">Class 3</a><a class="" href="day3-tooling-setup.html">Class 4</a><a class="" href="class5-model-choice.html">Class 5</a><a class="" href="class6-rise-of-claude-code.html">Class 6</a><a class="active" href="class7-commands.html">Class 7</a><a class="" href="class8-big-three.html">Class 8</a><a class="" href="class9-workflow-jira-setup.html">Class 9</a><a class="" href="class10-saas-setup.html">Class 10</a><a class="" href="lab1-first-prompt.html">Labs</a></nav>
-    <button class="icon-btn" id="themeBtn" title="Toggle light / dark" aria-label="Toggle theme">☾</button>
-    <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+    <nav class="head-nav"><a class="" href="index.html">Home</a><a class="" href="day1-welcome.html">Class 2</a><a class="" href="day2-how-llms-work.html">Class 3</a><a class="" href="day3-tooling-setup.html">Class 4</a><a class="" href="class5-model-choice.html">Class 5</a><a class="" href="class6-rise-of-claude-code.html">Class 6</a><a class="" href="class7-commands.html">Class 7</a><a class="" href="class8-big-three.html">Class 8</a><a class="active" href="class9-workflow-jira-setup.html">Class 9</a><a class="" href="class10-saas-setup.html">Class 10</a><a class="" href="lab1-first-prompt.html">Labs</a></nav>
+    <button class="icon-btn" id="themeBtn" title="Toggle light / dark" aria-label="Toggle theme">&#9790;</button>
+    <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu">&#9776;</button>
   </div>
-  <div id="mnav" class="side" style="display:none;max-height:70vh;padding:12px 22px;border-top:1px solid var(--hair)"><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome &amp; first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages &amp; cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows &amp; models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools &amp; agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Class 7</div><a class="" href="class7-commands.html">7.1 Commands, shortcuts &amp; config</a><a class="active" href="class7-sessions-git.html">7.2 Sessions, checkpoints &amp; Git</a><a class="" href="class7-rewind-yolo.html">7.3 Rewind &amp; YOLO mode</a><a class="" href="class7-ralph-loops.html">7.4 Ralph Loops</a><div class="grp">Class 8</div><a class="" href="class8-big-three.html">8.1 The big three &amp; tools</a><a class="" href="class8-mcp-explained.html">8.2 MCP under the hood</a><a class="" href="class8-adding-mcp.html">8.3 Adding MCP servers</a><a class="" href="class8-skills.html">8.4 Skills — a simpler way</a><a class="" href="class8-skills-marketplaces.html">8.5 Skills marketplaces &amp; Agent Browser</a><a class="" href="class8-plugins.html">8.6 Plugins &amp; your setup</a><div class="grp">Class 9</div><a class="" href="class9-workflow-jira-setup.html">9.1 Workflow &amp; Jira setup</a><a class="" href="class9-jira-mcp.html">9.2 Connecting Jira (MCP)</a><a class="" href="class9-github-mcp.html">9.3 GitHub repo, token &amp; MCP</a><a class="" href="class9-featuredev-plugin.html">9.4 FeatureDev &amp; the 7 stages</a><a class="" href="class9-jira-to-pr.html">9.5 Autonomy: Jira to PR</a><a class="" href="class9-debugging.html">9.6 Debugging strategies</a><div class="grp">Class 10</div><a class="" href="class10-saas-setup.html">10.1 The SaaS blueprint</a><a class="" href="class10-claudemd-skills.html">10.2 CLAUDE.md &amp; a custom skill</a><a class="" href="class10-jira-tickets.html">10.3 Planning V1 tickets</a><a class="" href="class10-building-features.html">10.4 Building features</a><a class="" href="class10-testing-cerebras.html">10.5 Testing with Cerebras</a><a class="" href="class10-final-demo.html">10.6 Multi-user, polish &amp; victory</a><div class="grp">Labs</div><a class="" href="lab1-first-prompt.html">Lab 1 · One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 · agents.md + YOLO</a></div>
+  <div id="mnav" class="side" style="display:none;max-height:70vh;padding:12px 22px;border-top:1px solid var(--hair)"><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome &amp; first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages &amp; cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows &amp; models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools &amp; agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Class 7</div><a class="" href="class7-commands.html">7.1 Commands, shortcuts &amp; config</a><a class="" href="class7-sessions-git.html">7.2 Sessions, checkpoints &amp; Git</a><a class="" href="class7-rewind-yolo.html">7.3 Rewind &amp; YOLO mode</a><a class="" href="class7-ralph-loops.html">7.4 Ralph Loops</a><div class="grp">Class 8</div><a class="" href="class8-big-three.html">8.1 The big three &amp; tools</a><a class="" href="class8-mcp-explained.html">8.2 MCP under the hood</a><a class="" href="class8-adding-mcp.html">8.3 Adding MCP servers</a><a class="" href="class8-skills.html">8.4 Skills — a simpler way</a><a class="" href="class8-skills-marketplaces.html">8.5 Skills marketplaces &amp; Agent Browser</a><a class="" href="class8-plugins.html">8.6 Plugins &amp; your setup</a><div class="grp">Class 9</div><a class="" href="class9-workflow-jira-setup.html">9.1 Workflow &amp; Jira setup</a><a class="" href="class9-jira-mcp.html">9.2 Connecting Jira (MCP)</a><a class="active" href="class9-github-mcp.html">9.3 GitHub repo, token &amp; MCP</a><a class="" href="class9-featuredev-plugin.html">9.4 FeatureDev &amp; the 7 stages</a><a class="" href="class9-jira-to-pr.html">9.5 Autonomy: Jira to PR</a><a class="" href="class9-debugging.html">9.6 Debugging strategies</a><div class="grp">Class 10</div><a class="" href="class10-saas-setup.html">10.1 The SaaS blueprint</a><a class="" href="class10-claudemd-skills.html">10.2 CLAUDE.md &amp; a custom skill</a><a class="" href="class10-jira-tickets.html">10.3 Planning V1 tickets</a><a class="" href="class10-building-features.html">10.4 Building features</a><a class="" href="class10-testing-cerebras.html">10.5 Testing with Cerebras</a><a class="" href="class10-final-demo.html">10.6 Multi-user, polish &amp; victory</a><div class="grp">Labs</div><a class="" href="lab1-first-prompt.html">Lab 1 · One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 · agents.md + YOLO</a></div>
 </header>
-<div class="layout"><aside class="side"><nav><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome &amp; first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages &amp; cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows &amp; models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools &amp; agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Class 7</div><a class="" href="class7-commands.html">7.1 Commands, shortcuts &amp; config</a><a class="active" href="class7-sessions-git.html">7.2 Sessions, checkpoints &amp; Git</a><a class="" href="class7-rewind-yolo.html">7.3 Rewind &amp; YOLO mode</a><a class="" href="class7-ralph-loops.html">7.4 Ralph Loops</a><div class="grp">Class 8</div><a class="" href="class8-big-three.html">8.1 The big three &amp; tools</a><a class="" href="class8-mcp-explained.html">8.2 MCP under the hood</a><a class="" href="class8-adding-mcp.html">8.3 Adding MCP servers</a><a class="" href="class8-skills.html">8.4 Skills — a simpler way</a><a class="" href="class8-skills-marketplaces.html">8.5 Skills marketplaces &amp; Agent Browser</a><a class="" href="class8-plugins.html">8.6 Plugins &amp; your setup</a><div class="grp">Class 9</div><a class="" href="class9-workflow-jira-setup.html">9.1 Workflow &amp; Jira setup</a><a class="" href="class9-jira-mcp.html">9.2 Connecting Jira (MCP)</a><a class="" href="class9-github-mcp.html">9.3 GitHub repo, token &amp; MCP</a><a class="" href="class9-featuredev-plugin.html">9.4 FeatureDev &amp; the 7 stages</a><a class="" href="class9-jira-to-pr.html">9.5 Autonomy: Jira to PR</a><a class="" href="class9-debugging.html">9.6 Debugging strategies</a><div class="grp">Class 10</div><a class="" href="class10-saas-setup.html">10.1 The SaaS blueprint</a><a class="" href="class10-claudemd-skills.html">10.2 CLAUDE.md &amp; a custom skill</a><a class="" href="class10-jira-tickets.html">10.3 Planning V1 tickets</a><a class="" href="class10-building-features.html">10.4 Building features</a><a class="" href="class10-testing-cerebras.html">10.5 Testing with Cerebras</a><a class="" href="class10-final-demo.html">10.6 Multi-user, polish &amp; victory</a><div class="grp">Labs</div><a class="" href="lab1-first-prompt.html">Lab 1 · One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 · agents.md + YOLO</a></nav><div class="grp" style="margin-top:26px">On this page</div><div class="toc"><a href="#three">Three tools, three jobs</a><a href="#sessions">Sessions</a><a href="#checkpoints">Checkpoints</a><a href="#git">Git</a><a href="#workflow">Which to use</a></div></aside><main><div class="content"><div class="reveal in">
-  <span class="daybadge d6">Class 7 · 7.2</span>
-  <h1 class="page">Sessions, checkpoints &amp; Git: managing your workflow</h1>
-  <p class="lede">Three overlapping ways to move backwards and forwards through a project — and it muddles almost everyone at first. Here's exactly how sessions, checkpoints and Git differ, and how to combine them.</p>
-  <div class="meta"><span>🎯 <b>Goal:</b> never lose your place</span><span>⏱ <b>Read:</b> 10 min</span><span>🧭 <b>Type:</b> concepts</span></div></div>
+<div class="layout"><aside class="side"><nav><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome &amp; first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages &amp; cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows &amp; models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools &amp; agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Class 7</div><a class="" href="class7-commands.html">7.1 Commands, shortcuts &amp; config</a><a class="" href="class7-sessions-git.html">7.2 Sessions, checkpoints &amp; Git</a><a class="" href="class7-rewind-yolo.html">7.3 Rewind &amp; YOLO mode</a><a class="" href="class7-ralph-loops.html">7.4 Ralph Loops</a><div class="grp">Class 8</div><a class="" href="class8-big-three.html">8.1 The big three &amp; tools</a><a class="" href="class8-mcp-explained.html">8.2 MCP under the hood</a><a class="" href="class8-adding-mcp.html">8.3 Adding MCP servers</a><a class="" href="class8-skills.html">8.4 Skills — a simpler way</a><a class="" href="class8-skills-marketplaces.html">8.5 Skills marketplaces &amp; Agent Browser</a><a class="" href="class8-plugins.html">8.6 Plugins &amp; your setup</a><div class="grp">Class 9</div><a class="" href="class9-workflow-jira-setup.html">9.1 Workflow &amp; Jira setup</a><a class="" href="class9-jira-mcp.html">9.2 Connecting Jira (MCP)</a><a class="active" href="class9-github-mcp.html">9.3 GitHub repo, token &amp; MCP</a><a class="" href="class9-featuredev-plugin.html">9.4 FeatureDev &amp; the 7 stages</a><a class="" href="class9-jira-to-pr.html">9.5 Autonomy: Jira to PR</a><a class="" href="class9-debugging.html">9.6 Debugging strategies</a><div class="grp">Class 10</div><a class="" href="class10-saas-setup.html">10.1 The SaaS blueprint</a><a class="" href="class10-claudemd-skills.html">10.2 CLAUDE.md &amp; a custom skill</a><a class="" href="class10-jira-tickets.html">10.3 Planning V1 tickets</a><a class="" href="class10-building-features.html">10.4 Building features</a><a class="" href="class10-testing-cerebras.html">10.5 Testing with Cerebras</a><a class="" href="class10-final-demo.html">10.6 Multi-user, polish &amp; victory</a><div class="grp">Labs</div><a class="" href="lab1-first-prompt.html">Lab 1 · One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 · agents.md + YOLO</a></nav><div class="grp" style="margin-top:26px">On this page</div><div class="toc"><a href="#repo">Create the repo</a><a href="#token">Fine-grained token</a><a href="#clone">Clone locally</a><a href="#mcp">Add GitHub MCP</a><a href="#try">Issue &rarr; PR &rarr; merge</a></div></aside><main><div class="content"><div class="reveal in">
+  <span class="daybadge d8">Class 9 &middot; 9.3</span>
+  <h1 class="page">GitHub: repo, token &amp; MCP server</h1>
+  <p class="lede">Give Claude Code a home for the code. Create the repo, mint a careful least-privilege access token, wire up the GitHub MCP server, and drive a full issue &rarr; pull request &rarr; merge loop.</p>
+  <div class="meta"><span>&#127919; <b>Goal:</b> Claude drives GitHub</span><span>&#9201; <b>Read:</b> 15 min</span><span>&#129517; <b>Type:</b> hands-on + security</span></div></div>
 
-<p>Claude Code gives you a wonderfully flexible way to move through a project — arguably <em>too</em> flexible.
-There are several overlapping ways to "go back to where I was," and it can muddle beginners. This page
-untangles them: what each one is, how they fit together, and a workflow you can actually adopt.</p>
+<p>Jira gives us <em>work</em>. GitHub gives us a <em>home for the code</em> &mdash; and a way to review changes as
+pull requests. Now we connect Claude Code to GitHub the same way we connected Jira: through an MCP server. Along the
+way you will learn a security habit worth its weight in gold: <strong>fine-grained, least-privilege access
+tokens</strong>.</p>
 
-<h2 id="three"><span class="num">01</span>Three tools, three jobs</h2>
-<p>They live at different levels of granularity and answer different questions. Hold this picture in your head
-and the confusion evaporates.</p>
-<div class="diagram reveal">
-<svg viewBox="0 0 720 210" width="100%" role="img" aria-label="Sessions vs checkpoints vs git">
-  <style>.h{font:800 13px system-ui;fill:#fff}.d{font:600 11px system-ui;fill:var(--ink-2)}.p{font:700 11px system-ui;fill:#fff}</style>
-  <rect x="14" y="16" width="692" height="56" rx="12" fill="var(--violet-700)"/>
-  <text x="30" y="40" class="h">SESSIONS</text>
-  <text x="30" y="58" style="font:600 11px system-ui;fill:#e9deff">Coarse · the whole conversation &amp; context — resume a named state</text>
-  <g><rect x="470" y="26" width="70" height="16" rx="4" fill="rgba(255,255,255,.2)"/><text x="505" y="38" text-anchor="middle" class="p">a week ago</text>
-     <rect x="548" y="26" width="70" height="16" rx="4" fill="rgba(255,255,255,.2)"/><text x="583" y="38" text-anchor="middle" class="p">yesterday</text>
-     <rect x="626" y="26" width="66" height="16" rx="4" fill="rgba(255,255,255,.45)"/><text x="659" y="38" text-anchor="middle" class="p">now</text></g>
-  <rect x="14" y="80" width="692" height="56" rx="12" fill="var(--amber-500)"/>
-  <text x="30" y="104" class="h" fill="#4a2c00">CHECKPOINTS</text>
-  <text x="30" y="122" style="font:600 11px system-ui;fill:#5c3800">Fine · every prompt is a step — rewind conversation and/or code</text>
-  <g><circle cx="470" cy="108" r="7" fill="#fff"/><circle cx="520" cy="108" r="7" fill="#fff"/><circle cx="570" cy="108" r="7" fill="#fff"/><circle cx="620" cy="108" r="7" fill="#fff"/><circle cx="670" cy="108" r="9" fill="#4a2c00"/>
-     <line x1="470" y1="108" x2="670" y2="108" stroke="#fff" stroke-width="2" opacity=".5"/></g>
-  <rect x="14" y="144" width="692" height="56" rx="12" fill="var(--em-d)"/>
-  <text x="30" y="168" class="h">GIT</text>
-  <text x="30" y="186" style="font:600 11px system-ui;fill:#d6f5e6">Bulletproof · snapshots of the code only — commit as often as you like</text>
-  <g><rect x="470" y="154" width="14" height="36" rx="3" fill="#fff"/><rect x="500" y="154" width="14" height="36" rx="3" fill="#fff"/><rect x="530" y="154" width="14" height="36" rx="3" fill="#fff"/><rect x="560" y="154" width="14" height="36" rx="3" fill="#fff"/><rect x="590" y="154" width="14" height="36" rx="3" fill="#fff"/><rect x="620" y="154" width="14" height="36" rx="3" fill="#fff"/><rect x="650" y="154" width="14" height="36" rx="3" fill="#fff"/></g>
-</svg>
-<div class="cap">Sessions track the <em>conversation</em>; checkpoints track <em>prompt-by-prompt</em> steps (and can revert code); Git tracks the <em>code</em>. Orthogonal tools for orthogonal jobs.</div>
+<h2 id="repo"><span class="num">01</span>Create the repository</h2>
+<p>On <code class="inl">github.com</code>, press <strong>New</strong> to create a repository. We build everything from
+scratch, so make your own rather than cloning someone else's.</p>
+<div class="steps reveal">
+  <div class="step"><h4>Name &amp; describe<span class="time">1 min</span></h4><p>Name it <strong>pre-legal</strong>; description: <em>&ldquo;A platform for drafting common legal agreements.&rdquo;</em></p></div>
+  <div class="step"><h4>Keep it private (for now)<span class="time">30 sec</span></h4><p>Private while you build; you can make it public later so others can clone it.</p></div>
+  <div class="step"><h4>Add a licence &amp; README<span class="time">30 sec</span></h4><p>Add the <strong>MIT licence</strong> (permissive and friendly) and a generic <strong>README</strong> so the repo is not empty. Press <strong>Create repository</strong>.</p></div>
 </div>
 
-<h2 id="sessions"><span class="num">02</span>Sessions — resume a whole conversation</h2>
-<p>A <strong>session</strong> is the complete state of your conversation with Claude: the context, the history,
-what you were doing. You can name a session at any point, which records that state, and later
-<strong>resume</strong> it to pick the conversation back up.</p>
-<div class="call def reveal"><div class="t">Resuming restores the conversation, not the code</div>
-<p>This is the crucial catch. When you resume a session you get back the <em>context and conversation</em> as
-they were — <strong>not</strong> the state of your files or repo. Sessions are about what you and Claude were
-talking about, nothing more.</p></div>
-<div class="code term"><div class="cbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">Claude Code</span></div>
-<pre><span class="c"># inside Claude — name the current session</span>
-/rename snarky-claude
+<h2 id="token"><span class="num">02</span>Create a fine-grained access token</h2>
+<p>We are about to give Claude Code the ability to act on our repo. That power must be scoped carefully. GitHub's
+<strong>fine-grained personal access tokens</strong> let us grant the <em>minimum</em> needed, on <em>one</em> repo,
+with an <em>expiry</em>. Finding the screen is fiddly &mdash; here is the path:</p>
+<div class="call def reveal"><div class="t">Where the setting hides</div>
+<p>Your <strong>avatar menu</strong> &rarr; <strong>Settings</strong> &rarr; scroll all the way down to
+<strong>Developer settings</strong> &rarr; <strong>Personal access tokens</strong> &rarr; <strong>Fine-grained
+tokens</strong> &rarr; <strong>Generate new token</strong>. (You may be asked for your password or a two-factor
+code &mdash; that is the point; this is powerful.)</p></div>
+<p>Now configure it with the <strong>principle of least privilege</strong>: start small, open up only if you must.</p>
+<table class="tbl">
+  <thead><tr><th>Setting</th><th>Choose</th><th>Why</th></tr></thead>
+  <tbody>
+    <tr><td>Name</td><td><code class="inl">for MCP server</code></td><td>So you remember what it is for.</td></tr>
+    <tr><td>Expiration</td><td>30 days</td><td>A short life limits damage if it ever leaks.</td></tr>
+    <tr><td>Repository access</td><td>Only <strong>pre-legal</strong></td><td>The token can touch nothing else you own.</td></tr>
+    <tr><td>Contents</td><td>Read</td><td>See the files in the repo.</td></tr>
+    <tr><td>Issues</td><td>Read &amp; write</td><td>Read and raise GitHub Issues (in case you use them instead of Jira).</td></tr>
+    <tr><td>Pull requests</td><td>Read &amp; write</td><td>Open and update PRs &mdash; the heart of the workflow.</td></tr>
+  </tbody>
+</table>
+<p>Press <strong>Generate token</strong>, review the summary, and generate. The next screen shows the token
+<strong>once</strong>. Copy it and keep it somewhere safe.</p>
+<div class="call warn reveal"><div class="t">Do NOT paste your token into Microsoft Word</div>
+<p>Word (and other rich editors) &ldquo;helpfully&rdquo; turn straight quotes into curly quotes and can mangle the
+string &mdash; and a mangled token silently fails. Keep it in a plain text place, or just leave the GitHub tab open
+to one side so you can copy it again in a moment. Treat a token like a password: never commit it, never share it.</p></div>
 
-<span class="c"># later, from the shell — resume any past session</span>
-<span class="k">claude</span> --resume        <span class="c"># pick from a list of named sessions</span>
-<span class="k">claude</span>                   <span class="c"># or just continue where you last left off</span></pre></div>
-<p>In the demo we told Claude to be "witty and snarky," renamed the session <code class="inl">snarky-claude</code>,
-quit, and later brought it back to life with <code class="inl">claude --resume</code> — and sure enough its
-snarky personality returned, because the whole conversation state came back with it.</p>
+<h2 id="clone"><span class="num">03</span>Clone the repo locally</h2>
+<p>Back on your repo, press <strong>Code</strong> and copy the <strong>HTTPS</strong> URL. In a terminal, go to your
+projects folder and clone it:</p>
+<div class="code term reveal"><div class="cbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">terminal</span></div>
+<pre><span class="k">cd</span> ~/projects
+git clone https://github.com/&lt;you&gt;/pre-legal.git
+<span class="k">cd</span> pre-legal
+ls    <span class="c"># you should see LICENSE and README</span></pre></div>
+<p>Open the folder in VS Code (<strong>File &rarr; Open</strong>, trust the authors). This is the home of our new
+project.</p>
 
-<h2 id="checkpoints"><span class="num">03</span>Checkpoints — rewind step by step</h2>
-<p>Within a single session, <strong>every prompt you send is a checkpoint</strong> — a step in time.
-<strong>Rewinding</strong> walks back through those steps. And here's the powerful part: at each step you can
-choose to restore the <em>conversation</em>, the <em>code</em>, both, or neither.</p>
-<div class="call warn reveal"><div class="t">The catch: Claude only knows about changes it made</div>
-<p>Rewinding code works for edits Claude made directly. But if, during that prompt, Claude ran a
-<em>script</em> that changed files — or you did — Claude isn't keeping a copy of your disk at each step, so it
-<strong>can't</strong> revert those. Always be conscious of exactly what a rewind will and won't undo.</p></div>
+<h2 id="mcp"><span class="num">04</span>Add the GitHub MCP server</h2>
+<p>Now connect Claude Code to GitHub with another remote MCP server &mdash; this time authenticating with the token
+you just created. You pass it in a request <strong>header</strong>:</p>
+<div class="code term reveal"><div class="cbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">terminal</span></div>
+<pre><span class="c"># replace &lt;YOUR_TOKEN&gt; with the fine-grained token you copied</span>
+claude mcp add --transport http github https://api.githubcopilot.com/mcp \
+  --header "Authorization: Bearer &lt;YOUR_TOKEN&gt;"</pre></div>
+<div class="call idea reveal"><div class="t">Wait &mdash; weren't we told to start with plugins?</div>
+<p>Yes! And normally you would. We are wiring Jira and GitHub as <strong>raw MCP servers</strong> for two reasons:
+they are two of the most famous, powerful, widely-used servers in the community, and they use these very particular
+<strong>authorisation</strong> techniques &mdash; which are cleanest to do straight through the MCP server. (There
+is even an official GitHub <em>plugin</em>; it works much the same, just with a different auth setup.)</p></div>
+<p>Start <code class="inl">claude</code>, run <code class="inl">/context</code>, and you will see a whole set of
+GitHub tools now available.</p>
 
-<h2 id="git"><span class="num">04</span>Git — the bulletproof snapshot</h2>
-<p>Sitting orthogonal to both is <strong>Git</strong>: the proper, long-term way to snapshot your <em>code</em>
-and return to any point. It has nothing to do with the conversation — and you can commit as often as you like,
-even several times within a single chat. Git is the safety net the other two don't provide.</p>
-<div class="code term"><div class="cbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">terminal</span></div>
-<pre><span class="k">git</span> add .
-<span class="k">git</span> commit -m <span class="s">"before the risky refactor"</span>
-<span class="c"># ...let Claude work, then if needed:</span>
-<span class="k">git</span> restore .            <span class="c"># throw away uncommitted changes</span>
-<span class="k">git</span> checkout <span class="s">&lt;commit&gt;</span>     <span class="c"># return to a known-good snapshot</span></pre></div>
-
-<h2 id="workflow"><span class="num">05</span>Which should you use? A working philosophy</h2>
-<p>The honest answer: whatever fits <em>your</em> mode of working — these tools bend around your workflow, not
-the other way round. Here is one battle-tested approach you're welcome to copy or ignore.</p>
-<div class="grid c3 reveal">
-  <div class="card hl"><div class="k">Primary</div><h4>Git, constantly</h4><p>Commit as you go, with meaningful messages, so any point is recoverable.</p></div>
-  <div class="card"><div class="k">Occasional</div><h4>Checkpoints</h4><p>Rewind for something that <em>just</em> went wrong and is easy to undo immediately.</p></div>
-  <div class="card"><div class="k">Rarely</div><h4>Sessions</h4><p>Resuming week-old conversations can be confusing — hard to track what's in context.</p></div>
+<h2 id="try"><span class="num">05</span>Take it for a spin: issue &rarr; PR &rarr; merge</h2>
+<p>Let us prove the whole loop works, in three plain-English asks.</p>
+<div class="steps reveal">
+  <div class="step"><h4>Raise an issue<span class="time">1 min</span></h4><p><em>&ldquo;Please write an issue to GitHub that the README needs to be updated.&rdquo;</em> Claude uses the <em>create issue</em> tool; approve it. Check GitHub &mdash; under <strong>Issues</strong>, there it is: <strong>Update README</strong>.</p></div>
+  <div class="step"><h4>Change code and open a PR<span class="time">2 min</span></h4><p><em>&ldquo;Please update the README to reflect that the project is in progress and will be completed in one week. Then raise a PR for this to be merged.&rdquo;</em> Claude edits the file, runs local <code class="inl">git</code> commands to commit and push (these are plain shell, not MCP), then uses the GitHub tool to open a <strong>pull request</strong>.</p></div>
+  <div class="step"><h4>Review and merge<span class="time">1 min</span></h4><p>Open the PR on GitHub. Note the tidy summary and the <em>&ldquo;Generated with Claude Code&rdquo;</em> attribution it adds. Press <strong>Merge pull request</strong> &rarr; <strong>Confirm merge</strong>. The README on <code class="inl">main</code> now shows the update.</p></div>
 </div>
-<div class="call tip reveal"><div class="t">Markdown files as your real memory</div>
-<p>It's "very 2025," but tracking progress in <code class="inl">CLAUDE.md</code>, <code class="inl">plan.md</code>
-and friends gives a crystal-clear, human-readable picture of where the project stands. Many people succeed
-with sessions too — but files beat scrolling back through a week-old chat trying to remember what was said.</p></div>
+<div class="call tip reveal"><div class="t">One bit of housekeeping</div>
+<p>After a merge you may be sitting on the PR's branch locally. Run <code class="inl">git status</code> to check, then
+<code class="inl">git checkout main</code> to return to the main branch. If Git workflow is new to you, do not worry
+&mdash; it is standard team stuff, and Claude Code can handle most of it for you.</p></div>
 
-<div class="takeaways reveal"><h3><span class="p">✓</span> Key takeaways</h3>
+<div class="takeaways reveal"><h3><span class="p">&#10003;</span> Key takeaways</h3>
 <ul>
-  <li><strong>Sessions</strong> = coarse; resume a whole conversation/context (not the code). Name with <code class="inl">/rename</code>, restore with <code class="inl">claude --resume</code>.</li>
-  <li><strong>Checkpoints</strong> = fine; every prompt is a step, and rewind can restore conversation and/or code.</li>
-  <li>Rewind only undoes changes Claude made directly — not files touched by scripts.</li>
-  <li><strong>Git</strong> = bulletproof; snapshots the code, independent of the conversation. Commit often.</li>
-  <li>No single "right" tool — pick what fits you. A strong default: Git heavily + Markdown files to track progress.</li>
+  <li>Create a dedicated repo (<strong>pre-legal</strong>) with an MIT licence and a README to start from.</li>
+  <li>Use a <strong>fine-grained token</strong>: least privilege, one repo, a 30-day expiry &mdash; contents (read), issues and PRs (read/write).</li>
+  <li>Never paste a token into Word (curly quotes corrupt it); treat it like a password.</li>
+  <li>Connect GitHub with <code class="inl">claude mcp add &hellip; --header "Authorization: Bearer &lt;token&gt;"</code>.</li>
+  <li>We use raw MCP for Jira/GitHub because they are famous, powerful, and use specific auth flows &mdash; and the whole issue &rarr; PR &rarr; merge loop now works from plain English.</li>
 </ul></div>
-<div class="pager"><a href="class7-commands.html"><div class="l">← Previous</div><div class="t">7.1 Commands, shortcuts &amp; config</div></a><a class="nx" href="class7-rewind-yolo.html"><div class="l">Next →</div><div class="t">7.3 Rewind &amp; YOLO mode</div></a></div></div></main></div>
+<div class="pager"><a href="class9-jira-mcp.html"><div class="l">&larr; Previous</div><div class="t">9.2 Connecting Jira (MCP)</div></a><a class="nx" href="class9-featuredev-plugin.html"><div class="l">Next &rarr;</div><div class="t">9.4 FeatureDev &amp; the 7 stages</div></a></div></div></main></div>
 <footer class="footer">
   <strong>Vibe Engineering with AI Coding Agents</strong> · SMIT — Saylani Mass IT Training.
   Instructor: <strong>Muhammad Uzair Khan</strong>. Course material for learners at every level.<br>

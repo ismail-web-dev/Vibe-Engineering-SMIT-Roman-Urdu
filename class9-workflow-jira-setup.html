@@ -1,0 +1,438 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Workflow &amp; Jira setup &middot; Vibe Engineering &mdash; SMIT</title>
+<meta name="description" content="Kick off the two-day project: recap the big three, set up a free Jira board, and create your first ticket for the Pre-Legal product.">
+<style>
+:root{
+  --violet-50:#f5f3ff; --violet-100:#ede9fe; --violet-200:#ddd6fe; --violet-300:#c4b5fd;
+  --violet-400:#a78bfa; --violet-500:#8b5cf6; --violet-600:#7c3aed; --violet-700:#6d28d9;
+  --violet-800:#5b21b6; --violet-900:#4c1d95;
+  --amber-300:#fcd34d; --amber-400:#fbbf24; --amber-500:#f59e0b; --amber-600:#d97706;
+  --em:#10b981; --em-d:#047857; --rose:#e11d48; --rose-d:#9f1239;
+
+  --bg:#faf9fc; --plane:#f2eff8; --surface:#ffffff; --surface-2:#faf8fe;
+  --ink:#17141f; --ink-2:#4a4658; --muted:#7c7790; --hair:#e7e2f0; --hair-2:#efeaf7;
+  --brand:var(--violet-700); --brand-soft:var(--violet-100); --brand-ink:var(--violet-800);
+  --accent:var(--amber-500);
+  --shadow-sm:0 1px 2px rgba(24,16,44,.06),0 1px 3px rgba(24,16,44,.05);
+  --shadow-md:0 6px 24px -8px rgba(60,30,110,.22),0 2px 8px -3px rgba(60,30,110,.12);
+  --shadow-lg:0 24px 60px -18px rgba(60,20,120,.34);
+  --r:14px; --r-lg:20px; --maxw:1180px;
+  --code-bg:#1c162b; --code-ink:#e9e3fb;
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  --bg:#0c0a12; --plane:#0a0810; --surface:#151122; --surface-2:#191428;
+  --ink:#f4f1fb; --ink-2:#c3bcd6; --muted:#918aa8; --hair:#2a2340; --hair-2:#231d36;
+  --brand:var(--violet-400); --brand-soft:#241a3d; --brand-ink:var(--violet-200);
+  --accent:var(--amber-400);
+  --shadow-sm:0 1px 2px rgba(0,0,0,.4); --shadow-md:0 8px 30px -10px rgba(0,0,0,.6);
+  --shadow-lg:0 30px 70px -20px rgba(0,0,0,.7);
+  --code-bg:#0f0b1a; --code-ink:#e9e3fb;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{
+  margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.65;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+a{color:var(--brand);text-decoration:none}
+a:hover{text-decoration:underline}
+img{max-width:100%}
+
+/* ---------- header ---------- */
+.site-head{
+  position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);
+  backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--hair);
+}
+.site-head .bar{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;gap:18px;
+  padding:12px 22px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.02em;
+  color:var(--ink);white-space:nowrap}
+.brand .glyph{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--violet-600),var(--violet-800));color:#fff;
+  font-size:15px;box-shadow:0 4px 12px -3px rgba(109,40,217,.6)}
+.brand small{display:block;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.02em}
+.head-nav{margin-left:auto;display:flex;gap:4px;align-items:center}
+.head-nav a{padding:7px 12px;border-radius:9px;font-weight:650;font-size:14px;color:var(--ink-2)}
+.head-nav a:hover{background:var(--brand-soft);color:var(--brand-ink);text-decoration:none}
+.head-nav a.active{background:var(--brand);color:#fff}
+.icon-btn{border:1px solid var(--hair);background:var(--surface);color:var(--ink-2);
+  width:38px;height:38px;border-radius:10px;cursor:pointer;display:grid;place-items:center;
+  font-size:17px;transition:.15s}
+.icon-btn:hover{border-color:var(--brand);color:var(--brand)}
+.menu-btn{display:none}
+@media(max-width:900px){
+  .head-nav{display:none}
+  .menu-btn{display:grid}
+}
+
+/* ---------- layout ---------- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+.layout{display:grid;grid-template-columns:238px minmax(0,1fr);gap:44px;
+  max-width:var(--maxw);margin:0 auto;padding:0 22px}
+.side{position:sticky;top:84px;align-self:start;height:calc(100vh - 96px);overflow:auto;
+  padding:26px 0 40px;font-size:13.5px}
+.side::-webkit-scrollbar{width:8px}.side::-webkit-scrollbar-thumb{background:var(--hair);border-radius:8px}
+.side .grp{font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--muted);margin:18px 0 8px}
+.side a{display:block;padding:6px 12px;border-radius:8px;color:var(--ink-2);font-weight:600;
+  border-left:2px solid transparent}
+.side a:hover{background:var(--brand-soft);text-decoration:none;color:var(--brand-ink)}
+.side a.active{color:var(--brand);background:var(--brand-soft);border-left-color:var(--brand)}
+.side .toc a{font-weight:550;color:var(--muted);padding:5px 12px}
+.side .toc a.here{color:var(--brand)}
+main{padding:30px 0 90px;min-width:0}
+.content{max-width:760px}
+@media(max-width:900px){.layout{grid-template-columns:1fr;gap:0}.side{display:none}}
+
+/* ---------- hero ---------- */
+.daybadge{display:inline-flex;align-items:center;gap:8px;font-weight:750;font-size:12.5px;
+  letter-spacing:.05em;text-transform:uppercase;padding:6px 13px;border-radius:999px;
+  background:var(--brand-soft);color:var(--brand-ink)}
+.daybadge.d2{background:#fde6c8;color:#8a5a00}
+:root[data-theme=dark] .daybadge.d2{background:#3a2c0d;color:var(--amber-300)}
+.daybadge.d3{background:#d3f5e6;color:#06603f}
+:root[data-theme=dark] .daybadge.d3{background:#0c3327;color:#54e0aa}
+.daybadge.d4{background:#e4ecfb;color:#1e4fa3}
+:root[data-theme=dark] .daybadge.d4{background:#0e1a30;color:#7db0f4}
+.daybadge.lab{background:#111;color:#fff}
+:root[data-theme=dark] .daybadge.lab{background:#2a2340;color:#fff}
+h1.page{font-size:clamp(30px,4.6vw,46px);line-height:1.06;letter-spacing:-.03em;font-weight:820;
+  margin:16px 0 12px}
+.lede{font-size:19px;color:var(--ink-2);max-width:64ch;margin:0 0 14px}
+.meta{display:flex;flex-wrap:wrap;gap:16px;color:var(--muted);font-size:14px;font-weight:600;
+  padding:14px 0 4px;border-top:1px solid var(--hair);margin-top:22px}
+.meta b{color:var(--ink-2)}
+
+/* ---------- typography ---------- */
+.content h2{font-size:27px;letter-spacing:-.02em;font-weight:780;margin:52px 0 6px;scroll-margin-top:84px}
+.content h2 .num{color:var(--brand);font-variant-numeric:tabular-nums;margin-right:10px;font-weight:800}
+.content h3{font-size:19.5px;font-weight:720;margin:32px 0 4px;letter-spacing:-.01em}
+.content p{margin:14px 0}
+.content ul,.content ol{margin:14px 0;padding-left:22px}
+.content li{margin:7px 0}
+.content li::marker{color:var(--brand)}
+.rule{height:1px;background:var(--hair);border:0;margin:40px 0}
+strong{font-weight:720;color:var(--ink)}
+.subtle{color:var(--muted)}
+mark{background:linear-gradient(transparent 58%,var(--amber-300) 58%);color:inherit;padding:0 1px}
+:root[data-theme=dark] mark{background:linear-gradient(transparent 58%,rgba(251,191,36,.45) 58%)}
+
+/* ---------- callouts ---------- */
+.call{border-radius:var(--r);padding:18px 20px 18px 52px;margin:24px 0;position:relative;
+  background:var(--surface);border:1px solid var(--hair);box-shadow:var(--shadow-sm);font-size:15.5px}
+.call:before{position:absolute;left:16px;top:17px;font-size:20px;line-height:1}
+.call .t{font-weight:780;letter-spacing:-.01em;margin:0 0 3px;font-size:15px}
+.call p:first-of-type{margin-top:0}.call p:last-child{margin-bottom:0}
+.call.idea{background:var(--brand-soft);border-color:transparent}
+.call.idea:before{content:"💡"}.call.idea .t{color:var(--brand-ink)}
+.call.warn{background:#fff5e6;border-color:#f6e3bf}.call.warn:before{content:"⚠️"}.call.warn .t{color:#9a6100}
+:root[data-theme=dark] .call.warn{background:#2c2109;border-color:#4a3813}:root[data-theme=dark] .call.warn .t{color:var(--amber-300)}
+.call.tip{background:#e9f9f1;border-color:#c4ebd8}.call.tip:before{content:"✅"}.call.tip .t{color:#06603f}
+:root[data-theme=dark] .call.tip{background:#0c2a20;border-color:#124534}:root[data-theme=dark] .call.tip .t{color:#54e0aa}
+.call.def{background:var(--surface-2)}.call.def:before{content:"📘"}.call.def .t{color:var(--brand)}
+.call.quote{background:var(--surface);border-left:4px solid var(--brand);padding-left:22px}
+.call.quote:before{content:""}
+.call.money{background:#eef4ff;border-color:#cfe0fb}.call.money:before{content:"💳"}.call.money .t{color:#1e4fa3}
+:root[data-theme=dark] .call.money{background:#0e1a30;border-color:#1b3358}:root[data-theme=dark] .call.money .t{color:#7db0f4}
+
+/* ---------- tweet card ---------- */
+.tweet{border:1px solid var(--hair);border-radius:var(--r-lg);padding:20px 22px;margin:26px 0;
+  background:var(--surface);box-shadow:var(--shadow-md)}
+.tweet .who{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.tweet .av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#6d28d9,#0ea5e9);
+  color:#fff;display:grid;place-items:center;font-weight:800;font-size:18px;flex:none}
+.tweet .name{font-weight:780;line-height:1.15}
+.tweet .handle{color:var(--muted);font-size:13.5px}
+.tweet .body{font-size:16.5px;line-height:1.55}
+.tweet .bird{margin-left:auto;color:#1d9bf0;font-size:20px}
+
+/* ---------- cards ---------- */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid.c2{grid-template-columns:repeat(2,1fr)}
+.grid.c3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:640px){.grid.c2,.grid.c3{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--hair);border-radius:var(--r);padding:18px 18px;
+  box-shadow:var(--shadow-sm)}
+.card h4{margin:0 0 5px;font-size:16px;font-weight:730;letter-spacing:-.01em}
+.card p{margin:0;color:var(--ink-2);font-size:14.5px}
+.card .k{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--brand);margin-bottom:8px}
+.card.hl{background:linear-gradient(160deg,var(--violet-700),var(--violet-900));color:#fff;border:0}
+.card.hl h4,.card.hl p,.card.hl .k{color:#fff}.card.hl .k{color:var(--amber-300)}
+
+/* ---------- code ---------- */
+.code{background:var(--code-bg);border-radius:var(--r);margin:22px 0;overflow:hidden;
+  box-shadow:var(--shadow-md);border:1px solid rgba(255,255,255,.06)}
+.code .cbar{display:flex;align-items:center;gap:8px;padding:10px 14px;
+  background:rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.07)}
+.code .dot{width:11px;height:11px;border-radius:50%}
+.code .dot.r{background:#ff5f57}.code .dot.y{background:#febc2e}.code .dot.g{background:#28c840}
+.code .fname{margin-left:8px;color:#b9aee0;font-size:12.5px;font-weight:600;font-family:ui-monospace,monospace}
+.code pre{margin:0;padding:16px 18px;overflow:auto;color:var(--code-ink);
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:13.5px;line-height:1.6}
+.code pre .c{color:#8a7fb0}.code pre .h{color:#c4b5fd;font-weight:700}
+.code pre .s{color:#fcd34d}.code pre .k{color:#7dd3fc}.code pre .g{color:#6ee7b7}
+.term{background:#0d0a17}.term .fname{color:#7dd3fc}
+kbd{font-family:ui-monospace,monospace;font-size:.82em;background:var(--surface-2);
+  border:1px solid var(--hair);border-bottom-width:2px;border-radius:6px;padding:1px 7px;color:var(--ink)}
+code.inl{font-family:ui-monospace,monospace;font-size:.86em;background:var(--brand-soft);
+  color:var(--brand-ink);padding:1.5px 6px;border-radius:6px}
+
+/* ---------- steps ---------- */
+.steps{counter-reset:s;margin:26px 0;display:grid;gap:14px}
+.step{background:var(--surface);border:1px solid var(--hair);border-radius:var(--r);
+  padding:18px 20px 18px 62px;position:relative;box-shadow:var(--shadow-sm)}
+.step:before{counter-increment:s;content:counter(s);position:absolute;left:16px;top:16px;
+  width:32px;height:32px;border-radius:9px;background:var(--brand);color:#fff;font-weight:800;
+  display:grid;place-items:center;font-size:15px;box-shadow:0 4px 10px -3px rgba(109,40,217,.6)}
+.step h4{margin:0 0 4px;font-size:16.5px;font-weight:730}
+.step .time{float:right;font-size:12px;font-weight:750;color:var(--brand);background:var(--brand-soft);
+  padding:3px 9px;border-radius:999px}
+.step p{margin:8px 0 0;font-size:14.5px;color:var(--ink-2)}
+
+/* ---------- table ---------- */
+.tbl{width:100%;border-collapse:collapse;margin:24px 0;font-size:14.5px;
+  border:1px solid var(--hair);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-sm)}
+.tbl th{background:var(--surface-2);text-align:left;font-weight:750;padding:12px 14px;
+  border-bottom:1px solid var(--hair);font-size:13px;letter-spacing:.02em}
+.tbl td{padding:11px 14px;border-bottom:1px solid var(--hair-2);vertical-align:top}
+.tbl tr:last-child td{border-bottom:0}
+.tbl tbody tr:hover{background:var(--surface-2)}
+.tag{display:inline-block;font-size:11.5px;font-weight:750;padding:2px 9px;border-radius:999px;
+  background:var(--brand-soft);color:var(--brand-ink)}
+
+/* ---------- takeaways ---------- */
+.takeaways{background:linear-gradient(165deg,var(--surface),var(--surface-2));
+  border:1px solid var(--hair);border-radius:var(--r-lg);padding:24px 26px;margin:44px 0 10px;
+  box-shadow:var(--shadow-md)}
+.takeaways h3{margin:0 0 10px;font-size:18px;display:flex;align-items:center;gap:9px}
+.takeaways h3 .p{width:26px;height:26px;border-radius:8px;background:var(--brand);color:#fff;
+  display:grid;place-items:center;font-size:14px}
+.takeaways ul{margin:0;padding-left:4px;list-style:none}
+.takeaways li{padding-left:28px;position:relative;margin:9px 0}
+.takeaways li:before{content:"→";position:absolute;left:2px;color:var(--brand);font-weight:800}
+
+/* ---------- prev/next ---------- */
+.pager{display:flex;gap:14px;margin-top:56px;border-top:1px solid var(--hair);padding-top:26px}
+.pager a{flex:1;border:1px solid var(--hair);border-radius:var(--r);padding:14px 18px;background:var(--surface);
+  box-shadow:var(--shadow-sm);transition:.15s}
+.pager a:hover{border-color:var(--brand);text-decoration:none;transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.pager .l{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.pager .t{font-weight:730;color:var(--ink);margin-top:3px}
+.pager .nx{text-align:right}
+
+/* ---------- misc ---------- */
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+.pill{font-size:13px;font-weight:650;padding:6px 12px;border-radius:999px;background:var(--surface);
+  border:1px solid var(--hair);color:var(--ink-2)}
+.footer{max-width:var(--maxw);margin:0 auto;padding:30px 22px 50px;color:var(--muted);font-size:13.5px;
+  border-top:1px solid var(--hair)}
+.footlinks{display:inline-flex;flex-wrap:wrap;gap:16px;margin-top:10px}
+.footlinks a{font-weight:650}
+.anchor{color:var(--muted);opacity:0;margin-left:8px;font-weight:500;text-decoration:none}
+h2:hover .anchor{opacity:1}
+.diagram{background:var(--surface);border:1px solid var(--hair);border-radius:var(--r-lg);
+  padding:22px;margin:26px 0;box-shadow:var(--shadow-sm)}
+.diagram .cap{color:var(--muted);font-size:13px;text-align:center;margin-top:12px;font-weight:600}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+.daybadge.d5{background:#fbe0ea;color:#9f1239}
+:root[data-theme=dark] .daybadge.d5{background:#3a0f1e;color:#f7789f}
+
+.daybadge.d6{background:#fde4c0;color:#8a5300}:root[data-theme=dark] .daybadge.d6{background:#3a2a0b;color:#fcc858}.daybadge.d7{background:#ece7ff;color:#5b21b6}:root[data-theme=dark] .daybadge.d7{background:#241a3d;color:#c4b5fd}
+.daybadge.d8{background:#fbe2f6;color:#9d1c8f}:root[data-theme=dark] .daybadge.d8{background:#33103a;color:#f3a6e6}
+.daybadge.d9{background:#dbeafe;color:#1e478a}:root[data-theme=dark] .daybadge.d9{background:#0e1e3a;color:#93bdf7}
+</style></head><body><header class="site-head">
+  <div style="height:3px;background:var(--hair)"><div id="prog" style="height:3px;width:0;background:linear-gradient(90deg,var(--violet-600),var(--amber-400));transition:width .1s"></div></div>
+  <div class="bar">
+    <a class="brand" href="index.html">
+      <span class="glyph">&#9670;</span>
+      <span>Vibe Engineering<small>SMIT &middot; AI Agentic Engineering</small></span>
+    </a>
+    <nav class="head-nav"><a class="" href="index.html">Home</a><a class="" href="day1-welcome.html">Class 2</a><a class="" href="day2-how-llms-work.html">Class 3</a><a class="" href="day3-tooling-setup.html">Class 4</a><a class="" href="class5-model-choice.html">Class 5</a><a class="" href="class6-rise-of-claude-code.html">Class 6</a><a class="" href="class7-commands.html">Class 7</a><a class="" href="class8-big-three.html">Class 8</a><a class="active" href="class9-workflow-jira-setup.html">Class 9</a><a class="" href="class10-saas-setup.html">Class 10</a><a class="" href="lab1-first-prompt.html">Labs</a></nav>
+    <button class="icon-btn" id="themeBtn" title="Toggle light / dark" aria-label="Toggle theme">&#9790;</button>
+    <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu">&#9776;</button>
+  </div>
+  <div id="mnav" class="side" style="display:none;max-height:70vh;padding:12px 22px;border-top:1px solid var(--hair)"><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome &amp; first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages &amp; cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows &amp; models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools &amp; agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Class 7</div><a class="" href="class7-commands.html">7.1 Commands, shortcuts &amp; config</a><a class="" href="class7-sessions-git.html">7.2 Sessions, checkpoints &amp; Git</a><a class="" href="class7-rewind-yolo.html">7.3 Rewind &amp; YOLO mode</a><a class="" href="class7-ralph-loops.html">7.4 Ralph Loops</a><div class="grp">Class 8</div><a class="" href="class8-big-three.html">8.1 The big three &amp; tools</a><a class="" href="class8-mcp-explained.html">8.2 MCP under the hood</a><a class="" href="class8-adding-mcp.html">8.3 Adding MCP servers</a><a class="" href="class8-skills.html">8.4 Skills — a simpler way</a><a class="" href="class8-skills-marketplaces.html">8.5 Skills marketplaces &amp; Agent Browser</a><a class="" href="class8-plugins.html">8.6 Plugins &amp; your setup</a><div class="grp">Class 9</div><a class="active" href="class9-workflow-jira-setup.html">9.1 Workflow &amp; Jira setup</a><a class="" href="class9-jira-mcp.html">9.2 Connecting Jira (MCP)</a><a class="" href="class9-github-mcp.html">9.3 GitHub repo, token &amp; MCP</a><a class="" href="class9-featuredev-plugin.html">9.4 FeatureDev &amp; the 7 stages</a><a class="" href="class9-jira-to-pr.html">9.5 Autonomy: Jira to PR</a><a class="" href="class9-debugging.html">9.6 Debugging strategies</a><div class="grp">Class 10</div><a class="" href="class10-saas-setup.html">10.1 The SaaS blueprint</a><a class="" href="class10-claudemd-skills.html">10.2 CLAUDE.md &amp; a custom skill</a><a class="" href="class10-jira-tickets.html">10.3 Planning V1 tickets</a><a class="" href="class10-building-features.html">10.4 Building features</a><a class="" href="class10-testing-cerebras.html">10.5 Testing with Cerebras</a><a class="" href="class10-final-demo.html">10.6 Multi-user, polish &amp; victory</a><div class="grp">Labs</div><a class="" href="lab1-first-prompt.html">Lab 1 · One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 · agents.md + YOLO</a></div>
+</header>
+<div class="layout"><aside class="side"><nav><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome &amp; first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages &amp; cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows &amp; models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools &amp; agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Class 7</div><a class="" href="class7-commands.html">7.1 Commands, shortcuts &amp; config</a><a class="" href="class7-sessions-git.html">7.2 Sessions, checkpoints &amp; Git</a><a class="" href="class7-rewind-yolo.html">7.3 Rewind &amp; YOLO mode</a><a class="" href="class7-ralph-loops.html">7.4 Ralph Loops</a><div class="grp">Class 8</div><a class="" href="class8-big-three.html">8.1 The big three &amp; tools</a><a class="" href="class8-mcp-explained.html">8.2 MCP under the hood</a><a class="" href="class8-adding-mcp.html">8.3 Adding MCP servers</a><a class="" href="class8-skills.html">8.4 Skills — a simpler way</a><a class="" href="class8-skills-marketplaces.html">8.5 Skills marketplaces &amp; Agent Browser</a><a class="" href="class8-plugins.html">8.6 Plugins &amp; your setup</a><div class="grp">Class 9</div><a class="active" href="class9-workflow-jira-setup.html">9.1 Workflow &amp; Jira setup</a><a class="" href="class9-jira-mcp.html">9.2 Connecting Jira (MCP)</a><a class="" href="class9-github-mcp.html">9.3 GitHub repo, token &amp; MCP</a><a class="" href="class9-featuredev-plugin.html">9.4 FeatureDev &amp; the 7 stages</a><a class="" href="class9-jira-to-pr.html">9.5 Autonomy: Jira to PR</a><a class="" href="class9-debugging.html">9.6 Debugging strategies</a><div class="grp">Class 10</div><a class="" href="class10-saas-setup.html">10.1 The SaaS blueprint</a><a class="" href="class10-claudemd-skills.html">10.2 CLAUDE.md &amp; a custom skill</a><a class="" href="class10-jira-tickets.html">10.3 Planning V1 tickets</a><a class="" href="class10-building-features.html">10.4 Building features</a><a class="" href="class10-testing-cerebras.html">10.5 Testing with Cerebras</a><a class="" href="class10-final-demo.html">10.6 Multi-user, polish &amp; victory</a><div class="grp">Labs</div><a class="" href="lab1-first-prompt.html">Lab 1 · One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 · agents.md + YOLO</a></nav><div class="grp" style="margin-top:26px">On this page</div><div class="toc"><a href="#recap">The big three, recapped</a><a href="#doing">Doing, not slides</a><a href="#lifecycle">Where software starts</a><a href="#signup">Get free Jira</a><a href="#space">Create your Space</a><a href="#firstitem">Your first ticket</a></div></aside><main><div class="content"><div class="reveal in">
+  <span class="daybadge d8">Class 9 &middot; 9.1</span>
+  <h1 class="page">From ticket to PR: a disciplined workflow</h1>
+  <p class="lede">No more slides &mdash; today we build. We run a real development lifecycle end to end, and it starts where work really starts: a ticket. Meet Jira, and meet our product, Pre-Legal.</p>
+  <div class="meta"><span>&#127919; <b>Goal:</b> set up the workflow</span><span>&#9201; <b>Read:</b> 16 min</span><span>&#129517; <b>Type:</b> workflow + setup</span></div></div>
+
+<p>Welcome to <strong>week two, day four</strong> &mdash; another purple, big-ideas day. Yesterday we met the
+big three ways to give Claude Code superpowers: <strong>MCP</strong>, <strong>skills</strong> and
+<strong>plugins</strong>. That was a lot to take in, and it can feel overwhelming to have so much choice. So
+today changes gear completely. <mark>No more slides. We build.</mark> Over today and tomorrow we will run a real,
+disciplined development workflow &mdash; the same one professional teams use &mdash; and take a feature all the way
+from an idea to shipped code.</p>
+
+<div class="call idea reveal"><div class="t">The one-line summary of the next two days</div>
+<p>We are going to read work from <strong>Jira</strong>, hand it to <strong>Claude Code</strong> (guided by a
+plugin, powered by MCP servers and a skill), and have it deliver finished, reviewed code as a <strong>GitHub
+pull request</strong> &mdash; end to end, from one short command.</p></div>
+
+<h2 id="recap"><span class="num">01</span>One more look at the big three</h2>
+<p>Before we put them to work, a quick recap &mdash; because you will use all three today. Each is just a
+different way to hand Claude Code more <em>ability</em>, and each has a sweet spot.</p>
+<table class="tbl">
+  <thead><tr><th>Building block</th><th>What it is</th><th>Great because&hellip;</th><th>Watch out for&hellip;</th></tr></thead>
+  <tbody>
+    <tr><td><span class="tag">MCP</span></td><td>A standard (invented by Anthropic) for plugging <em>other people's</em> tools into Claude Code.</td><td>The ecosystem is enormous &mdash; a tool exists for almost everything.</td><td>Can eat context, and servers can be fiddly (auth that drops, occasional flakiness).</td></tr>
+    <tr><td><span class="tag">Skills</span></td><td>Lightweight Markdown (plus optional scripts) that adds expertise, revealed to the model only when needed.</td><td>Simple, very context-friendly, and trivially easy to <strong>share with your team</strong> via Git.</td><td>Less powerful than MCP for things like authentication; still a young idea.</td></tr>
+    <tr><td><span class="tag">Plugins</span></td><td>A package of MCP servers + skills + commands + agents, installable in one go.</td><td>Best of both worlds; the tidiest way to distribute a setup.</td><td>Currently a Claude Code idea; too many at once can degrade performance.</td></tr>
+  </tbody>
+</table>
+<div class="call def reveal"><div class="t">A simple rule for which to reach for</div>
+<p><strong>Start with plugins</strong> &mdash; browse the marketplace and grab one that fits. Drop down to a
+raw <strong>MCP server</strong> when you need a very specific, powerful integration (as we will for Jira and
+GitHub). Write a <strong>skill</strong> when you have your own repeatable expertise you want the model &mdash;
+and your teammates &mdash; to use.</p></div>
+<div class="call warn reveal"><div class="t">Don't just slam in everything</div>
+<p>It is tempting to install ten plugins and every MCP server you can find. Resist it. Give an LLM too many
+options and performance <em>degrades</em> &mdash; it can struggle to pick the right tool, and your context fills
+up. A tight, deliberate toolkit beats a giant one every time.</p></div>
+
+<h2 id="doing"><span class="num">02</span>Today is about doing &mdash; and it is choose-your-own-adventure</h2>
+<p>Here is the beautiful thing about learning this way. You can follow along and build almost exactly what the
+instructor builds, or take the same workflow in a <em>completely different direction</em> with your own idea, or
+sit somewhere in the middle. This is the <strong>art of the possible</strong>, not one prescriptive recipe.</p>
+<div class="grid c3 reveal">
+  <div class="card"><div class="k">Option A</div><h4>Follow along</h4><p>Build the same product, step for step. Safest if this is all new.</p></div>
+  <div class="card"><div class="k">Option B</div><h4>Same workflow, your idea</h4><p>Use the exact process to build something you care about.</p></div>
+  <div class="card hl"><div class="k">Option C</div><h4>Start together, branch off</h4><p>Begin with the shared idea, then take it somewhere of your own.</p></div>
+</div>
+<p>Whatever you pick, the <em>process</em> is the point. Master it once and it works for any feature, any product,
+any team.</p>
+
+<h2 id="lifecycle"><span class="num">03</span>Where real software starts: a ticket</h2>
+<p>Where do projects usually begin? You might say a business requirements document, or a meeting with a sponsor.
+True &mdash; but that is a little too far upstream for us. We are going to start where work becomes concrete and
+assignable: the moment it turns into a <strong>Jira ticket</strong>.</p>
+<p>Jira (from Atlassian) is close to ubiquitous &mdash; the majority of software teams use it to track work as
+&ldquo;issues&rdquo; (now called <em>work items</em>). If you prefer something lighter, <strong>GitHub
+Issues</strong> works just as well and we will wire that up too. Either way, the shape of the workflow is the
+same, and it looks like this:</p>
+<div class="diagram reveal">
+<svg viewBox="0 0 760 210" width="100%" role="img" aria-label="The end-to-end workflow from Jira ticket to merged GitHub PR">
+  <defs><marker id="a91" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--brand)"/></marker></defs>
+  <rect x="18" y="70" width="150" height="70" rx="14" fill="var(--violet-700)"/>
+  <text x="93" y="100" text-anchor="middle" style="font:800 13px system-ui;fill:#fff">Jira ticket</text>
+  <text x="93" y="120" text-anchor="middle" style="font:600 10.5px system-ui;fill:#e9deff">what to build</text>
+  <path d="M172 105 L246 105" stroke="var(--brand)" stroke-width="3" marker-end="url(#a91)"/>
+  <text x="209" y="95" text-anchor="middle" style="font:800 10px system-ui;fill:var(--brand)">MCP</text>
+  <rect x="250" y="52" width="240" height="106" rx="16" fill="var(--surface)" stroke="var(--hair)"/>
+  <text x="370" y="80" text-anchor="middle" style="font:800 13px system-ui;fill:var(--ink)">Claude Code</text>
+  <rect x="270" y="94" width="90" height="24" rx="7" fill="var(--brand-soft)"/><text x="315" y="110" text-anchor="middle" style="font:700 10px system-ui;fill:var(--brand-ink)">plugin</text>
+  <rect x="368" y="94" width="60" height="24" rx="7" fill="var(--brand-soft)"/><text x="398" y="110" text-anchor="middle" style="font:700 10px system-ui;fill:var(--brand-ink)">skill</text>
+  <rect x="270" y="124" width="158" height="22" rx="7" fill="#e9f9f1" stroke="#c4ebd8"/><text x="349" y="139" text-anchor="middle" style="font:700 10px system-ui;fill:#06603f">plan &middot; build &middot; test &middot; review</text>
+  <path d="M494 105 L568 105" stroke="var(--brand)" stroke-width="3" marker-end="url(#a91)"/>
+  <text x="531" y="95" text-anchor="middle" style="font:800 10px system-ui;fill:var(--brand)">MCP</text>
+  <rect x="572" y="70" width="168" height="70" rx="14" fill="var(--em-d)"/>
+  <text x="656" y="100" text-anchor="middle" style="font:800 13px system-ui;fill:#fff">GitHub PR</text>
+  <text x="656" y="120" text-anchor="middle" style="font:600 10.5px system-ui;fill:#d7f5e8">review &amp; merge</text>
+  <text x="380" y="190" text-anchor="middle" style="font:600 11.5px system-ui;fill:var(--ink-2)">One command in, a reviewed pull request out. Jira and GitHub are reached through MCP servers; a plugin keeps the work disciplined.</text>
+</svg>
+<div class="cap">The lifecycle we will run today and tomorrow &mdash; you are the boss guiding it at each step.</div>
+</div>
+
+<h2 id="signup"><span class="num">04</span>Get your own free Jira</h2>
+<p>We may as well have our own Jira to experiment in. It is free for up to 10 users with no credit card, which is
+plenty for our purposes. This part is optional &mdash; if you would rather keep things simple, skip straight to
+GitHub Issues later &mdash; but Jira is so common that it is worth seeing.</p>
+<div class="steps reveal">
+  <div class="step"><h4>Go to the Jira sign-up page<span class="time">2 min</span></h4><p>Visit <code class="inl">atlassian.com/software/jira</code> and press <strong>Get it free</strong> (free for up to 10 users, no card needed). The link is in the course resources.</p></div>
+  <div class="step"><h4>Sign in with Google<span class="time">1 min</span></h4><p>Use Google Auth with your email, add your full name, and let Atlassian spin up your <em>site</em> &mdash; your personal Atlassian home.</p></div>
+  <div class="step"><h4>Land on the Spaces screen<span class="time">1 min</span></h4><p>You should arrive at a screen showing <strong>Spaces</strong>. If not, use the app-switcher icon (top-left grid) and choose <strong>Jira</strong>.</p></div>
+</div>
+<div class="call def reveal"><div class="t">Spaces? Projects? What changed?</div>
+<p>Atlassian renamed things. A <strong>Space</strong> is the new name for what used to be a <em>Jira project</em>.
+Confusingly there is also a separate &ldquo;Projects&rdquo; area for project management &mdash; ignore that one.
+If you have known Jira for years, this is all familiar; if it is new, just follow the names we use here.</p></div>
+
+<h2 id="space"><span class="num">05</span>Create your Space &mdash; meet &ldquo;Pre-Legal&rdquo;</h2>
+<p>Press <strong>Create Space</strong> and pick a typical <strong>software development</strong> space using
+<strong>Kanban</strong> &mdash; the same board style we have seen before. Now name it. This is where we choose our
+product, and it is a good one:</p>
+<div class="call quote reveal"><div class="t">The product idea: Pre-Legal</div>
+<p>A tool that <strong>drafts legal documents</strong> for a user or company &mdash; an NDA, a client contract, an
+engagement letter &mdash; from a repository of templates. It is called <em>Pre</em>-Legal because it does not
+replace a lawyer; it does the pre-work so an attorney or paralegal is set up perfectly. It is juicy, it clearly
+benefits from gen-AI, and it could plausibly be monetised.</p></div>
+<div class="steps reveal">
+  <div class="step"><h4>Name and describe the Space<span class="time">1 min</span></h4><p>Call it <strong>Pre-Legal</strong>. That is the name of our product.</p></div>
+  <div class="step"><h4>Choose management &amp; access<span class="time">1 min</span></h4><p>Pick <strong>Team-managed</strong> (we are not coordinating across many spaces) and leave access <strong>Open</strong> &mdash; only you have the site anyway.</p></div>
+  <div class="step"><h4>Set the key<span class="time">30 sec</span></h4><p>The <strong>key</strong> is the prefix stamped on every item. Keep it simple: <code class="inl">PL</code> for Pre-Legal.</p></div>
+  <div class="step"><h4>Skip inviting a team for now<span class="time">30 sec</span></h4><p>In a real company a whole team shares one board. For us, choose <strong>I'll do this later</strong> and press <strong>Done</strong>. Your Pre-Legal Kanban board is live.</p></div>
+</div>
+
+<h2 id="firstitem"><span class="num">06</span>Create your first work item (PL-1)</h2>
+<p>Now the fun part &mdash; a <strong>Jira issue</strong>, or as it is called now, a <strong>work item</strong>.
+Press <strong>Create</strong>, and under &ldquo;what needs to be done&rdquo; put something deliberately simple to
+start:</p>
+<div class="call quote reveal"><p><em>&ldquo;We need a simple website that describes the Pre-Legal company.&rdquo;</em></p></div>
+<p>That creates an item called <strong>PL-1</strong>. Click it and you will see it is a <strong>Task</strong>
+&mdash; the lowest level of granularity, the everyday unit of work. That is all it takes: we now have a real
+ticket, in a real tool, waiting to be picked up. In the next page we teach Claude Code to <em>read</em> it.</p>
+
+<div class="takeaways reveal"><h3><span class="p">&#10003;</span> Key takeaways</h3>
+<ul>
+  <li>Today is hands-on: we run the full development lifecycle, using MCP + a plugin + a skill together.</li>
+  <li>The big three each have a sweet spot &mdash; start with plugins, drop to MCP for specific power, write skills for shareable expertise.</li>
+  <li>Real work starts as a <strong>ticket</strong>; we use <strong>Jira</strong> (or GitHub Issues) as the entry point.</li>
+  <li>Jira is free for small teams. A <strong>Space</strong> is the new name for a project; items live on a <strong>Kanban</strong> board with a key like <code class="inl">PL</code>.</li>
+  <li>Our product is <strong>Pre-Legal</strong>, and our first ticket is <strong>PL-1</strong>: a simple company website.</li>
+</ul></div>
+<div class="pager"><a href="class8-plugins.html"><div class="l">&larr; Previous</div><div class="t">8.6 Plugins &amp; your setup</div></a><a class="nx" href="class9-jira-mcp.html"><div class="l">Next &rarr;</div><div class="t">9.2 Connecting Jira (MCP)</div></a></div></div></main></div>
+<footer class="footer">
+  <strong>Vibe Engineering with AI Coding Agents</strong> · SMIT — Saylani Mass IT Training.
+  Instructor: <strong>Muhammad Uzair Khan</strong>. Course material for learners at every level.<br>
+  <span class="footlinks">
+    <a href="https://github.com/MuhammadUzair1/Vibe-Engineering-SMIT">Course GitHub ↗</a>
+    <a href="https://github.com/MuhammadUzair1/">GitHub profile ↗</a>
+    <a href="https://www.linkedin.com/in/muhammaduzairkhan1/">LinkedIn ↗</a>
+  </span>
+</footer>
+<script>
+(function(){
+  // theme
+  var root=document.documentElement;
+  try{var s=localStorage.getItem('ve-theme'); if(s) root.setAttribute('data-theme',s);}catch(e){}
+  function setT(t){root.setAttribute('data-theme',t);try{localStorage.setItem('ve-theme',t);}catch(e){}
+    var b=document.getElementById('themeBtn'); if(b) b.textContent = t==='dark'?'☀':'☾';}
+  window.__toggleTheme=function(){setT(root.getAttribute('data-theme')==='dark'?'light':'dark');};
+  document.addEventListener('DOMContentLoaded',function(){
+    var b=document.getElementById('themeBtn');
+    if(b){b.textContent=root.getAttribute('data-theme')==='dark'?'☀':'☾';b.onclick=window.__toggleTheme;}
+    var m=document.getElementById('menuBtn'),sd=document.getElementById('mnav');
+    if(m&&sd){m.onclick=function(){sd.style.display=sd.style.display==='block'?'none':'block';};}
+    // scroll reveal
+    var els=document.querySelectorAll('.reveal');
+    if('IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.08});
+      els.forEach(function(e){io.observe(e);});
+    } else els.forEach(function(e){e.classList.add('in');});
+    // active TOC on scroll
+    var links=[].slice.call(document.querySelectorAll('.toc a'));
+    var heads=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));}).filter(Boolean);
+    function onScroll(){
+      var y=window.scrollY+120,cur=null;
+      heads.forEach(function(h){if(h.offsetTop<=y)cur=h.id;});
+      links.forEach(function(a){a.classList.toggle('here',a.getAttribute('href')==='#'+cur);});
+    }
+    window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+    // progress bar
+    var pb=document.getElementById('prog');
+    if(pb){window.addEventListener('scroll',function(){
+      var h=document.body.scrollHeight-window.innerHeight;
+      pb.style.width=(h>0?(window.scrollY/h*100):0)+'%';
+    },{passive:true});}
+  });
+})();
+</script>
+</body></html>
