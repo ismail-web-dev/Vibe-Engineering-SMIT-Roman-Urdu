@@ -1,0 +1,394 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agents &amp; sub-agents (and a cameo from Codex) &middot; Vibe Engineering &mdash; SMIT</title>
+<meta name="description" content="From &ldquo;just start several Claudes&rdquo; to true sub-agents with isolated context &mdash; even running a different LLM (Codex) as your reviewer. Plus how sub-agents differ from agent teams.">
+<style>
+:root{
+  --violet-50:#f5f3ff; --violet-100:#ede9fe; --violet-200:#ddd6fe; --violet-300:#c4b5fd;
+  --violet-400:#a78bfa; --violet-500:#8b5cf6; --violet-600:#7c3aed; --violet-700:#6d28d9;
+  --violet-800:#5b21b6; --violet-900:#4c1d95;
+  --amber-300:#fcd34d; --amber-400:#fbbf24; --amber-500:#f59e0b; --amber-600:#d97706;
+  --em:#10b981; --em-d:#047857; --rose:#e11d48; --rose-d:#9f1239;
+
+  --bg:#faf9fc; --plane:#f2eff8; --surface:#ffffff; --surface-2:#faf8fe;
+  --ink:#17141f; --ink-2:#4a4658; --muted:#7c7790; --hair:#e7e2f0; --hair-2:#efeaf7;
+  --brand:var(--violet-700); --brand-soft:var(--violet-100); --brand-ink:var(--violet-800);
+  --accent:var(--amber-500);
+  --shadow-sm:0 1px 2px rgba(24,16,44,.06),0 1px 3px rgba(24,16,44,.05);
+  --shadow-md:0 6px 24px -8px rgba(60,30,110,.22),0 2px 8px -3px rgba(60,30,110,.12);
+  --shadow-lg:0 24px 60px -18px rgba(60,20,120,.34);
+  --r:14px; --r-lg:20px; --maxw:1180px;
+  --code-bg:#1c162b; --code-ink:#e9e3fb;
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  --bg:#0c0a12; --plane:#0a0810; --surface:#151122; --surface-2:#191428;
+  --ink:#f4f1fb; --ink-2:#c3bcd6; --muted:#918aa8; --hair:#2a2340; --hair-2:#231d36;
+  --brand:var(--violet-400); --brand-soft:#241a3d; --brand-ink:var(--violet-200);
+  --accent:var(--amber-400);
+  --shadow-sm:0 1px 2px rgba(0,0,0,.4); --shadow-md:0 8px 30px -10px rgba(0,0,0,.6);
+  --shadow-lg:0 30px 70px -20px rgba(0,0,0,.7);
+  --code-bg:#0f0b1a; --code-ink:#e9e3fb;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{
+  margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.65;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+a{color:var(--brand);text-decoration:none}
+a:hover{text-decoration:underline}
+img{max-width:100%}
+
+/* ---------- header ---------- */
+.site-head{
+  position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);
+  backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--hair);
+}
+.site-head .bar{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;gap:18px;
+  padding:12px 22px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.02em;
+  color:var(--ink);white-space:nowrap}
+.brand .glyph{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--violet-600),var(--violet-800));color:#fff;
+  font-size:15px;box-shadow:0 4px 12px -3px rgba(109,40,217,.6)}
+.brand small{display:block;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.02em}
+.head-nav{margin-left:auto;display:flex;gap:4px;align-items:center}
+.head-nav a{padding:7px 12px;border-radius:9px;font-weight:650;font-size:14px;color:var(--ink-2)}
+.head-nav a:hover{background:var(--brand-soft);color:var(--brand-ink);text-decoration:none}
+.head-nav a.active{background:var(--brand);color:#fff}
+.icon-btn{border:1px solid var(--hair);background:var(--surface);color:var(--ink-2);
+  width:38px;height:38px;border-radius:10px;cursor:pointer;display:grid;place-items:center;
+  font-size:17px;transition:.15s}
+.icon-btn:hover{border-color:var(--brand);color:var(--brand)}
+.menu-btn{display:none}
+@media(max-width:900px){
+  .head-nav{display:none}
+  .menu-btn{display:grid}
+}
+
+/* ---------- layout ---------- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+.layout{display:grid;grid-template-columns:238px minmax(0,1fr);gap:44px;
+  max-width:var(--maxw);margin:0 auto;padding:0 22px}
+.side{position:sticky;top:84px;align-self:start;height:calc(100vh - 96px);overflow:auto;
+  padding:26px 0 40px;font-size:13.5px}
+.side::-webkit-scrollbar{width:8px}.side::-webkit-scrollbar-thumb{background:var(--hair);border-radius:8px}
+.side .grp{font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--muted);margin:18px 0 8px}
+.side a{display:block;padding:6px 12px;border-radius:8px;color:var(--ink-2);font-weight:600;
+  border-left:2px solid transparent}
+.side a:hover{background:var(--brand-soft);text-decoration:none;color:var(--brand-ink)}
+.side a.active{color:var(--brand);background:var(--brand-soft);border-left-color:var(--brand)}
+.side .toc a{font-weight:550;color:var(--muted);padding:5px 12px}
+.side .toc a.here{color:var(--brand)}
+main{padding:30px 0 90px;min-width:0}
+.content{max-width:760px}
+@media(max-width:900px){.layout{grid-template-columns:1fr;gap:0}.side{display:none}}
+
+/* ---------- hero ---------- */
+.daybadge{display:inline-flex;align-items:center;gap:8px;font-weight:750;font-size:12.5px;
+  letter-spacing:.05em;text-transform:uppercase;padding:6px 13px;border-radius:999px;
+  background:var(--brand-soft);color:var(--brand-ink)}
+.daybadge.d2{background:#fde6c8;color:#8a5a00}
+:root[data-theme=dark] .daybadge.d2{background:#3a2c0d;color:var(--amber-300)}
+.daybadge.d3{background:#d3f5e6;color:#06603f}
+:root[data-theme=dark] .daybadge.d3{background:#0c3327;color:#54e0aa}
+.daybadge.d4{background:#e4ecfb;color:#1e4fa3}
+:root[data-theme=dark] .daybadge.d4{background:#0e1a30;color:#7db0f4}
+.daybadge.lab{background:#111;color:#fff}
+:root[data-theme=dark] .daybadge.lab{background:#2a2340;color:#fff}
+h1.page{font-size:clamp(30px,4.6vw,46px);line-height:1.06;letter-spacing:-.03em;font-weight:820;
+  margin:16px 0 12px}
+.lede{font-size:19px;color:var(--ink-2);max-width:64ch;margin:0 0 14px}
+.meta{display:flex;flex-wrap:wrap;gap:16px;color:var(--muted);font-size:14px;font-weight:600;
+  padding:14px 0 4px;border-top:1px solid var(--hair);margin-top:22px}
+.meta b{color:var(--ink-2)}
+
+/* ---------- typography ---------- */
+.content h2{font-size:27px;letter-spacing:-.02em;font-weight:780;margin:52px 0 6px;scroll-margin-top:84px}
+.content h2 .num{color:var(--brand);font-variant-numeric:tabular-nums;margin-right:10px;font-weight:800}
+.content h3{font-size:19.5px;font-weight:720;margin:32px 0 4px;letter-spacing:-.01em}
+.content p{margin:14px 0}
+.content ul,.content ol{margin:14px 0;padding-left:22px}
+.content li{margin:7px 0}
+.content li::marker{color:var(--brand)}
+.rule{height:1px;background:var(--hair);border:0;margin:40px 0}
+strong{font-weight:720;color:var(--ink)}
+.subtle{color:var(--muted)}
+mark{background:linear-gradient(transparent 58%,var(--amber-300) 58%);color:inherit;padding:0 1px}
+:root[data-theme=dark] mark{background:linear-gradient(transparent 58%,rgba(251,191,36,.45) 58%)}
+
+/* ---------- callouts ---------- */
+.call{border-radius:var(--r);padding:18px 20px 18px 52px;margin:24px 0;position:relative;
+  background:var(--surface);border:1px solid var(--hair);box-shadow:var(--shadow-sm);font-size:15.5px}
+.call:before{position:absolute;left:16px;top:17px;font-size:20px;line-height:1}
+.call .t{font-weight:780;letter-spacing:-.01em;margin:0 0 3px;font-size:15px}
+.call p:first-of-type{margin-top:0}.call p:last-child{margin-bottom:0}
+.call.idea{background:var(--brand-soft);border-color:transparent}
+.call.idea:before{content:"💡"}.call.idea .t{color:var(--brand-ink)}
+.call.warn{background:#fff5e6;border-color:#f6e3bf}.call.warn:before{content:"⚠️"}.call.warn .t{color:#9a6100}
+:root[data-theme=dark] .call.warn{background:#2c2109;border-color:#4a3813}:root[data-theme=dark] .call.warn .t{color:var(--amber-300)}
+.call.tip{background:#e9f9f1;border-color:#c4ebd8}.call.tip:before{content:"✅"}.call.tip .t{color:#06603f}
+:root[data-theme=dark] .call.tip{background:#0c2a20;border-color:#124534}:root[data-theme=dark] .call.tip .t{color:#54e0aa}
+.call.def{background:var(--surface-2)}.call.def:before{content:"📘"}.call.def .t{color:var(--brand)}
+.call.quote{background:var(--surface);border-left:4px solid var(--brand);padding-left:22px}
+.call.quote:before{content:""}
+.call.money{background:#eef4ff;border-color:#cfe0fb}.call.money:before{content:"💳"}.call.money .t{color:#1e4fa3}
+:root[data-theme=dark] .call.money{background:#0e1a30;border-color:#1b3358}:root[data-theme=dark] .call.money .t{color:#7db0f4}
+
+/* ---------- tweet card ---------- */
+.tweet{border:1px solid var(--hair);border-radius:var(--r-lg);padding:20px 22px;margin:26px 0;
+  background:var(--surface);box-shadow:var(--shadow-md)}
+.tweet .who{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.tweet .av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#6d28d9,#0ea5e9);
+  color:#fff;display:grid;place-items:center;font-weight:800;font-size:18px;flex:none}
+.tweet .name{font-weight:780;line-height:1.15}
+.tweet .handle{color:var(--muted);font-size:13.5px}
+.tweet .body{font-size:16.5px;line-height:1.55}
+.tweet .bird{margin-left:auto;color:#1d9bf0;font-size:20px}
+
+/* ---------- cards ---------- */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid.c2{grid-template-columns:repeat(2,1fr)}
+.grid.c3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:640px){.grid.c2,.grid.c3{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--hair);border-radius:var(--r);padding:18px 18px;
+  box-shadow:var(--shadow-sm)}
+.card h4{margin:0 0 5px;font-size:16px;font-weight:730;letter-spacing:-.01em}
+.card p{margin:0;color:var(--ink-2);font-size:14.5px}
+.card .k{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--brand);margin-bottom:8px}
+.card.hl{background:linear-gradient(160deg,var(--violet-700),var(--violet-900));color:#fff;border:0}
+.card.hl h4,.card.hl p,.card.hl .k{color:#fff}.card.hl .k{color:var(--amber-300)}
+
+/* ---------- code ---------- */
+.code{background:var(--code-bg);border-radius:var(--r);margin:22px 0;overflow:hidden;
+  box-shadow:var(--shadow-md);border:1px solid rgba(255,255,255,.06)}
+.code .cbar{display:flex;align-items:center;gap:8px;padding:10px 14px;
+  background:rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.07)}
+.code .dot{width:11px;height:11px;border-radius:50%}
+.code .dot.r{background:#ff5f57}.code .dot.y{background:#febc2e}.code .dot.g{background:#28c840}
+.code .fname{margin-left:8px;color:#b9aee0;font-size:12.5px;font-weight:600;font-family:ui-monospace,monospace}
+.code pre{margin:0;padding:16px 18px;overflow:auto;color:var(--code-ink);
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:13.5px;line-height:1.6}
+.code pre .c{color:#8a7fb0}.code pre .h{color:#c4b5fd;font-weight:700}
+.code pre .s{color:#fcd34d}.code pre .k{color:#7dd3fc}.code pre .g{color:#6ee7b7}
+.term{background:#0d0a17}.term .fname{color:#7dd3fc}
+kbd{font-family:ui-monospace,monospace;font-size:.82em;background:var(--surface-2);
+  border:1px solid var(--hair);border-bottom-width:2px;border-radius:6px;padding:1px 7px;color:var(--ink)}
+code.inl{font-family:ui-monospace,monospace;font-size:.86em;background:var(--brand-soft);
+  color:var(--brand-ink);padding:1.5px 6px;border-radius:6px}
+
+/* ---------- steps ---------- */
+.steps{counter-reset:s;margin:26px 0;display:grid;gap:14px}
+.step{background:var(--surface);border:1px solid var(--hair);border-radius:var(--r);
+  padding:18px 20px 18px 62px;position:relative;box-shadow:var(--shadow-sm)}
+.step:before{counter-increment:s;content:counter(s);position:absolute;left:16px;top:16px;
+  width:32px;height:32px;border-radius:9px;background:var(--brand);color:#fff;font-weight:800;
+  display:grid;place-items:center;font-size:15px;box-shadow:0 4px 10px -3px rgba(109,40,217,.6)}
+.step h4{margin:0 0 4px;font-size:16.5px;font-weight:730}
+.step .time{float:right;font-size:12px;font-weight:750;color:var(--brand);background:var(--brand-soft);
+  padding:3px 9px;border-radius:999px}
+.step p{margin:8px 0 0;font-size:14.5px;color:var(--ink-2)}
+
+/* ---------- table ---------- */
+.tbl{width:100%;border-collapse:collapse;margin:24px 0;font-size:14.5px;
+  border:1px solid var(--hair);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-sm)}
+.tbl th{background:var(--surface-2);text-align:left;font-weight:750;padding:12px 14px;
+  border-bottom:1px solid var(--hair);font-size:13px;letter-spacing:.02em}
+.tbl td{padding:11px 14px;border-bottom:1px solid var(--hair-2);vertical-align:top}
+.tbl tr:last-child td{border-bottom:0}
+.tbl tbody tr:hover{background:var(--surface-2)}
+.tag{display:inline-block;font-size:11.5px;font-weight:750;padding:2px 9px;border-radius:999px;
+  background:var(--brand-soft);color:var(--brand-ink)}
+
+/* ---------- takeaways ---------- */
+.takeaways{background:linear-gradient(165deg,var(--surface),var(--surface-2));
+  border:1px solid var(--hair);border-radius:var(--r-lg);padding:24px 26px;margin:44px 0 10px;
+  box-shadow:var(--shadow-md)}
+.takeaways h3{margin:0 0 10px;font-size:18px;display:flex;align-items:center;gap:9px}
+.takeaways h3 .p{width:26px;height:26px;border-radius:8px;background:var(--brand);color:#fff;
+  display:grid;place-items:center;font-size:14px}
+.takeaways ul{margin:0;padding-left:4px;list-style:none}
+.takeaways li{padding-left:28px;position:relative;margin:9px 0}
+.takeaways li:before{content:"→";position:absolute;left:2px;color:var(--brand);font-weight:800}
+
+/* ---------- prev/next ---------- */
+.pager{display:flex;gap:14px;margin-top:56px;border-top:1px solid var(--hair);padding-top:26px}
+.pager a{flex:1;border:1px solid var(--hair);border-radius:var(--r);padding:14px 18px;background:var(--surface);
+  box-shadow:var(--shadow-sm);transition:.15s}
+.pager a:hover{border-color:var(--brand);text-decoration:none;transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.pager .l{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.pager .t{font-weight:730;color:var(--ink);margin-top:3px}
+.pager .nx{text-align:right}
+
+/* ---------- misc ---------- */
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+.pill{font-size:13px;font-weight:650;padding:6px 12px;border-radius:999px;background:var(--surface);
+  border:1px solid var(--hair);color:var(--ink-2)}
+.footer{max-width:var(--maxw);margin:0 auto;padding:30px 22px 50px;color:var(--muted);font-size:13.5px;
+  border-top:1px solid var(--hair)}
+.footlinks{display:inline-flex;flex-wrap:wrap;gap:16px;margin-top:10px}
+.footlinks a{font-weight:650}
+.anchor{color:var(--muted);opacity:0;margin-left:8px;font-weight:500;text-decoration:none}
+h2:hover .anchor{opacity:1}
+.diagram{background:var(--surface);border:1px solid var(--hair);border-radius:var(--r-lg);
+  padding:22px;margin:26px 0;box-shadow:var(--shadow-sm)}
+.diagram .cap{color:var(--muted);font-size:13px;text-align:center;margin-top:12px;font-weight:600}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+.daybadge.d5{background:#fbe0ea;color:#9f1239}
+:root[data-theme=dark] .daybadge.d5{background:#3a0f1e;color:#f7789f}
+
+.daybadge.d6{background:#fde4c0;color:#8a5300}:root[data-theme=dark] .daybadge.d6{background:#3a2a0b;color:#fcc858}.daybadge.d7{background:#ece7ff;color:#5b21b6}:root[data-theme=dark] .daybadge.d7{background:#241a3d;color:#c4b5fd}
+.daybadge.d8{background:#fbe2f6;color:#9d1c8f}:root[data-theme=dark] .daybadge.d8{background:#33103a;color:#f3a6e6}
+.daybadge.d9{background:#dbeafe;color:#1e478a}:root[data-theme=dark] .daybadge.d9{background:#0e1e3a;color:#93bdf7}
+
+.daybadge.d10{background:#cdf3ee;color:#0b5f57}:root[data-theme=dark] .daybadge.d10{background:#07302c;color:#5ed9cd}
+.daybadge.d11{background:#e2e0ff;color:#3f34b5}:root[data-theme=dark] .daybadge.d11{background:#191537;color:#b0a6f7}
+</style></head><body><header class="site-head">
+  <div style="height:3px;background:var(--hair)"><div id="prog" style="height:3px;width:0;background:linear-gradient(90deg,var(--violet-600),var(--amber-400));transition:width .1s"></div></div>
+  <div class="bar">
+    <a class="brand" href="index.html">
+      <span class="glyph">&#9670;</span>
+      <span>Vibe Engineering<small>SMIT &middot; AI Agentic Engineering</small></span>
+    </a>
+    <nav class="head-nav"><a class="" href="index.html">Home</a><a class="" href="day1-welcome.html">Class 2</a><a class="" href="day2-how-llms-work.html">Class 3</a><a class="" href="day3-tooling-setup.html">Class 4</a><a class="" href="class5-model-choice.html">Class 5</a><a class="" href="class6-rise-of-claude-code.html">Class 6</a><a class="" href="class7-commands.html">Class 7</a><a class="" href="class8-big-three.html">Class 8</a><a class="" href="class9-workflow-jira-setup.html">Class 9</a><a class="" href="class10-saas-setup.html">Class 10</a><a class="" href="class11-recap-journey.html">Class 11</a><a class="active" href="class12-controlled-chaos.html">Class 12</a><a class="" href="lab1-first-prompt.html">Labs</a></nav>
+    <button class="icon-btn" id="themeBtn" title="Toggle light / dark" aria-label="Toggle theme">&#9790;</button>
+    <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu">&#9776;</button>
+  </div>
+  <div id="mnav" class="side" style="display:none;max-height:70vh;padding:12px 22px;border-top:1px solid var(--hair)"><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome &amp; first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages &amp; cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows &amp; models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools &amp; agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Class 7</div><a class="" href="class7-commands.html">7.1 Commands, shortcuts &amp; config</a><a class="" href="class7-sessions-git.html">7.2 Sessions, checkpoints &amp; Git</a><a class="" href="class7-rewind-yolo.html">7.3 Rewind &amp; YOLO mode</a><a class="" href="class7-ralph-loops.html">7.4 Ralph Loops</a><div class="grp">Class 8</div><a class="" href="class8-big-three.html">8.1 The big three &amp; tools</a><a class="" href="class8-mcp-explained.html">8.2 MCP under the hood</a><a class="" href="class8-adding-mcp.html">8.3 Adding MCP servers</a><a class="" href="class8-skills.html">8.4 Skills — a simpler way</a><a class="" href="class8-skills-marketplaces.html">8.5 Skills marketplaces &amp; Agent Browser</a><a class="" href="class8-plugins.html">8.6 Plugins &amp; your setup</a><div class="grp">Class 9</div><a class="" href="class9-workflow-jira-setup.html">9.1 Workflow &amp; Jira setup</a><a class="" href="class9-jira-mcp.html">9.2 Connecting Jira (MCP)</a><a class="" href="class9-github-mcp.html">9.3 GitHub repo, token &amp; MCP</a><a class="" href="class9-featuredev-plugin.html">9.4 FeatureDev &amp; the 7 stages</a><a class="" href="class9-jira-to-pr.html">9.5 Autonomy: Jira to PR</a><a class="" href="class9-debugging.html">9.6 Debugging strategies</a><div class="grp">Class 10</div><a class="" href="class10-saas-setup.html">10.1 The SaaS blueprint</a><a class="" href="class10-claudemd-skills.html">10.2 CLAUDE.md &amp; a custom skill</a><a class="" href="class10-jira-tickets.html">10.3 Planning V1 tickets</a><a class="" href="class10-building-features.html">10.4 Building features</a><a class="" href="class10-testing-cerebras.html">10.5 Testing with Cerebras</a><a class="" href="class10-final-demo.html">10.6 Multi-user, polish &amp; victory</a><div class="grp">Class 11</div><a class="" href="class11-recap-journey.html">11.1 The journey so far</a><a class="" href="class11-foundations.html">11.2 Foundations recap</a><a class="" href="class11-pro-toolkit.html">11.3 The pro toolkit</a><a class="" href="class11-workflow-cheatsheet.html">11.4 Workflow &amp; cheat-sheet</a><div class="grp">Class 12</div><a class="" href="class12-controlled-chaos.html">12.1 Controlled chaos</a><a class="" href="class12-finally-project.html">12.2 The FiNALLY project</a><a class="" href="class12-slash-commands.html">12.3 Custom slash commands</a><a class="active" href="class12-subagents.html">12.4 Agents &amp; sub-agents</a><a class="" href="class12-hooks.html">12.5 Hooks &amp; events</a><a class="" href="class12-plugins-marketplaces.html">12.6 Plugins &amp; marketplaces</a><div class="grp">Labs</div><a class="" href="lab1-first-prompt.html">Lab 1 &middot; One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 &middot; agents.md + YOLO</a></div>
+</header>
+<div class="layout"><aside class="side"><nav><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome &amp; first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages &amp; cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows &amp; models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools &amp; agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Class 7</div><a class="" href="class7-commands.html">7.1 Commands, shortcuts &amp; config</a><a class="" href="class7-sessions-git.html">7.2 Sessions, checkpoints &amp; Git</a><a class="" href="class7-rewind-yolo.html">7.3 Rewind &amp; YOLO mode</a><a class="" href="class7-ralph-loops.html">7.4 Ralph Loops</a><div class="grp">Class 8</div><a class="" href="class8-big-three.html">8.1 The big three &amp; tools</a><a class="" href="class8-mcp-explained.html">8.2 MCP under the hood</a><a class="" href="class8-adding-mcp.html">8.3 Adding MCP servers</a><a class="" href="class8-skills.html">8.4 Skills — a simpler way</a><a class="" href="class8-skills-marketplaces.html">8.5 Skills marketplaces &amp; Agent Browser</a><a class="" href="class8-plugins.html">8.6 Plugins &amp; your setup</a><div class="grp">Class 9</div><a class="" href="class9-workflow-jira-setup.html">9.1 Workflow &amp; Jira setup</a><a class="" href="class9-jira-mcp.html">9.2 Connecting Jira (MCP)</a><a class="" href="class9-github-mcp.html">9.3 GitHub repo, token &amp; MCP</a><a class="" href="class9-featuredev-plugin.html">9.4 FeatureDev &amp; the 7 stages</a><a class="" href="class9-jira-to-pr.html">9.5 Autonomy: Jira to PR</a><a class="" href="class9-debugging.html">9.6 Debugging strategies</a><div class="grp">Class 10</div><a class="" href="class10-saas-setup.html">10.1 The SaaS blueprint</a><a class="" href="class10-claudemd-skills.html">10.2 CLAUDE.md &amp; a custom skill</a><a class="" href="class10-jira-tickets.html">10.3 Planning V1 tickets</a><a class="" href="class10-building-features.html">10.4 Building features</a><a class="" href="class10-testing-cerebras.html">10.5 Testing with Cerebras</a><a class="" href="class10-final-demo.html">10.6 Multi-user, polish &amp; victory</a><div class="grp">Class 11</div><a class="" href="class11-recap-journey.html">11.1 The journey so far</a><a class="" href="class11-foundations.html">11.2 Foundations recap</a><a class="" href="class11-pro-toolkit.html">11.3 The pro toolkit</a><a class="" href="class11-workflow-cheatsheet.html">11.4 Workflow &amp; cheat-sheet</a><div class="grp">Class 12</div><a class="" href="class12-controlled-chaos.html">12.1 Controlled chaos</a><a class="" href="class12-finally-project.html">12.2 The FiNALLY project</a><a class="" href="class12-slash-commands.html">12.3 Custom slash commands</a><a class="active" href="class12-subagents.html">12.4 Agents &amp; sub-agents</a><a class="" href="class12-hooks.html">12.5 Hooks &amp; events</a><a class="" href="class12-plugins-marketplaces.html">12.6 Plugins &amp; marketplaces</a><div class="grp">Labs</div><a class="" href="lab1-first-prompt.html">Lab 1 &middot; One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 &middot; agents.md + YOLO</a></nav><div class="grp" style="margin-top:26px">On this page</div><div class="toc"><a href="#multi">&ldquo;Multi-agents&rdquo;: the boring truth</a><a href="#codex">A different agent: Codex CLI</a><a href="#sub">Sub-agents: the real gold</a><a href="#build">Build a reviewer sub-agent</a><a href="#teams">Sub-agents vs. agent teams</a><a href="#proscons">Weighing sub-agents</a></div></aside><main><div class="content"><div class="reveal in">
+  <span class="daybadge d11">Class 12 &middot; 12.4</span>
+  <h1 class="page">Agents &amp; sub-agents (and a cameo from Codex)</h1>
+  <p class="lede">Now the heart of the week: agents and sub-agents. We&rsquo;ll separate the hype (&ldquo;multi-agent&rdquo;) from the real gold (sub-agents), build our own reviewer, hand the job to a different AI entirely, and preview the agent-teams world to come.</p>
+  <div class="meta"><span>&#127919; <b>Goal:</b> delegate to other agents</span><span>&#9201; <b>Read:</b> 16 min</span><span>&#129302; <b>Type:</b> hands-on</span></div></div>
+
+<p>&ldquo;Multi-agent&rdquo; sounds mystical. Part of it is genuinely mundane; the valuable part &mdash; <strong>sub-agents</strong> &mdash; is where the power lives. Let&rsquo;s take them in order.</p>
+
+<h2 id="multi"><span class="num">01</span>&ldquo;Multi-agents&rdquo;: the boring truth</h2>
+<p>The simplest meaning of multi-agent is just&hellip; opening several terminals and running several Claudes. One builds the frontend, one the backend, one the tests. If your boundaries are well-defined, they can work in parallel.</p>
+<div class="call warn reveal"><div class="t">A cautionary demo</div><p>With a thin <code class="inl">plan.md</code>, launching three independent agents would likely be a fiasco &mdash; not enough shared fabric, agents unaware of each other, pieces that don&rsquo;t fit. It shows what &ldquo;multi-agent&rdquo; means, and why coordination (12.2&rsquo;s shared files) matters before you parallelise.</p></div>
+
+<h2 id="codex"><span class="num">02</span>A different agent altogether: Codex CLI</h2>
+<p>Your other agent need not be Claude. To make the point vivid, we bring in <strong>Codex</strong> &mdash; OpenAI&rsquo;s equivalent of Claude Code, run from the command line. Install it, then drive it non-interactively with <code class="inl">codex exec</code>:</p>
+<div class="code term"><div class="cbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">terminal</span></div><pre><span class="k">npm install</span> -g @openai/codex     <span class="c"># or: brew install codex</span>
+codex                                <span class="c"># interactive; first run does an OAuth login</span>
+
+<span class="c"># the magic: run a one-shot prompt, no chat</span>
+codex <span class="k">exec</span> <span class="s">"review planning/plan.md and write feedback to planning/review.md"</span></pre></div>
+<div class="call idea reveal"><div class="t">Why this is a big deal</div><p><code class="inl">codex exec</code> runs a whole other AI as a single shell command. That means <strong>any</strong> agent can be launched from a script &mdash; and, in a moment, from <em>inside</em> Claude Code. It opens the door to genuinely mixed multi-agent workflows. (You don&rsquo;t need Codex &mdash; a second <code class="inl">claude</code> works just as well; the different-LLM twist is just fun.)</p></div>
+
+<h2 id="sub"><span class="num">03</span>Sub-agents: the real gold</h2>
+<p>A <strong>sub-agent</strong> is a separate agent that takes on one task, runs it in its <em>own</em> isolated context, and returns just the result to the main Claude Code. You have already seen built-in ones (Explore, Plan) flash by in a different colour.</p>
+<div class="diagram reveal">
+<svg viewBox="0 0 760 210" width="100%" role="img" aria-label="A sub-agent runs a task in isolated context and returns only the result">
+  <defs><marker id="a124" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--brand)"/></marker></defs>
+  <rect x="40" y="70" width="200" height="72" rx="12" fill="var(--violet-700)"/><text x="140" y="100" text-anchor="middle" style="font:800 12px system-ui;fill:#fff">Main Claude Code</text><text x="140" y="120" text-anchor="middle" style="font:600 10px system-ui;fill:#e9deff">context stays clean</text>
+  <rect x="500" y="40" width="220" height="130" rx="14" fill="var(--surface)" stroke="var(--hair)" stroke-dasharray="5 5"/><text x="610" y="66" text-anchor="middle" style="font:800 11px system-ui;fill:var(--ink)">Sub-agent</text><text x="610" y="86" text-anchor="middle" style="font:600 9.5px system-ui;fill:var(--muted)">own isolated context</text>
+  <rect x="524" y="98" width="172" height="24" rx="6" fill="var(--brand-soft)"/><text x="610" y="114" text-anchor="middle" style="font:700 9px system-ui;fill:var(--brand-ink)">reads files, thinks, works</text>
+  <rect x="524" y="130" width="172" height="24" rx="6" fill="#e9f9f1" stroke="#c4ebd8"/><text x="610" y="146" text-anchor="middle" style="font:700 9px system-ui;fill:#06603f">maybe a cheaper/faster model</text>
+  <path d="M242 96 L498 96" stroke="var(--brand)" stroke-width="2.5" marker-end="url(#a124)"/><text x="370" y="88" text-anchor="middle" style="font:600 9.5px system-ui;fill:var(--muted)">&ldquo;go do this task&rdquo;</text>
+  <path d="M498 128 L244 128" stroke="var(--em-d)" stroke-width="2.5" marker-end="url(#a124)"/><text x="370" y="146" text-anchor="middle" style="font:600 9.5px system-ui;fill:var(--muted)">just the result comes back</text>
+</svg>
+<div class="cap">The noisy to-and-fro happens in the sub-agent&rsquo;s context. The main agent only ever sees the clean answer &mdash; that&rsquo;s the whole point.</div>
+</div>
+<p>Why reach for one? Four reasons: <strong>protect context</strong> (the big one &mdash; keep noise off the main window), <strong>parallelism</strong> (several at once), <strong>focus</strong> (perfect one prompt for one job), and <strong>cost/speed</strong> (a cheaper model like Haiku for simple tasks).</p>
+
+<h2 id="build"><span class="num">04</span>Build a reviewer sub-agent</h2>
+<p>Sub-agents live in <code class="inl">.claude/agents/</code> as markdown files with a little front matter. Here is a reviewer &mdash; and the fun version that delegates the actual review to Codex:</p>
+<div class="code"><div class="cbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">.claude/agents/reviewer.md</span></div><pre><span class="c">---</span>
+<span class="k">name:</span> reviewer
+<span class="k">description:</span> Carry out a comprehensive review when requested.
+<span class="c"># tools: and model: are optional &mdash; omit to inherit the caller&rsquo;s</span>
+<span class="c">---</span>
+You carry out a comprehensive review of plan.md when requested,
+using a different AI. You MUST run the following shell command and
+do NOT review it yourself:
+
+codex <span class="k">exec</span> <span class="s">"review planning/plan.md, write feedback to planning/review.md"</span></pre></div>
+<div class="call def reveal"><div class="t">You don&rsquo;t call it with a slash</div><p>Unlike a command, you don&rsquo;t type <code class="inl">/reviewer</code>. You <em>ask</em> for it in plain language &mdash; and the recommended phrasing names it explicitly: <em>&ldquo;use the reviewer <strong>sub-agent</strong> to review planning/plan.md.&rdquo;</em> Claude decides to launch it, and the whole review runs off in isolation.</p></div>
+<div class="code term"><div class="cbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">claude</span></div><pre>&gt; use the reviewer sub-agent to review planning/plan.md
+
+<span class="c"># main Claude spawns the sub-agent &rarr; it runs `codex exec` &rarr;</span>
+<span class="c"># Codex writes planning/review.md &rarr; only the result returns.</span>
+<span class="c"># /context shows the main window is still almost empty. </span></pre></div>
+<div class="call tip reveal"><div class="t">Make it general</div><p>Swap &ldquo;review plan.md&rdquo; for &ldquo;review all changes since the last commit&rdquo; and you have a reusable <code class="inl">change-reviewer</code> &mdash; the seed of real multi-agent orchestration, and exactly what we&rsquo;ll trigger automatically with a hook next.</p></div>
+
+<h2 id="teams"><span class="num">05</span>Sub-agents vs. agent teams</h2>
+<p>A quick preview so the terms don&rsquo;t confuse you later (agent teams come on the wild day):</p>
+<table class="tbl"><thead><tr><th></th><th>Sub-agents</th><th>Agent teams (experimental)</th></tr></thead><tbody>
+<tr><td>Shape</td><td>One main agent delegates one task, gets the result back.</td><td>A whole group of agents running collaboratively at once.</td></tr>
+<tr><td>Communication</td><td>Only through the main agent.</td><td>Agents can talk to <em>each other</em> directly.</td></tr>
+<tr><td>Lifespan</td><td>Short: take the task, do it, return.</td><td>Long-running presence in your &ldquo;team&rdquo;.</td></tr>
+<tr><td>Example</td><td>A reviewer that reads a file and reports back.</td><td>A tester that gives feedback straight to the frontend and backend agents.</td></tr>
+</tbody></table>
+
+<h2 id="proscons"><span class="num">06</span>Weighing sub-agents</h2>
+<div class="grid c2">
+  <div class="card"><div class="k">Strengths</div><h4>Why you&rsquo;d use them</h4><p>Protect the main context, run work in parallel, self-correct (review/test agents), and focus one perfected prompt on one job.</p></div>
+  <div class="card"><div class="k">Costs</div><h4>The trade-offs</h4><p>More moving parts (more can go wrong), boundary/interface mistakes, compounding errors if one drifts, and sometimes <em>more</em> spend from all the extra churn.</p></div>
+</div>
+<div class="call warn reveal"><div class="t">Not always cheaper</div><p>Sub-agents are sold as a way to save money with cheaper models &mdash; but self-correcting review loops mean more calls overall. Better outcomes, yes; guaranteed savings, no. Use them where the context or parallelism win is real.</p></div>
+
+<div class="takeaways reveal"><h3><span class="p">&#10003;</span> Key takeaways</h3>
+<ul>
+  <li>&ldquo;Multi-agent&rdquo; can just mean several terminals &mdash; coordination matters more than count.</li>
+  <li><code class="inl">codex exec</code> runs another AI as one shell command &mdash; launchable from scripts and from Claude.</li>
+  <li>A <strong>sub-agent</strong> runs a task in isolated context and returns only the result &mdash; protecting your window.</li>
+  <li>Define them in <code class="inl">.claude/agents/*.md</code>; invoke by asking to &ldquo;use the &hellip; sub-agent&rdquo;.</li>
+  <li><strong>Agent teams</strong> (later) run many collaborating, communicating agents; sub-agents are simpler and task-focused.</li>
+</ul></div>
+
+<div class="pager"><a href="class12-slash-commands.html"><div class="l">&larr; Previous</div><div class="t">12.3 Custom slash commands</div></a><a class="nx" href="class12-hooks.html"><div class="l">Next &rarr;</div><div class="t">12.5 Hooks &amp; events</div></a></div></div></main></div>
+<footer class="footer">
+  <strong>Vibe Engineering with AI Coding Agents</strong> · SMIT — Saylani Mass IT Training.
+  Instructor: <strong>Muhammad Uzair Khan</strong>. Course material for learners at every level.<br>
+  <span class="footlinks">
+    <a href="https://github.com/MuhammadUzair1/Vibe-Engineering-SMIT">Course GitHub ↗</a>
+    <a href="https://github.com/MuhammadUzair1/">GitHub profile ↗</a>
+    <a href="https://www.linkedin.com/in/muhammaduzairkhan1/">LinkedIn ↗</a>
+  </span>
+</footer>
+<script>
+(function(){
+  // theme
+  var root=document.documentElement;
+  try{var s=localStorage.getItem('ve-theme'); if(s) root.setAttribute('data-theme',s);}catch(e){}
+  function setT(t){root.setAttribute('data-theme',t);try{localStorage.setItem('ve-theme',t);}catch(e){}
+    var b=document.getElementById('themeBtn'); if(b) b.textContent = t==='dark'?'☀':'☾';}
+  window.__toggleTheme=function(){setT(root.getAttribute('data-theme')==='dark'?'light':'dark');};
+  document.addEventListener('DOMContentLoaded',function(){
+    var b=document.getElementById('themeBtn');
+    if(b){b.textContent=root.getAttribute('data-theme')==='dark'?'☀':'☾';b.onclick=window.__toggleTheme;}
+    var m=document.getElementById('menuBtn'),sd=document.getElementById('mnav');
+    if(m&&sd){m.onclick=function(){sd.style.display=sd.style.display==='block'?'none':'block';};}
+    // scroll reveal
+    var els=document.querySelectorAll('.reveal');
+    if('IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.08});
+      els.forEach(function(e){io.observe(e);});
+    } else els.forEach(function(e){e.classList.add('in');});
+    // active TOC on scroll
+    var links=[].slice.call(document.querySelectorAll('.toc a'));
+    var heads=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));}).filter(Boolean);
+    function onScroll(){
+      var y=window.scrollY+120,cur=null;
+      heads.forEach(function(h){if(h.offsetTop<=y)cur=h.id;});
+      links.forEach(function(a){a.classList.toggle('here',a.getAttribute('href')==='#'+cur);});
+    }
+    window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+    // progress bar
+    var pb=document.getElementById('prog');
+    if(pb){window.addEventListener('scroll',function(){
+      var h=document.body.scrollHeight-window.innerHeight;
+      pb.style.width=(h>0?(window.scrollY/h*100):0)+'%';
+    },{passive:true});}
+  });
+})();
+</script>
+</body></html>
