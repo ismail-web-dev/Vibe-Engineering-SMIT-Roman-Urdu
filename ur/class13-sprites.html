@@ -1,0 +1,404 @@
+<!doctype html><html lang="ur"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Third-party cloud sandboxes: Sprites.dev &middot; Vibe Engineering &mdash; SMIT</title>
+<meta name="description" content="The &ldquo;yellow&rdquo; approach: rent a fast, hardware-isolated cloud box built for coding agents. Sign up, spin up a Sprite in under a second, clone your repo, and run Claude in full YOLO &mdash; safely, because it&rsquo;s isolated.">
+<style>
+:root{
+  --violet-50:#f5f3ff; --violet-100:#ede9fe; --violet-200:#ddd6fe; --violet-300:#c4b5fd;
+  --violet-400:#a78bfa; --violet-500:#8b5cf6; --violet-600:#7c3aed; --violet-700:#6d28d9;
+  --violet-800:#5b21b6; --violet-900:#4c1d95;
+  --amber-300:#fcd34d; --amber-400:#fbbf24; --amber-500:#f59e0b; --amber-600:#d97706;
+  --em:#10b981; --em-d:#047857; --rose:#e11d48; --rose-d:#9f1239;
+
+  --bg:#faf9fc; --plane:#f2eff8; --surface:#ffffff; --surface-2:#faf8fe;
+  --ink:#17141f; --ink-2:#4a4658; --muted:#7c7790; --hair:#e7e2f0; --hair-2:#efeaf7;
+  --brand:var(--violet-700); --brand-soft:var(--violet-100); --brand-ink:var(--violet-800);
+  --accent:var(--amber-500);
+  --shadow-sm:0 1px 2px rgba(24,16,44,.06),0 1px 3px rgba(24,16,44,.05);
+  --shadow-md:0 6px 24px -8px rgba(60,30,110,.22),0 2px 8px -3px rgba(60,30,110,.12);
+  --shadow-lg:0 24px 60px -18px rgba(60,20,120,.34);
+  --r:14px; --r-lg:20px; --maxw:1180px;
+  --code-bg:#1c162b; --code-ink:#e9e3fb;
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  --bg:#0c0a12; --plane:#0a0810; --surface:#151122; --surface-2:#191428;
+  --ink:#f4f1fb; --ink-2:#c3bcd6; --muted:#918aa8; --hair:#2a2340; --hair-2:#231d36;
+  --brand:var(--violet-400); --brand-soft:#241a3d; --brand-ink:var(--violet-200);
+  --accent:var(--amber-400);
+  --shadow-sm:0 1px 2px rgba(0,0,0,.4); --shadow-md:0 8px 30px -10px rgba(0,0,0,.6);
+  --shadow-lg:0 30px 70px -20px rgba(0,0,0,.7);
+  --code-bg:#0f0b1a; --code-ink:#e9e3fb;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{
+  margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.65;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+a{color:var(--brand);text-decoration:none}
+a:hover{text-decoration:underline}
+img{max-width:100%}
+
+/* ---------- header ---------- */
+.site-head{
+  position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);
+  backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--hair);
+}
+.site-head .bar{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;gap:18px;
+  padding:12px 22px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.02em;
+  color:var(--ink);white-space:nowrap}
+.brand .glyph{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--violet-600),var(--violet-800));color:#fff;
+  font-size:15px;box-shadow:0 4px 12px -3px rgba(109,40,217,.6)}
+.brand small{display:block;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.02em}
+.head-nav{margin-left:auto;display:flex;gap:4px;align-items:center}
+.head-nav a{padding:7px 12px;border-radius:9px;font-weight:650;font-size:14px;color:var(--ink-2)}
+.head-nav a:hover{background:var(--brand-soft);color:var(--brand-ink);text-decoration:none}
+.head-nav a.active{background:var(--brand);color:#fff}
+.icon-btn{border:1px solid var(--hair);background:var(--surface);color:var(--ink-2);
+  width:38px;height:38px;border-radius:10px;cursor:pointer;display:grid;place-items:center;
+  font-size:17px;transition:.15s}
+.icon-btn:hover{border-color:var(--brand);color:var(--brand)}
+.lang-btn{width:auto;padding:0 10px;font-size:12.5px;font-weight:750;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.lang-btn:hover{border-color:var(--brand);color:var(--brand);text-decoration:none}
+.menu-btn{display:none}
+@media(max-width:900px){
+  .head-nav{display:none}
+  .menu-btn{display:grid}
+}
+
+/* ---------- layout ---------- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+.layout{display:grid;grid-template-columns:238px minmax(0,1fr);gap:44px;
+  max-width:var(--maxw);margin:0 auto;padding:0 22px}
+.side{position:sticky;top:84px;align-self:start;height:calc(100vh - 96px);overflow:auto;
+  padding:26px 0 40px;font-size:13.5px}
+.side::-webkit-scrollbar{width:8px}.side::-webkit-scrollbar-thumb{background:var(--hair);border-radius:8px}
+.side .grp{font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--muted);margin:18px 0 8px}
+.side a{display:block;padding:6px 12px;border-radius:8px;color:var(--ink-2);font-weight:600;
+  border-left:2px solid transparent}
+.side a:hover{background:var(--brand-soft);text-decoration:none;color:var(--brand-ink)}
+.side a.active{color:var(--brand);background:var(--brand-soft);border-left-color:var(--brand)}
+.side .toc a{font-weight:550;color:var(--muted);padding:5px 12px}
+.side .toc a.here{color:var(--brand)}
+main{padding:30px 0 90px;min-width:0}
+.content{max-width:760px}
+@media(max-width:900px){.layout{grid-template-columns:1fr;gap:0}.side{display:none}}
+
+/* ---------- hero ---------- */
+.daybadge{display:inline-flex;align-items:center;gap:8px;font-weight:750;font-size:12.5px;
+  letter-spacing:.05em;text-transform:uppercase;padding:6px 13px;border-radius:999px;
+  background:var(--brand-soft);color:var(--brand-ink)}
+.daybadge.d2{background:#fde6c8;color:#8a5a00}
+:root[data-theme=dark] .daybadge.d2{background:#3a2c0d;color:var(--amber-300)}
+.daybadge.d3{background:#d3f5e6;color:#06603f}
+:root[data-theme=dark] .daybadge.d3{background:#0c3327;color:#54e0aa}
+.daybadge.d4{background:#e4ecfb;color:#1e4fa3}
+:root[data-theme=dark] .daybadge.d4{background:#0e1a30;color:#7db0f4}
+.daybadge.lab{background:#111;color:#fff}
+:root[data-theme=dark] .daybadge.lab{background:#2a2340;color:#fff}
+h1.page{font-size:clamp(30px,4.6vw,46px);line-height:1.06;letter-spacing:-.03em;font-weight:820;
+  margin:16px 0 12px}
+.lede{font-size:19px;color:var(--ink-2);max-width:64ch;margin:0 0 14px}
+.meta{display:flex;flex-wrap:wrap;gap:16px;color:var(--muted);font-size:14px;font-weight:600;
+  padding:14px 0 4px;border-top:1px solid var(--hair);margin-top:22px}
+.meta b{color:var(--ink-2)}
+
+/* ---------- typography ---------- */
+.content h2{font-size:27px;letter-spacing:-.02em;font-weight:780;margin:52px 0 6px;scroll-margin-top:84px}
+.content h2 .num{color:var(--brand);font-variant-numeric:tabular-nums;margin-right:10px;font-weight:800}
+.content h3{font-size:19.5px;font-weight:720;margin:32px 0 4px;letter-spacing:-.01em}
+.content p{margin:14px 0}
+.content ul,.content ol{margin:14px 0;padding-left:22px}
+.content li{margin:7px 0}
+.content li::marker{color:var(--brand)}
+.rule{height:1px;background:var(--hair);border:0;margin:40px 0}
+strong{font-weight:720;color:var(--ink)}
+.subtle{color:var(--muted)}
+mark{background:linear-gradient(transparent 58%,var(--amber-300) 58%);color:inherit;padding:0 1px}
+:root[data-theme=dark] mark{background:linear-gradient(transparent 58%,rgba(251,191,36,.45) 58%)}
+
+/* ---------- callouts ---------- */
+.call{border-radius:var(--r);padding:18px 20px 18px 52px;margin:24px 0;position:relative;
+  background:var(--surface);border:1px solid var(--hair);box-shadow:var(--shadow-sm);font-size:15.5px}
+.call:before{position:absolute;left:16px;top:17px;font-size:20px;line-height:1}
+.call .t{font-weight:780;letter-spacing:-.01em;margin:0 0 3px;font-size:15px}
+.call p:first-of-type{margin-top:0}.call p:last-child{margin-bottom:0}
+.call.idea{background:var(--brand-soft);border-color:transparent}
+.call.idea:before{content:"💡"}.call.idea .t{color:var(--brand-ink)}
+.call.warn{background:#fff5e6;border-color:#f6e3bf}.call.warn:before{content:"⚠️"}.call.warn .t{color:#9a6100}
+:root[data-theme=dark] .call.warn{background:#2c2109;border-color:#4a3813}:root[data-theme=dark] .call.warn .t{color:var(--amber-300)}
+.call.tip{background:#e9f9f1;border-color:#c4ebd8}.call.tip:before{content:"✅"}.call.tip .t{color:#06603f}
+:root[data-theme=dark] .call.tip{background:#0c2a20;border-color:#124534}:root[data-theme=dark] .call.tip .t{color:#54e0aa}
+.call.def{background:var(--surface-2)}.call.def:before{content:"📘"}.call.def .t{color:var(--brand)}
+.call.quote{background:var(--surface);border-left:4px solid var(--brand);padding-left:22px}
+.call.quote:before{content:""}
+.call.money{background:#eef4ff;border-color:#cfe0fb}.call.money:before{content:"💳"}.call.money .t{color:#1e4fa3}
+:root[data-theme=dark] .call.money{background:#0e1a30;border-color:#1b3358}:root[data-theme=dark] .call.money .t{color:#7db0f4}
+
+/* ---------- tweet card ---------- */
+.tweet{border:1px solid var(--hair);border-radius:var(--r-lg);padding:20px 22px;margin:26px 0;
+  background:var(--surface);box-shadow:var(--shadow-md)}
+.tweet .who{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.tweet .av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#6d28d9,#0ea5e9);
+  color:#fff;display:grid;place-items:center;font-weight:800;font-size:18px;flex:none}
+.tweet .name{font-weight:780;line-height:1.15}
+.tweet .handle{color:var(--muted);font-size:13.5px}
+.tweet .body{font-size:16.5px;line-height:1.55}
+.tweet .bird{margin-left:auto;color:#1d9bf0;font-size:20px}
+
+/* ---------- cards ---------- */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid.c2{grid-template-columns:repeat(2,1fr)}
+.grid.c3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:640px){.grid.c2,.grid.c3{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--hair);border-radius:var(--r);padding:18px 18px;
+  box-shadow:var(--shadow-sm)}
+.card h4{margin:0 0 5px;font-size:16px;font-weight:730;letter-spacing:-.01em}
+.card p{margin:0;color:var(--ink-2);font-size:14.5px}
+.card .k{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--brand);margin-bottom:8px}
+.card.hl{background:linear-gradient(160deg,var(--violet-700),var(--violet-900));color:#fff;border:0}
+.card.hl h4,.card.hl p,.card.hl .k{color:#fff}.card.hl .k{color:var(--amber-300)}
+
+/* ---------- code ---------- */
+.code{background:var(--code-bg);border-radius:var(--r);margin:22px 0;overflow:hidden;
+  box-shadow:var(--shadow-md);border:1px solid rgba(255,255,255,.06)}
+.code .cbar{display:flex;align-items:center;gap:8px;padding:10px 14px;
+  background:rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.07)}
+.code .dot{width:11px;height:11px;border-radius:50%}
+.code .dot.r{background:#ff5f57}.code .dot.y{background:#febc2e}.code .dot.g{background:#28c840}
+.code .fname{margin-left:8px;color:#b9aee0;font-size:12.5px;font-weight:600;font-family:ui-monospace,monospace}
+.code pre{margin:0;padding:16px 18px;overflow:auto;color:var(--code-ink);
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:13.5px;line-height:1.6}
+.code pre .c{color:#8a7fb0}.code pre .h{color:#c4b5fd;font-weight:700}
+.code pre .s{color:#fcd34d}.code pre .k{color:#7dd3fc}.code pre .g{color:#6ee7b7}
+.term{background:#0d0a17}.term .fname{color:#7dd3fc}
+kbd{font-family:ui-monospace,monospace;font-size:.82em;background:var(--surface-2);
+  border:1px solid var(--hair);border-bottom-width:2px;border-radius:6px;padding:1px 7px;color:var(--ink)}
+code.inl{font-family:ui-monospace,monospace;font-size:.86em;background:var(--brand-soft);
+  color:var(--brand-ink);padding:1.5px 6px;border-radius:6px}
+
+/* ---------- steps ---------- */
+.steps{counter-reset:s;margin:26px 0;display:grid;gap:14px}
+.step{background:var(--surface);border:1px solid var(--hair);border-radius:var(--r);
+  padding:18px 20px 18px 62px;position:relative;box-shadow:var(--shadow-sm)}
+.step:before{counter-increment:s;content:counter(s);position:absolute;left:16px;top:16px;
+  width:32px;height:32px;border-radius:9px;background:var(--brand);color:#fff;font-weight:800;
+  display:grid;place-items:center;font-size:15px;box-shadow:0 4px 10px -3px rgba(109,40,217,.6)}
+.step h4{margin:0 0 4px;font-size:16.5px;font-weight:730}
+.step .time{float:right;font-size:12px;font-weight:750;color:var(--brand);background:var(--brand-soft);
+  padding:3px 9px;border-radius:999px}
+.step p{margin:8px 0 0;font-size:14.5px;color:var(--ink-2)}
+
+/* ---------- table ---------- */
+.tbl{width:100%;border-collapse:collapse;margin:24px 0;font-size:14.5px;
+  border:1px solid var(--hair);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-sm)}
+.tbl th{background:var(--surface-2);text-align:left;font-weight:750;padding:12px 14px;
+  border-bottom:1px solid var(--hair);font-size:13px;letter-spacing:.02em}
+.tbl td{padding:11px 14px;border-bottom:1px solid var(--hair-2);vertical-align:top}
+.tbl tr:last-child td{border-bottom:0}
+.tbl tbody tr:hover{background:var(--surface-2)}
+.tag{display:inline-block;font-size:11.5px;font-weight:750;padding:2px 9px;border-radius:999px;
+  background:var(--brand-soft);color:var(--brand-ink)}
+
+/* ---------- takeaways ---------- */
+.takeaways{background:linear-gradient(165deg,var(--surface),var(--surface-2));
+  border:1px solid var(--hair);border-radius:var(--r-lg);padding:24px 26px;margin:44px 0 10px;
+  box-shadow:var(--shadow-md)}
+.takeaways h3{margin:0 0 10px;font-size:18px;display:flex;align-items:center;gap:9px}
+.takeaways h3 .p{width:26px;height:26px;border-radius:8px;background:var(--brand);color:#fff;
+  display:grid;place-items:center;font-size:14px}
+.takeaways ul{margin:0;padding-left:4px;list-style:none}
+.takeaways li{padding-left:28px;position:relative;margin:9px 0}
+.takeaways li:before{content:"→";position:absolute;left:2px;color:var(--brand);font-weight:800}
+
+/* ---------- prev/next ---------- */
+.pager{display:flex;gap:14px;margin-top:56px;border-top:1px solid var(--hair);padding-top:26px}
+.pager a{flex:1;border:1px solid var(--hair);border-radius:var(--r);padding:14px 18px;background:var(--surface);
+  box-shadow:var(--shadow-sm);transition:.15s}
+.pager a:hover{border-color:var(--brand);text-decoration:none;transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.pager .l{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.pager .t{font-weight:730;color:var(--ink);margin-top:3px}
+.pager .nx{text-align:right}
+
+/* ---------- misc ---------- */
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+.pill{font-size:13px;font-weight:650;padding:6px 12px;border-radius:999px;background:var(--surface);
+  border:1px solid var(--hair);color:var(--ink-2)}
+.footer{max-width:var(--maxw);margin:0 auto;padding:30px 22px 50px;color:var(--muted);font-size:13.5px;
+  border-top:1px solid var(--hair)}
+.footlinks{display:inline-flex;flex-wrap:wrap;gap:16px;margin-top:10px}
+.footlinks a{font-weight:650}
+.anchor{color:var(--muted);opacity:0;margin-left:8px;font-weight:500;text-decoration:none}
+h2:hover .anchor{opacity:1}
+.diagram{background:var(--surface);border:1px solid var(--hair);border-radius:var(--r-lg);
+  padding:22px;margin:26px 0;box-shadow:var(--shadow-sm)}
+.diagram .cap{color:var(--muted);font-size:13px;text-align:center;margin-top:12px;font-weight:600}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+.daybadge.d5{background:#fbe0ea;color:#9f1239}
+:root[data-theme=dark] .daybadge.d5{background:#3a0f1e;color:#f7789f}
+
+.daybadge.d6{background:#fde4c0;color:#8a5300}:root[data-theme=dark] .daybadge.d6{background:#3a2a0b;color:#fcc858}.daybadge.d7{background:#ece7ff;color:#5b21b6}:root[data-theme=dark] .daybadge.d7{background:#241a3d;color:#c4b5fd}
+.daybadge.d8{background:#fbe2f6;color:#9d1c8f}:root[data-theme=dark] .daybadge.d8{background:#33103a;color:#f3a6e6}
+.daybadge.d9{background:#dbeafe;color:#1e478a}:root[data-theme=dark] .daybadge.d9{background:#0e1e3a;color:#93bdf7}
+
+.daybadge.d10{background:#cdf3ee;color:#0b5f57}:root[data-theme=dark] .daybadge.d10{background:#07302c;color:#5ed9cd}
+.daybadge.d11{background:#e2e0ff;color:#3f34b5}:root[data-theme=dark] .daybadge.d11{background:#191537;color:#b0a6f7}
+.daybadge.d12{background:#ffe3d3;color:#9a3d12}:root[data-theme=dark] .daybadge.d12{background:#3a1c0c;color:#f6a172}.daybadge.d13{background:#d3ecff;color:#0b5788}:root[data-theme=dark] .daybadge.d13{background:#07283e;color:#69bff2}</style></head><body><header class="site-head">
+  <div style="height:3px;background:var(--hair)"><div id="prog" style="height:3px;width:0;background:linear-gradient(90deg,var(--violet-600),var(--amber-400));transition:width .1s"></div></div>
+  <div class="bar">
+    <a class="brand" href="index.html">
+      <span class="glyph">&#9670;</span>
+      <span>Vibe Engineering<small>SMIT &middot; AI Agentic Engineering</small></span>
+    </a>
+    <nav class="head-nav"><a class="" href="index.html">Home</a><a class="" href="day1-welcome.html">Class 2</a><a class="" href="day2-how-llms-work.html">Class 3</a><a class="" href="day3-tooling-setup.html">Class 4</a><a class="" href="class5-model-choice.html">Class 5</a><a class="" href="class6-rise-of-claude-code.html">Class 6</a><a class="" href="class7-commands.html">Class 7</a><a class="" href="class8-big-three.html">Class 8</a><a class="" href="class9-workflow-jira-setup.html">Class 9</a><a class="" href="class10-saas-setup.html">Class 10</a><a class="" href="class11-recap-journey.html">Class 11</a><a class="" href="class12-controlled-chaos.html">Class 12</a><a class="active" href="class13-sandboxing-intro.html">Class 13</a><a class="" href="class14-recap-demo.html">Class 14</a><a class="" href="lab1-first-prompt.html">Labs</a></nav>
+    <a class="icon-btn lang-btn" href="../class13-sprites.html" title="Switch to English version">English</a>
+    <button class="icon-btn" id="themeBtn" title="Toggle light / dark" aria-label="Toggle theme">&#9790;</button>
+    <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu">&#9776;</button>
+  </div>
+  <div id="mnav" class="side" style="display:none;max-height:70vh;padding:12px 22px;border-top:1px solid var(--hair)"><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome &amp; first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages &amp; cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows &amp; models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools &amp; agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Class 7</div><a class="" href="class7-commands.html">7.1 Commands, shortcuts &amp; config</a><a class="" href="class7-sessions-git.html">7.2 Sessions, checkpoints &amp; Git</a><a class="" href="class7-rewind-yolo.html">7.3 Rewind &amp; YOLO mode</a><a class="" href="class7-ralph-loops.html">7.4 Ralph Loops</a><div class="grp">Class 8</div><a class="" href="class8-big-three.html">8.1 The big three &amp; tools</a><a class="" href="class8-mcp-explained.html">8.2 MCP under the hood</a><a class="" href="class8-adding-mcp.html">8.3 Adding MCP servers</a><a class="" href="class8-skills.html">8.4 Skills — a simpler way</a><a class="" href="class8-skills-marketplaces.html">8.5 Skills marketplaces &amp; Agent Browser</a><a class="" href="class8-plugins.html">8.6 Plugins &amp; your setup</a><div class="grp">Class 9</div><a class="" href="class9-workflow-jira-setup.html">9.1 Workflow &amp; Jira setup</a><a class="" href="class9-jira-mcp.html">9.2 Connecting Jira (MCP)</a><a class="" href="class9-github-mcp.html">9.3 GitHub repo, token &amp; MCP</a><a class="" href="class9-featuredev-plugin.html">9.4 FeatureDev &amp; the 7 stages</a><a class="" href="class9-jira-to-pr.html">9.5 Autonomy: Jira to PR</a><a class="" href="class9-debugging.html">9.6 Debugging strategies</a><div class="grp">Class 10</div><a class="" href="class10-saas-setup.html">10.1 The SaaS blueprint</a><a class="" href="class10-claudemd-skills.html">10.2 CLAUDE.md &amp; a custom skill</a><a class="" href="class10-jira-tickets.html">10.3 Planning V1 tickets</a><a class="" href="class10-building-features.html">10.4 Building features</a><a class="" href="class10-testing-cerebras.html">10.5 Testing with Cerebras</a><a class="" href="class10-final-demo.html">10.6 Multi-user, polish &amp; victory</a><div class="grp">Class 11</div><a class="" href="class11-recap-journey.html">11.1 The journey so far</a><a class="" href="class11-foundations.html">11.2 Foundations recap</a><a class="" href="class11-pro-toolkit.html">11.3 The pro toolkit</a><a class="" href="class11-workflow-cheatsheet.html">11.4 Workflow &amp; cheat-sheet</a><div class="grp">Class 12</div><a class="" href="class12-controlled-chaos.html">12.1 Controlled chaos</a><a class="" href="class12-finally-project.html">12.2 The FiNALLY project</a><a class="" href="class12-slash-commands.html">12.3 Custom slash commands</a><a class="" href="class12-subagents.html">12.4 Agents &amp; sub-agents</a><a class="" href="class12-hooks.html">12.5 Hooks &amp; events</a><a class="" href="class12-plugins-marketplaces.html">12.6 Plugins &amp; marketplaces</a><div class="grp">Class 13</div><a class="" href="class13-sandboxing-intro.html">13.1 Sandboxing &amp; why it&rsquo;s juicy</a><a class="" href="class13-native-sandbox.html">13.2 The native sandbox</a><a class="" href="class13-claude-on-web.html">13.3 Claude Code on the Web</a><a class="active" href="class13-sprites.html">13.4 Sprites.dev sandboxes</a><a class="" href="class13-recap-cheatsheet.html">13.5 Recap &amp; cheat-sheet</a><div class="grp">Class 14</div><a class="" href="class14-recap-demo.html">14.1 Recap &amp; the zero-shot demo</a><a class="" href="class14-large-codebases.html">14.2 Large team codebases</a><a class="" href="class14-agent-sdk.html">14.3 The Agent SDK</a><a class="" href="class14-cowork.html">14.4 Claude Cowork</a><a class="" href="class14-openclaw.html">14.5 OpenClaw sidekick</a><div class="grp">Labs</div><a class="" href="lab1-first-prompt.html">Lab 1 &middot; One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 &middot; agents.md + YOLO</a></div>
+</header>
+<div class="layout"><aside class="side"><nav><div class="grp">Home</div><a class="" href="index.html">Home</a><div class="grp">Class 2</div><a class="" href="day1-welcome.html">2.1 Welcome &amp; first build</a><a class="" href="day1-missing-manual.html">2.2 The Missing Manual</a><a class="" href="day1-eight-stages.html">2.3 Eight stages &amp; cost</a><div class="grp">Class 3</div><a class="" href="day2-how-llms-work.html">3.1 How LLMs work</a><a class="" href="day2-context-engineering.html">3.2 Context engineering</a><a class="" href="day2-workflows.html">3.3 Workflows &amp; models</a><div class="grp">Class 4</div><a class="" href="day3-tooling-setup.html">4.1 Tools &amp; agents.md</a><a class="" href="day3-kanban-build.html">4.2 Build the Kanban app</a><div class="grp">Class 5</div><a class="" href="class5-model-choice.html">5.1 Choosing your model</a><a class="" href="class5-be-the-boss.html">5.2 Be the boss</a><a class="" href="class5-openrouter.html">5.3 Responsible YOLO</a><a class="" href="class5-yolo-build.html">5.4 The YOLO build</a><a class="" href="class5-karpathy-mvp.html">5.5 Karpathy &amp; the MVP</a><div class="grp">Class 6</div><a class="" href="class6-rise-of-claude-code.html">6.1 The rise of Claude Code</a><a class="" href="class6-cli-basics.html">6.2 CLI: init, context, testing</a><a class="" href="class6-opencode.html">6.3 OpenCode &amp; free models</a><a class="" href="class6-providers.html">6.4 AMP, OpenRouter &amp; Ollama</a><div class="grp">Class 7</div><a class="" href="class7-commands.html">7.1 Commands, shortcuts &amp; config</a><a class="" href="class7-sessions-git.html">7.2 Sessions, checkpoints &amp; Git</a><a class="" href="class7-rewind-yolo.html">7.3 Rewind &amp; YOLO mode</a><a class="" href="class7-ralph-loops.html">7.4 Ralph Loops</a><div class="grp">Class 8</div><a class="" href="class8-big-three.html">8.1 The big three &amp; tools</a><a class="" href="class8-mcp-explained.html">8.2 MCP under the hood</a><a class="" href="class8-adding-mcp.html">8.3 Adding MCP servers</a><a class="" href="class8-skills.html">8.4 Skills — a simpler way</a><a class="" href="class8-skills-marketplaces.html">8.5 Skills marketplaces &amp; Agent Browser</a><a class="" href="class8-plugins.html">8.6 Plugins &amp; your setup</a><div class="grp">Class 9</div><a class="" href="class9-workflow-jira-setup.html">9.1 Workflow &amp; Jira setup</a><a class="" href="class9-jira-mcp.html">9.2 Connecting Jira (MCP)</a><a class="" href="class9-github-mcp.html">9.3 GitHub repo, token &amp; MCP</a><a class="" href="class9-featuredev-plugin.html">9.4 FeatureDev &amp; the 7 stages</a><a class="" href="class9-jira-to-pr.html">9.5 Autonomy: Jira to PR</a><a class="" href="class9-debugging.html">9.6 Debugging strategies</a><div class="grp">Class 10</div><a class="" href="class10-saas-setup.html">10.1 The SaaS blueprint</a><a class="" href="class10-claudemd-skills.html">10.2 CLAUDE.md &amp; a custom skill</a><a class="" href="class10-jira-tickets.html">10.3 Planning V1 tickets</a><a class="" href="class10-building-features.html">10.4 Building features</a><a class="" href="class10-testing-cerebras.html">10.5 Testing with Cerebras</a><a class="" href="class10-final-demo.html">10.6 Multi-user, polish &amp; victory</a><div class="grp">Class 11</div><a class="" href="class11-recap-journey.html">11.1 The journey so far</a><a class="" href="class11-foundations.html">11.2 Foundations recap</a><a class="" href="class11-pro-toolkit.html">11.3 The pro toolkit</a><a class="" href="class11-workflow-cheatsheet.html">11.4 Workflow &amp; cheat-sheet</a><div class="grp">Class 12</div><a class="" href="class12-controlled-chaos.html">12.1 Controlled chaos</a><a class="" href="class12-finally-project.html">12.2 The FiNALLY project</a><a class="" href="class12-slash-commands.html">12.3 Custom slash commands</a><a class="" href="class12-subagents.html">12.4 Agents &amp; sub-agents</a><a class="" href="class12-hooks.html">12.5 Hooks &amp; events</a><a class="" href="class12-plugins-marketplaces.html">12.6 Plugins &amp; marketplaces</a><div class="grp">Class 13</div><a class="" href="class13-sandboxing-intro.html">13.1 Sandboxing &amp; why it&rsquo;s juicy</a><a class="" href="class13-native-sandbox.html">13.2 The native sandbox</a><a class="" href="class13-claude-on-web.html">13.3 Claude Code on the Web</a><a class="active" href="class13-sprites.html">13.4 Sprites.dev sandboxes</a><a class="" href="class13-recap-cheatsheet.html">13.5 Recap &amp; cheat-sheet</a><div class="grp">Class 14</div><a class="" href="class14-recap-demo.html">14.1 Recap &amp; the zero-shot demo</a><a class="" href="class14-large-codebases.html">14.2 Large team codebases</a><a class="" href="class14-agent-sdk.html">14.3 The Agent SDK</a><a class="" href="class14-cowork.html">14.4 Claude Cowork</a><a class="" href="class14-openclaw.html">14.5 OpenClaw sidekick</a><div class="grp">Labs</div><a class="" href="lab1-first-prompt.html">Lab 1 &middot; One prompt, one app</a><a class="" href="lab2-kanban-agents-md.html">Lab 2 &middot; agents.md + YOLO</a></nav><div class="grp" style="margin-top:26px">Is page par</div><div class="toc"><a href="#what">What a third-party sandbox is</a><a href="#signup">Sign up &amp; install the CLI</a><a href="#create">Create a Sprite &amp; clone your repo</a><a href="#run">Run Claude in safe YOLO</a><a href="#flow">The full remote workflow</a><a href="#agnostic">It works for any agent</a></div></aside><main><div class="content"><div class="reveal in">
+  <span class="daybadge d12">Class 13 &middot; 13.4</span>
+  <h1 class="page">Third-party cloud sandboxes: Sprites.dev</h1>
+  <p class="lede">Naya aur pioneering tareeqa: Anthropic ka cloud bilkul use na karein &mdash; third party se specialist sandbox rent karein. Hum <strong>Sprites.dev</strong> (fly.io team ka) use karenge: persistent Linux box jo ek second se kam mein boot hota aur <em>kisi bhi</em> coding agent ko full YOLO mein chalata hai, kyun ke us ka koi kaam aap tak nahi pohanch sakta.</p>
+  <div class="meta"><span>&#127919; <b>Goal:</b> run an agent in a rented cloud box</span><span>&#9201; <b>Read:</b> 15 min</span><span>&#129302; <b>Type:</b> optional / hands-on</span></div></div>
+
+
+<p>Yeh teesra approach <strong>optional</strong> hai &mdash; ho sakta hai aap native sandbox aur Anthropic cloud se khush hon. Phir bhi dekhna worth it hai, kyun ke cheezen isi taraf ja rahi hain aur yeh sirf Claude nahi balki <em>kisi bhi</em> agent ke saath kaam karta hai.</p>
+
+<h2 id="what"><span class="num">01</span>Third-party sandbox kya hota hai</h2>
+<p>Anthropic ke box host karne ke bajaye doosri company aap ko <strong>hardware-isolated</strong> cloud container deti hai jo coding agents ke liye tayyar hai. Sprites.dev apne aap ko &ldquo;stateful sandbox environment with checkpoint and restore&rdquo; kehta hai &mdash; persistent Linux computer, jo is sawal ka asaan jawab hai: <em>&ldquo;is code ko kahan chalana chahiye?&rdquo;</em></p>
+<div class="grid c3">
+  <div class="card"><div class="k">tez</div><h4>Ek second se kam</h4><p>fly.io boot speed par fakhr karta hai &mdash; <code class="inl">sprite create</code> taqreeban 0.6s mein wapas aata hai. Server install hone ka intezar nahi.</p></div>
+  <div class="card"><div class="k">stateful</div><h4>Ghar se door ghar</h4><p>Checkpoint aur restore: baad mein wapas aayein to sab bilkul wahi hota hai. Aap ka remote dev box hamesha tayyar.</p></div>
+  <div class="card"><div class="k">isolated</div><h4>Waqai sandboxed</h4><p>Hardware-isolated. Full YOLO mein chalayein &mdash; jo chahe kare, aap ki machine tak kabhi na pohanche.</p></div>
+</div>
+
+<h2 id="signup"><span class="num">02</span>Sign up aur CLI install karein</h2>
+<div class="steps">
+  <div class="step"><h4>Sprites.dev par account banayein</h4><p>~$30 trial credit (&ldquo;500 sprites free&rdquo;) mil raha tha. Free credits ke bawajood credit card maangta <em>hai</em> &mdash; aage barhna ya sirf dekhna aap ki choice hai.</p></div>
+  <div class="step"><h4>Sprite CLI install karein</h4><p>Pehli screen par aap ki key <em>shamil</em> one-line install command hoti hai. Kisi bhi terminal mein paste karein.</p></div>
+  <div class="step"><h4>Log in karein</h4><p><code class="inl">sprite login</code> browser khol kar isi account se sign in karata hai. Ab <code class="inl">sprite</code> command tayyar hai.</p></div>
+</div>
+<div class="call money reveal"><div class="t">Card ke bare mein khabar</div><p>Sign-up aap ko fly.io ke page par le jata hai (Sprites fly.io ne banaya hai) &mdash; Sprites.dev par wapas aayein aur login ho jayega. Aur install command kabhi share na karein: is mein aap ki key hoti hai.</p></div>
+
+<h2 id="create"><span class="num">03</span>Sprite banayein aur repo clone karein</h2>
+<p>Yahan yeh itna asaan hai ke lagbhag mazaaq lagta hai:</p>
+<div class="code term"><div class="cbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">terminal</span></div><pre><span class="k">sprite create</span> finally-worker
+<span class="g">Created finally-worker in 0.6 seconds.</span>
+
+<span class="c"># the prompt changes to  sprite@sprite  &mdash; you are now ON the remote box</span>
+sprite@sprite:~$ ls              <span class="c"># empty &mdash; a fresh cloud machine</span>
+sprite@sprite:~$ git clone &lt;your finally repo&gt;
+sprite@sprite:~$ cd finally &amp;&amp; ls
+backend  CLAUDE.md  LICENSE  planning  README.md</pre></div>
+<div class="call def reveal"><div class="t">Yeh prompt aham hai</div><p><code class="inl">sprite@sprite</code> batata hai ke ab har command cloud ke remote box par chalti hai &mdash; chahe local terminal jaisi hi nazar aaye (khaas taur par VS Code terminal mein).</p></div>
+
+<h2 id="run"><span class="num">04</span>Claude ko safe YOLO mein chalayein</h2>
+<p>Har Sprite par Claude Code <strong>pre-installed</strong> hota hai. Sirf <code class="inl">claude</code> type karein.</p>
+<div class="code term"><div class="cbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">sprite@sprite</span></div><pre>sprite@sprite:~/finally$ <span class="k">claude</span>
+<span class="c"># first-run questions (dark mode, etc.), then it wants to log in.</span>
+<span class="c"># Press 1 &mdash; it opens the browser on YOUR laptop, you authorise, done.</span>
+
+<span class="c"># It boots in "bypass permissions" (YOLO) mode automatically:</span>
+&#9888; Claude Code running in bypass-permissions mode. <span class="g">Yes, I accept.</span>
+<span class="c"># Safe &mdash; it&rsquo;s an isolated cloud box with a public repo. Nothing can hurt you.</span></pre></div>
+<div class="call tip reveal"><div class="t">Ek kaam ka pro-tip</div><p>Naya box thora purana Claude Code chala sakta hai (misal ke taur par purane model par). Bas quit karke <code class="inl">claude</code> dobara launch karein &mdash; yeh khud latest version aur model par update ho jayega.</p></div>
+<p>Ab isay real kaam dein &mdash; sab kuch remotely chalega jab aap ka laptop khaali hoga:</p>
+<div class="code term"><div class="cbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">claude on the Sprite</span></div><pre>&gt; Read all docs in planning/. The market-data backend is implemented
+  with tests. Carry out a comprehensive code review, run all the tests,
+  and write your conclusions to planning/market-data-review.md</pre></div>
+
+<h2 id="flow"><span class="num">05</span>Poora remote workflow</h2>
+<p>Neeche wala loop poora jadoo hai &mdash; remote box ko local ki tarah chalana:</p>
+<div class="diagram reveal">
+<svg viewBox="0 0 760 210" width="100%" role="img" aria-label="Local terminal drives a remote Sprite box that talks to GitHub">
+  <defs><marker id="ar134" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--brand)"/></marker></defs>
+  <rect x="30" y="74" width="180" height="70" rx="12" fill="var(--surface)" stroke="var(--hair)"/><text x="120" y="100" text-anchor="middle" style="font:800 11px system-ui;fill:var(--ink)">Your terminal</text><text x="120" y="120" text-anchor="middle" style="font:600 9.5px system-ui;fill:var(--muted)">feels local (in VS Code)</text>
+  <rect x="300" y="60" width="180" height="98" rx="14" fill="#fff5e6" stroke="#f6e3bf"/><text x="390" y="90" text-anchor="middle" style="font:800 12px system-ui;fill:#9a6100">Sprite box (cloud)</text><text x="390" y="110" text-anchor="middle" style="font:600 9.5px system-ui;fill:#9a6100">Claude Code, YOLO</text><text x="390" y="126" text-anchor="middle" style="font:600 9.5px system-ui;fill:#9a6100">hardware-isolated</text>
+  <rect x="570" y="74" width="160" height="70" rx="12" fill="#e9f9f1" stroke="#c4ebd8"/><text x="650" y="100" text-anchor="middle" style="font:800 11px system-ui;fill:#06603f">GitHub</text><text x="650" y="120" text-anchor="middle" style="font:600 9.5px system-ui;fill:#06603f">branch &rarr; PR &rarr; merge</text>
+  <path d="M210 100 L298 100" stroke="var(--brand)" stroke-width="2.5" marker-end="url(#ar134)"/><text x="254" y="92" text-anchor="middle" style="font:600 9px system-ui;fill:var(--muted)">SSH-like</text>
+  <path d="M480 108 L568 108" stroke="var(--em-d)" stroke-width="2.5" marker-end="url(#ar134)"/><text x="524" y="100" text-anchor="middle" style="font:600 9px system-ui;fill:var(--muted)">push</text>
+</svg>
+<div class="cap">Aap terminal mein type karte hain; kaam remote box par chalta hai; results GitHub mein aate hain. Sirf <em>mehsoos</em> local hota hai.</div>
+</div>
+<div class="steps">
+  <div class="step"><h4>Run review karein</h4><p><kbd>Ctrl</kbd>+<kbd>O</kbd> poori conversation dikhata hai &mdash; misal ke taur par aksar tests pass, kuch fail aur Claude ne sab ka hisaab diya.</p></div>
+  <div class="step"><h4>Box se GitHub login karein</h4><p>Push karne ke liye <code class="inl">gh auth login</code> chahiye. Box remote hone ke bawajood auth window aap ke laptop par khulti hai. Login ke baad <code class="inl">claude</code> phir <code class="inl">/resume</code> type karke wahi se jari karein.</p></div>
+  <div class="step"><h4>Push aur PR kholne dein</h4><p>&ldquo;Main ne aap ko login kar diya &mdash; ab koshish karein.&rdquo; Yeh branch banata, push karta aur PR kholta hai. GitHub par review aur merge karein.</p></div>
+  <div class="step"><h4>Hands-off jari rakhein</h4><p>&ldquo;Ab main par switch, pull, review file ki har cheez theek karo jab tak tests pass hon, phir nayi branch push karo.&rdquo; Yeh baghair approvals kaam karta aur doosra PR deta hai.</p></div>
+</div>
+<div class="call quote reveal"><p>Tajurba dono duniyaon ka behtareen mel hai: bohot productive (permission ki tang nahi) <em>aur</em> bilkul secure (fully sandboxed). Isi combination ki wajah se yeh itna khushgawar hai.</p></div>
+
+<h2 id="agnostic"><span class="num">06</span>Har agent ke liye kaam karta hai</h2>
+<p>Aakhri baat: Sprite ko farq nahi padta aap kaunsa agent chalate hain. Claude Code, Codex, OpenCode &mdash; jo bhi chunein, sandbox mein chalane ke liye ideal hai. Isi platform-independence ki wajah se third-party sandboxes mashhoor ho rahe hain.</p>
+
+<div class="takeaways reveal"><h3><span class="p">&#10003;</span> Ahm baatein</h3>
+<ul>
+  <li>Third-party sandbox coding agents ke liye rented, hardware-isolated cloud box hai &mdash; misal <strong>Sprites.dev</strong>.</li>
+  <li>Yeh <strong>tez</strong> (&lt;1s mein create), <strong>stateful</strong> (wahi se resume) aur <strong>isolated</strong> (safe full-YOLO) hai.</li>
+  <li>Flow: <code class="inl">sprite create</code> &rarr; <code class="inl">git clone</code> &rarr; <code class="inl">claude</code> (pre-installed) &rarr; kaam &rarr; <code class="inl">gh auth login</code> &rarr; push &rarr; PR.</li>
+  <li>Box remote hone ke bawajood login aur auth windows <em>aap ke</em> laptop par khulti hain.</li>
+  <li>Yeh <strong>agent-agnostic</strong> hai &mdash; is ke andar Claude, Codex ya OpenCode chalayein.</li>
+</ul></div>
+
+
+<div class="pager"><a href="class13-claude-on-web.html"><div class="l">&larr; Previous</div><div class="t">13.3 Claude Code on the Web</div></a><a class="nx" href="class13-recap-cheatsheet.html"><div class="l">Next &rarr;</div><div class="t">13.5 Recap &amp; cheat-sheet</div></a></div></div></main></div>
+<footer class="footer">
+  <strong>Vibe Engineering with AI Coding Agents</strong> · SMIT — Saylani Mass IT Training.
+  Instructor: <strong>Muhammad Uzair Khan</strong>. Course material for learners at every level.<br>
+  <span class="footlinks">
+    <a href="https://github.com/MuhammadUzair1/Vibe-Engineering-SMIT">Course GitHub ↗</a>
+    <a href="https://github.com/MuhammadUzair1/">GitHub profile ↗</a>
+    <a href="https://www.linkedin.com/in/muhammaduzairkhan1/">LinkedIn ↗</a>
+  </span>
+  <div style="margin-top:6px;font-size:12.5px;color:var(--muted)">
+    Roman Urdu Translation by <strong>Muhammad Ismail</strong> · Source Repository: <a href="https://github.com/MuhammadUzair1/Vibe-Engineering-SMIT" target="_blank" rel="noopener">MuhammadUzair1/Vibe-Engineering-SMIT ↗</a>
+  </div>
+</footer>
+<script>
+(function(){
+  // theme
+  var root=document.documentElement;
+  try{var s=localStorage.getItem('ve-theme'); if(s) root.setAttribute('data-theme',s);}catch(e){}
+  function setT(t){root.setAttribute('data-theme',t);try{localStorage.setItem('ve-theme',t);}catch(e){}
+    var b=document.getElementById('themeBtn'); if(b) b.textContent = t==='dark'?'☀':'☾';}
+  window.__toggleTheme=function(){setT(root.getAttribute('data-theme')==='dark'?'light':'dark');};
+  document.addEventListener('DOMContentLoaded',function(){
+    var b=document.getElementById('themeBtn');
+    if(b){b.textContent=root.getAttribute('data-theme')==='dark'?'☀':'☾';b.onclick=window.__toggleTheme;}
+    var m=document.getElementById('menuBtn'),sd=document.getElementById('mnav');
+    if(m&&sd){m.onclick=function(){sd.style.display=sd.style.display==='block'?'none':'block';};}
+    // scroll reveal
+    var els=document.querySelectorAll('.reveal');
+    if('IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.08});
+      els.forEach(function(e){io.observe(e);});
+    } else els.forEach(function(e){e.classList.add('in');});
+    // active TOC on scroll
+    var links=[].slice.call(document.querySelectorAll('.toc a'));
+    var heads=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));}).filter(Boolean);
+    function onScroll(){
+      var y=window.scrollY+120,cur=null;
+      heads.forEach(function(h){if(h.offsetTop<=y)cur=h.id;});
+      links.forEach(function(a){a.classList.toggle('here',a.getAttribute('href')==='#'+cur);});
+    }
+    window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+    // progress bar
+    var pb=document.getElementById('prog');
+    if(pb){window.addEventListener('scroll',function(){
+      var h=document.body.scrollHeight-window.innerHeight;
+      pb.style.width=(h>0?(window.scrollY/h*100):0)+'%';
+    },{passive:true});}
+  });
+})();
+</script>
+</body></html>
