@@ -1,7 +1,9 @@
 <!doctype html><html lang="ur"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>The crescendo begins &mdash; and a zero-shot demo &middot; Vibe Engineering &mdash; SMIT</title>
-<meta name="description" content="A quick recap of the pro toolkit and yesterday&rsquo;s sandboxing, then the pay-off: the Sprite kept working overnight and produced a live market-data demo that worked first time.">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="alternate icon" href="../favicon.ico">
+<title>Crescendo shuru hota hai: zero-shot demo (Roman Urdu) · Vibe Engineering — SMIT</title>
+<meta name="description" content="Pro toolkit aur sandboxing ka recap, aur Sprite par raat bhar tayyar hone wala live zero-shot demo.">
 <style>
 :root{
   --violet-50:#f5f3ff; --violet-100:#ede9fe; --violet-200:#ddd6fe; --violet-300:#c4b5fd;
@@ -157,6 +159,21 @@ mark{background:linear-gradient(transparent 58%,var(--amber-300) 58%);color:inhe
 .grid.c2{grid-template-columns:repeat(2,1fr)}
 .grid.c3{grid-template-columns:repeat(3,1fr)}
 @media(max-width:640px){.grid.c2,.grid.c3{grid-template-columns:1fr}}
+@media(max-width:640px){
+  .site-head .bar{gap:8px;padding:10px 14px}
+  .brand small{display:none}
+  .lang-btn{padding:0 8px;font-size:11.5px}
+  .icon-btn{width:34px;height:34px;font-size:15px}
+  .layout{padding:0 14px}
+  .call{padding:14px 14px 14px 44px;font-size:14px}
+  .call:before{left:12px;top:14px;font-size:18px}
+  .step{padding:14px 14px 14px 52px}
+  .step:before{left:12px;top:14px;width:28px;height:28px;font-size:13px}
+  .tbl{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .code pre{padding:12px 14px;font-size:12.5px}
+  .pager{flex-direction:column;gap:10px}
+  .pager .nx{text-align:left}
+}
 .card{background:var(--surface);border:1px solid var(--hair);border-radius:var(--r);padding:18px 18px;
   box-shadow:var(--shadow-sm)}
 .card h4{margin:0 0 5px;font-size:16px;font-weight:730;letter-spacing:-.01em}
@@ -272,9 +289,9 @@ h2:hover .anchor{opacity:1}
   <div class="meta"><span><b>Goal:</b> consolidate karna aur pay-off dekhna</span><span><b>Read:</b> 11 min</span><span><b>Type:</b> recap + demo</span></div></div>
 
 
-<p>Yeh hafta teen, din teen hai &mdash; aik core learning day. Originally yeh poora din bade-team work par hone wala tha, lekin hum pehle hi foundations cover kar chuke hain, is liye hum jaldi se &ldquo;sabziyan&rdquo; khatam karke maza shuru kar sakte hain. Aayein pehle usay samjhein jo hum ne ab tak sikha hai.</p>
+<p>Yeh hafta 3, din 3 hai &mdash; aik bunyadi learning day. Originally yeh poora din large-team work par hone wala tha, lekin hum pehle hi foundations cover kar chuke hain, is liye hum jaldi se zaroori baatein summarize karke mazeedar practical demo par aa sakte hain. Chaliye shuru karte hain ab tak seekhi hui cheezon ke quick recap se.</p>
 
-<h2 id="recap"><span class="num">01</span>Aik quick recap (khana hazam karna)</h2>
+<h2 id="recap"><span class="num">01</span>Aik quick recap (ab tak ka silsila)</h2>
 <p>Pro toolkit, aik baar phir, taake terms second nature ban jayein:</p>
 <table class="tbl"><thead><tr><th>Tool</th><th>Aik line mein</th></tr></thead><tbody>
 <tr><td><b>Slash commands</b></td><td>Configurable, lekin aaj kal zyada tar <strong>skills</strong> se replace ho chuki hain.</td></tr>
@@ -287,7 +304,7 @@ h2:hover .anchor{opacity:1}
 <p>Aur kal ki sandboxing: native <code class="inl">/sandbox</code>, managed <strong>Claude Code on the Web</strong> (ampersand, <code class="inl">--remote</code>, browser, mobile, aur pyara <code class="inl">@claude</code> issue), aur third-party <strong>Sprites.dev</strong> &mdash; fast, stateful, aur full-YOLO ke liye safe kyun ke yeh isolated hai.</p>
 
 <h2 id="overnight"><span class="num">02</span>Sprite jo kaam karta raha</h2>
-<p>13.4 se remote box itna mazedar tha ke use band nahi kiya. Din ke aakhir mein instructor ne use do aur kaam karne ko kahe &mdash; aur usne bas... unhe cloud mein bina kisi supervision ke kar diya:</p>
+<p>13.4 se remote box itna mazedar tha ke use band nahi kiya gaya. Class ke aakhir mein instructor ne use do aur kaam karne ko kahe &mdash; aur usne bas... unhe cloud mein bina kisi supervision ke mukammal kar diya:</p>
 <div class="steps">
   <div class="step"><h4>Docs ko consolidate kiya</h4><p>Tamam planning documentation ko aik saaf summary document mein merge karein.</p></div>
   <div class="step"><h4>Demo build kiya</h4><p>Isko prove karne ke liye terminal <code class="inl">market-data demo</code> banayein ke simulator waqai data generate karta hai &mdash; phir use push karein.</p></div>
@@ -313,7 +330,7 @@ h2:hover .anchor{opacity:1}
     <polyline points="360,168 380,166 400,170 420,166 440,168 460,164 480,168 500,166" fill="none" stroke="#febc2e" stroke-width="2"/>
   </g>
 </svg>
-<div class="cap">Red/green moves aur text sparklines ke sath live tickers &mdash; remote Sprite par Claude dwara generate, test aur push kiye gaye, phir locally pull aur run kiye gaye.</div>
+<div class="cap">Red/green moves aur text sparklines ke sath live tickers &mdash; remote Sprite par Claude ke zariye generate, test aur push kiye gaye, phir locally pull aur run kiye gaye.</div>
 </div>
 
 <h2 id="zeroshot"><span class="num">04</span>&ldquo;Zero-shot&rdquo; ka kya matlab hai</h2>

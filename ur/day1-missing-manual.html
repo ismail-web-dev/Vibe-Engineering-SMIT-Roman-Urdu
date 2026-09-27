@@ -1,5 +1,7 @@
 <!doctype html><html lang="ur"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="alternate icon" href="../favicon.ico">
 <title>The Missing Manual (Roman Urdu) · Vibe Engineering — SMIT</title>
 <meta name="description" content="Vibe Engineering with AI Coding Agents — SMIT course by Muhammad Uzair Khan.">
 <style>
@@ -157,6 +159,21 @@ mark{background:linear-gradient(transparent 58%,var(--amber-300) 58%);color:inhe
 .grid.c2{grid-template-columns:repeat(2,1fr)}
 .grid.c3{grid-template-columns:repeat(3,1fr)}
 @media(max-width:640px){.grid.c2,.grid.c3{grid-template-columns:1fr}}
+@media(max-width:640px){
+  .site-head .bar{gap:8px;padding:10px 14px}
+  .brand small{display:none}
+  .lang-btn{padding:0 8px;font-size:11.5px}
+  .icon-btn{width:34px;height:34px;font-size:15px}
+  .layout{padding:0 14px}
+  .call{padding:14px 14px 14px 44px;font-size:14px}
+  .call:before{left:12px;top:14px;font-size:18px}
+  .step{padding:14px 14px 14px 52px}
+  .step:before{left:12px;top:14px;width:28px;height:28px;font-size:13px}
+  .tbl{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .code pre{padding:12px 14px;font-size:12.5px}
+  .pager{flex-direction:column;gap:10px}
+  .pager .nx{text-align:left}
+}
 .card{background:var(--surface);border:1px solid var(--hair);border-radius:var(--r);padding:18px 18px;
   box-shadow:var(--shadow-sm)}
 .card h4{margin:0 0 5px;font-size:16px;font-weight:730;letter-spacing:-.01em}
@@ -300,7 +317,7 @@ h2:hover .anchor{opacity:1}
   <tr><td><span class="tag">Vibe engineering</span></td><td>Simon Willison</td><td>Professional side: engineering discipline ke sath real software build karna, par maximum typing AI agents kar rahe hon.</td></tr>
   <tr><td><span class="tag">Agentic coder</span></td><td>emerging</td><td>Ek expert jo agents ko (jaise Cursor agent) sidekicks ke taur par use karta hai — aik sath kai agents — mil kar product build karne ke liye.</td></tr>
 </tbody></table>
-<div class="call warn reveal"><div class="t">Dhyan dein: words mix hotay hain</div>
+<div class="call warn reveal"><div class="t">Khyal rakhein: terms mix ho sakti hain</div>
 <p>“Agentic coder” ka matlab woh ho sakta hai jo agents ke <em>sath</em> code karta hai (hum log) <b>ya</b> woh jo agents <em>build</em> karta hai. Platforms jaise Cursor aur Claude Code khud bhi kabhi kabhi “coding agents” kehlate hain. <strong>Jab doubt ho, toh clarify kar lein.</strong> Is course mein, agentic coder woh hai jo AI agents ki help se code karta hai.</p></div>
 
 <p class="subtle">2025 ka emotional graph ek rollercoaster tha — surprise, denial, astonishment, frustration, yahan tak ke gussa — phir acceptance, aur late 2025 mein ek turn (Claude Sonnet/Opus 4.5, Gemini 3 aur GPT-5.2) jab agents bohot zyada reliable ho gaye.</p>
