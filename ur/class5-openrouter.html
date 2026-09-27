@@ -281,35 +281,35 @@ h2:hover .anchor{opacity:1}
   <span class="daybadge d4">Class 5 · 5.3</span>
   <h1 class="page">Responsible YOLO — aur OpenRouter set up karna</h1>
   <p class="lede">Is se pehle ke hum model ko azaad chhor dein, do imandaranah counterpoints — aur phir woh aik setup jo is hafte har project ko chahiye: aik OpenRouter key.</p>
-  <div class="meta"><span>🎯 <b>Goal:</b> code ko own karein &amp; API key hasil karein</span><span>⏱ <b>Read:</b> 9 min</span><span>🧰 <b>Tool:</b> OpenRouter</span></div></div>
+  <div class="meta"><span>🎯 <b>Maqsad:</b> code ko own karein aur API key hasil karein</span><span>⏱ <b>Parhai:</b> 9 min</span><span>🧰 <b>Tool:</b> OpenRouter</span></div></div>
 
-<h2 id="counter"><span class="num">01</span>Maza shuru hone se pehle do imandaranah counterpoints</h2>
-<p>YOLO mode mein is waqt kafi josh-o-kharosh hai, aur hum is mein enter hone wale hain. Lekin do aisi sanjeeda findings hain jinhein zehn mein rakhna zaroori hai — maza kharab karne ke liye nahi, balkay isay zimmedaranah rakhne ke liye.</p>
+<h2 id="counter"><span class="num">01</span>Maza shuru hone se pehle do imandaranah haqaiq</h2>
+<p>YOLO mode ko le kar is waqt dunya mein bohat josh-o-kharosh hai, aur hum bhi is mein koodne lage hain. Lekin do aisi sanjeeda tehqeeqat hain jinhein zehen mein rakhna zaroori hai — maza kharab karne ke liye nahi, balkay isay zimmedaranah aur faidamand banane ke liye:</p>
 
 <div class="grid c2">
   <div class="card hl"><div class="k">Anthropic study · skill formation</div>
-    <h4>AI madad seekhne ke amal ko mutasir kar sakti hai</h4>
-    <p>Junior coders ko AI-assisted group aur baghair AI wale group mein divide kiya gaya, phir us library par unka quiz liya gaya jo unhone use ki thi.</p>
+    <h4>AI ki be-tehasha madad seekhne ke amal ko mutasir karti hai</h4>
+    <p>Junior coders ko do groups mein taqseem kiya gaya: ek AI-assisted group aur doosra baghair AI wala group. Phir us library par unka test liya gaya jo unhon ne use ki thi.</p>
     <div style="display:flex;gap:22px;margin-top:14px">
       <div><div style="font:800 30px system-ui">50%</div><div style="font-size:12.5px;opacity:.85">AI use kiya</div></div>
       <div><div style="font:800 30px system-ui">67%</div><div style="font-size:12.5px;opacity:.85">baghair AI</div></div>
     </div>
-    <p style="margin-top:12px">Yahan productivity gain chhota tha — lekin samajh (understanding) ko waqai bara nuqsan pohncha.</p></div>
+    <p style="margin-top:12px">Productivity mein izafa bohat mamooli tha — lekin code ki bunyadi samajh (understanding) ko waqai bara dhakka laga.</p></div>
   <div class="card"><div class="k">Jellyfin · contribution policy</div>
-    <h4>Aik community ne hadd muqarrar ki</h4>
-    <p>Open-source media platform ne AI-assisted contributions ke liye policy shaya ki. Iska markazi nuqta: aapko LLM ke baghair <strong>apni tabdeeli ki wazahat</strong> karne ke qabil hona chahiye. Agar aap nahi kar sakte, to unhein koi dilchaspi nahi hai. LLM output ko issues aur PR descriptions se mana kiya gaya hai (translations mustasna hain).</p></div>
+    <h4>Open-source community ne wazeh hadd bandh di</h4>
+    <p>Mashhoor open-source media platform Jellyfin ne AI-assisted code contributions ke liye sakht policy jari ki. Iska markazi nuqta yeh hai: aapko LLM ki madad ke baghair <strong>apne likhe huay code ki wazahat</strong> karne par poora qaboo hona chahiye. Agar aap wazahat nahi kar saktay, to unhein aapke code mein koi dilchaspi nahi hai. Issues aur PR descriptions mein LLM generated text likhna mamnoo hai (translations mustasna hain).</p></div>
 </div>
 
-<div class="call quote reveal"><p>Golden rule: kisi LLM ko kisi mubham vibe prompt ke sath codebase par azaad mat chhorein aur results ko as-is commit mat karein. Yeh sust development hai, aur yeh slop paida karti hai.
+<div class="call quote reveal"><p>Golden rule: kisi LLM ko mubham vibe prompt de kar codebase par azaad mat chhoriye aur jo output aaye use as-is commit mat karein. Yeh sust development hai, aur is se sirf bekaar kachra code (slop) paida hota hai.
 <span class="subtle">— Jellyfin AI policy se aakhaz shuda</span></p></div>
 
-<p>Dono aik hi taraf ishara karte hain. Ab code ke pahar <em>generate</em> karna aur kisi doosre par samajhne ke liye chhor dena intihai aasan ho chuka hai. Yeh na-barabari munasib nahi hai — aur yeh sirf tab theek hoti hai jab code generate karne wale log usay khud own karein. Baqi course ke liye, woh hum hain.</p>
+<p>Dono tehqeeqat ek hi taraf ishara karti hain. Aaj kal code ke ambaar <em>generate</em> karna aur kisi doosre par samajhne ke liye chhor dena intihai aasan ho chuka hai. Yeh na-barabari munasib nahi hai — aur yeh sirf tab theek hoti hai jab code generate karne walay log usay khud own karein. Baqi poore course ke liye, yeh zimmedari hamari hai.</p>
 
-<div class="call tip reveal"><div class="t">Mantra: hum code ko own karte hain</div>
-<p>Coding agents ko khushi aur shauq se use karein — lekin unhein aise code ka wahid zariya na banayein jise aap samajhte nahi. Isay generate karein, phir padhein, test karein, aur explain karne ke qabil banein. Own it.</p></div>
+<div class="call tip reveal"><div class="t">Bunyadi sabaq: Hum apne code ke maalik hain (We own the code)</div>
+<p>Coding agents ko poore shauq aur azaadi se istemal karein — lekin unhein aisay code ka zariya na banayein jise aap khud na samajhte hon. Agent se code generate karwayein, phir use parhein, test karein, aur uski wazahat karne ke qabil banein. Code ke maalik aap khud hain.</p></div>
 
 <h2 id="project"><span class="num">02</span>Hum kya banane ja rahe hain</h2>
-<p>Is jazbe ke sath, yeh raha project: aik <strong>personal portfolio website AI “digital twin” ke sath</strong> — aik aisa chatbot jo aapke aur aapke career ke bare mein sawalat ke jawabat deta hai. Yeh aik aisa AI hai jo aisi app banata hai jis ke andar khud AI mojood hai, is liye pehle humein site se model calls karne ka tareeqa chahiye.</p>
+<p>Isi zimmedarana jazbe ke sath, yeh raha hamara project: ek <strong>personal portfolio website AI “digital twin” ke sath</strong> — yani ek aisa chatbot jo aapke aur aapke career ke baray mein visitors ke sawalat ke jawabat dega. Yeh ek aisa AI project hai jo ek aisi app banata hai jis ke andar khud AI mojood hai, is liye sab se pehle humein website se model calls karne ka tareeqa chahiye.</p>
 <div class="diagram reveal">
 <svg viewBox="0 0 720 132" width="100%" role="img" aria-label="Digital twin OpenRouter ke zariye model ko kaise call karta hai">
   <defs><marker id="a3" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--brand)"/></marker></defs>
@@ -323,42 +323,42 @@ h2:hover .anchor{opacity:1}
   <line x1="494" y1="67" x2="540" y2="67" stroke="var(--brand)" stroke-width="2" marker-end="url(#a3)"/>
   </g>
 </svg>
-<div class="cap">Aik account, mutaddid models. OpenRouter darmiyan mein hota hai taake aapki site aik hi key se kisi bhi model ko call kar sake.</div>
+<div class="cap">Ek account, mutaddid models. OpenRouter darmiyan mein bridge ka kaam karta hai taake aapki website ek hi API key ke sath kisi bhi model ko call kar sake.</div>
 </div>
 
-<div class="call idea reveal"><div class="t">OpenRouter kyun?</div>
-<p>OpenAI, Anthropic aur Google ke sath alag alag accounts, top-ups aur API keys manage karne ke bajaye, OpenRouter aapko aik account rakhne aur kisi bhi model — free ya paid — tak route karne ki sahulat deta hai. Pehle se koi OpenAI key mojood hai? Aap usay bhi use kar sakte hain; bas mutabiqat se naam tabdeel kar dein.</p></div>
+<div class="call idea reveal"><div class="t">OpenRouter kyun behtar hai?</div>
+<p>OpenAI, Anthropic aur Google par alag alag accounts banane, credit cards attach karne aur mukhtalif API keys sambhalne ke bajaye, OpenRouter aapko ek hi account se dunya ke har chotay baray model (free ya paid) tak rasai deta hai. Agar aapke paas pehle se OpenAI ki key mojood hai to aap use bhi direct laga saktay hain; bas code mein naam tabdeel kar dein.</p></div>
 
 <h2 id="setup"><span class="num">03</span>OpenRouter set up karna</h2>
 <div class="steps reveal">
   <div class="step"><h4>Account banayein</h4>
-    <p><a href="https://openrouter.ai">openrouter.ai</a> par jayein aur sign up karein (Google sign-in behtareen hai). Onboarding sawalat ke jawabat dein aur aap dashboard par pohnch jayeinge.</p></div>
+    <p><a href="https://openrouter.ai">openrouter.ai</a> par jayein aur sign up karein (Google sign-in behtareen aur taiz tareen hai). Onboarding sawalat ke jawabat dein aur aap dashboard par pohnch jayenge.</p></div>
   <div class="step"><h4>API key create karein</h4>
-    <p>Avatar menu open karein → <strong>Keys</strong> → <strong>Create API key</strong>. Iska koi bhi yaad rehne wala naam rakhein. Ikhtiyari tor par monthly spend limit aur expiry set karein. Key samne aate hi copy kar lein — aap isay dobara nahi dekh sakeinge.</p></div>
+    <p>Avatar menu open karein → <strong>Keys</strong> → <strong>Create API key</strong>. Iska koi bhi asan yaad rehne wala naam rakhein. Aap monthly spend limit aur expiry date bhi set kar saktay hain. Key screen par aate hi foran copy kar lein — kyunki yeh dobara kabhi nazar nahi aayegi.</p></div>
   <div class="step"><h4>(Ikhtiyari) Free models on karein</h4>
-    <p>Free endpoints use karne ke liye, <strong>Settings → Privacy &amp; guardrails</strong> par jayein aur do options enable karein jo free endpoints ko aapke prompts par train karne aur publish karne ki ijazat dete hain. Free privacy ki qeemat par milta hai — sirf tab enable karein agar aap is par raazi hain.</p></div>
+    <p>Free endpoints use karne ke liye, <strong>Settings → Privacy &amp; guardrails</strong> par jayein aur do options enable karein jo free endpoints ko aapke prompts par train karne aur publish karne ki ijazat dete hain. Free models privacy ki qeemat par miltay hain — sirf tab enable karein agar aap is par raazi hain.</p></div>
   <div class="step"><h4>(Ikhtiyari) Thora credit add karein</h4>
-    <p>Kisi behtar paid model ke liye, <strong>Credits</strong> ke tehat credit add karein. OpenRouter ka minimum aasan hai — taqreeban <strong>$2</strong> — aur jaise jaise aap use karte hain yeh deduct hota rehta hai. Mukammal tor par ikhtiyari hai.</p></div>
+    <p>Kisi taqatwar paid model ke liye, <strong>Credits</strong> ke tab mein ja kar balance add karein. OpenRouter ka minimum deposit intehai munasib hai — taqreeban <strong>$2</strong> — aur jaise jaise aap use karte hain yeh deduct hota rehta hai. Yeh mukammal tor par ikhtiyari hai.</p></div>
 </div>
 
-<div class="call warn reveal"><div class="t">Key bilkul sahi hasil karein</div>
-<p>Aapki key bilkul lafz-ba-lafz copy honi chahiye — bashamool <code class="inl">sk-or-v1-</code> prefix (<em>secret key, OpenRouter, v1</em>). Aik ghalat character aur yeh kaam nahi karegi. Agar shak ho, to isay delete karein aur nai key banayein. Har class mein koi na koi ghalat type shuda key par ghanta zaya karta hai — aap aisa na karein.</p></div>
+<div class="call warn reveal"><div class="t">Key ko lafz-ba-lafz sahi copy karein</div>
+<p>Aapki key bilkul poori copy honi chahiye — bashamool <code class="inl">sk-or-v1-</code> prefix (<em>secret key, OpenRouter, v1</em>). Agar ek character bhi aage peechay hua to yeh khamoshi se fail ho jayegi aur koi wazeh error bhi nahi aayega. Shak ho to purani delete karke nayi key generate kar lein. Har batch mein koi na koi ghalat key paste karke ghanton pareshan hota hai — aap ne yeh ghalti nahi karni.</p></div>
 
 <div class="code"><div class="cbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">aapki key aisi dikhti hai</span></div>
 <pre><span class="c"># isay secret rakhein — kabhi bhi Git par commit na karein</span>
 sk-or-v1-<span class="s">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span></pre></div>
 
-<p>Is key ko apne clipboard par rakhein — hum agle section mein isay project mein paste kareinge.</p>
+<p>Is key ko apne clipboard par mehfooz rakhein — hum aglay section mein isay project ke andar paste karenge.</p>
 
-<div class="takeaways reveal"><h3><span class="p">✓</span> Aham baatein</h3>
+<div class="takeaways reveal"><h3><span class="p">✓</span> Aham Nakaat (Key Takeaways)</h3>
 <ul>
-  <li>AI ki madad chupke se seekhne ke amal ko mutasir kar sakti hai (study ke quiz mein 50% vs 67%) — build karte waqt sath sath seekhte rahein.</li>
-  <li>Jellyfin ka rule woh standard hai jis par aapko qayam rehna chahiye: <strong>apni tabdeeli ki wazahat karne ke qabil banein</strong>.</li>
-  <li>Baqi course ke liye mantra: <strong>hum code ko own karte hain</strong>.</li>
-  <li>OpenRouter aapko kisi bhi model ko call karne ke liye aik key deta hai; isay bilkul theek copy karein, bashamool <code class="inl">sk-or-v1-</code> prefix.</li>
+  <li>AI ki be-tehasha madad seekhne ke amal ko mutasir kar sakti hai (study ke quiz mein 50% vs 67%) — build karte waqt sath sath concepts seekhte rahein.</li>
+  <li>Jellyfin ka rule woh mayaar hai jis par aapko qayam rehna chahiye: <strong>apne code aur uski har tabdeeli ki wazahat karne ke qabil banein</strong>.</li>
+  <li>Baqi poore course ke liye hamara tareeqa-e-kaar: <strong>hum apne code ko khud own karte hain</strong>.</li>
+  <li>OpenRouter aapko kisi bhi model ko call karne ke liye ek hi key deta hai; isay bilkul theek copy karein, bashamool <code class="inl">sk-or-v1-</code> prefix.</li>
 </ul></div>
 
-<div class="pager"><a href="class5-be-the-boss.html"><div class="l">← Previous</div><div class="t">5.2 Be the boss</div></a><a class="nx" href="class5-yolo-build.html"><div class="l">Next →</div><div class="t">5.4 The YOLO build</div></a></div></div></main></div>
+<div class="pager"><a href="class5-be-the-boss.html"><div class="l">← Pichla</div><div class="t">5.2 Boss banein (Be the boss)</div></a><a class="nx" href="class5-yolo-build.html"><div class="l">Agla →</div><div class="t">5.4 YOLO build (Portfolio build)</div></a></div></div></main></div>
 <footer class="footer">
   <strong>Vibe Engineering with AI Coding Agents</strong> · SMIT — Saylani Mass IT Training.<br>
   Original Course Instructor: <strong>Muhammad Uzair Khan</strong>. Course material for learners at every level.<br>

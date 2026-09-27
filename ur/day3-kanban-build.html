@@ -291,15 +291,13 @@ agent dropdown <strong>Plan</strong> par set karein. Ab simply type karein:</p>
 <p><em>Kya</em> plan karna hai yeh kehne ki zaroorat nahi &mdash; woh <code class="inl">agents.md</code> khud context mein load karta hai.
 Dekhein: parhta hai, sochta hai, aur aik <strong>Kanban MVP implementation plan</strong> nikalta hai: kai phases (scaffolding, drag-and-drop,
 cards add karna&hellip;), architecture overview, kya out of scope hai, aur execution order.</p>
-<div class="call idea reveal"><div class="t">Context meter dekhein</div>
-<p>Agent panel ke neeche hover karein: ek chhota dial dikhta hai jo <strong>kitna context window use ho raha hai</strong> woh batata hai (misal 6.4%). Woh loaded active rules bhi list karta hai — aapka <code class="inl">agents.md</code> bhi. Kaam aage barhne ke sath yeh number burhte dekhen.</p></div>
-<div class="call warn reveal"><div class="t">&ldquo;Sahi&rdquo; kaam vs. jo hum karenge</div>
-<p>Disciplined move yeh hai ke plan ghaur se parhein aur jahan disagree hon wahan feedback dein. Yeh careful logon ke liye hai
-&mdash; aur shayad aapko bhi yahi karna chahiye. Lekin YOLO mehsoos karne ke liye hum <strong>bharosa</strong> karenge: plan parhe
-bina <em>Build</em> daba dein. (Jo kehte hain wohi karein, jo hum kar rahe hain woh nahi.)</p></div>
+<div class="call idea reveal"><div class="t">Context meter par nazar rakhein</div>
+<p>Agent panel ke bottom par hover karein: ek chhota sa dial dikhta hai jo batata hai ke <strong>context window kitne percent use ho chuka hai</strong> (maslan 6.4%). Yeh un active rules ko bhi list karta hai jo context mein load huay hain — jin mein aapki <code class="inl">agents.md</code> bhi shamil hai. Kaam aage barhne ke sath is number ko barhte dekhein.</p></div>
+<div class="call warn reveal"><div class="t">“Sahi” tareeqa vs. jo hum yahan karne lage hain</div>
+<p>Zabtay (discipline) ka taqaza yeh hai ke plan ko ghaur se parhein aur jahan ikhtilaf ho wahan feedback dein. Yeh ehtiyat pasand logon ke liye zaroori hai — aur aam tor par aap ko bhi yahi karna chahiye. Lekin YOLO ka maza lene ke liye hum <strong>is par pura bharosa</strong> karenge: plan parhe baghair seedha <em>Build</em> dabayein ge. (Jo hum keh rahe hain woh karein, jo is waqt demo mein hum kar rahe hain woh nahi!)</p></div>
 
 <h2 id="build"><span class="num">02</span>Build dabayein aur loop dekhein</h2>
-<p><strong>Build</strong> dabayein. YOLO mein hone ki wajah se yeh seedha chalu ho jaata hai — ek <code class="inl">.gitignore</code>, ek <code class="inl">frontend</code> directory, har jagah files banti hain. Yeh ek agent ki tareeqa ki definition hai, seedha aap ke saamne: <mark>ek LLM loop mein tools ke sath, maqsad ki taraf kaam karta hua.</mark></p>
+<p><strong>Build</strong> dabayein. Kyunki aap YOLO mode mein hain, yeh foran kaam shuru kar deta hai — <code class="inl">.gitignore</code> banna, <code class="inl">frontend</code> directory tayyar hona, aur har taraf files nikalna shuru ho jati hain. Yeh ek agent ki asal jeeti jaagti tareef hai jo aapki aankhon ke samnay chal rahi hai: <mark>ek LLM tools ke sath loop mein, kisi makhsoos maqsad ko hasil karne ke liye musalsal kaam karta hua.</mark></p>
 
 <div class="diagram reveal">
 <svg viewBox="0 0 640 200" width="100%" role="img" aria-label="The agent loop">
@@ -315,19 +313,18 @@ bina <em>Build</em> daba dein. (Jo kehte hain wohi karein, jo hum kar rahe hain 
   <line x1="120" y1="120" x2="120" y2="89" stroke="var(--brand)" stroke-width="2.5" marker-end="url(#ah)"/>
   <text x="560" y="103" text-anchor="middle" style="font:800 13px system-ui;fill:var(--amber-600)">jab tak</text>
   <text x="560" y="120" text-anchor="middle" style="font:800 13px system-ui;fill:var(--amber-600)">maqsad na mile</text>
-</svg><div class="cap">Aap literally yeh dekhenge: woh failing test dhundta hai, wapas aata hai, aur theek karta hai — baar baar.</div></div>
+</svg><div class="cap">Aap literally yeh dekhenge: woh failing test dhundta hai, wapas aata hai, aur theek karta hai — round and round.</div></div>
 
-<p>Kuch minutes baad woh phases complete declare kar deta hai. Aksar woh <strong>app khud bhi launch kar deta hai</strong>; kabhi kabhi sirf command print karta hai. Kisi bhi soorat, khud chalane ke liye:</p>
+<p>Kuch minutes ke baad yeh tamam phases mukammal hone ka elaan kar deta hai. Aksar yeh <strong>app khud bhi launch kar deta hai</strong>; aur kabhi sirf command print karta hai. Kisi bhi soorat, ise khud chalane ke liye:</p>
 <div class="code term reveal"><div class="cbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
   <span class="fname">Cursor terminal</span></div>
 <pre><span class="g">$</span> cd frontend
 <span class="g">$</span> npm run dev
   ▲ Next.js — ready on http://localhost:3000</pre></div>
-<p><code class="inl">localhost:3000</code> kholen aur woh wahan hai: ek Kanban board — Backlog, To&nbsp;Do, In&nbsp;Progress, Review, Done — drag handles ke sath. Azmayein: ek card columns ke darmiyan khenchein, card add karein, ek delete karein, column rename karein. Yeh requirements poori karta hai, sirf ek <code class="inl">agents.md</code> se bana hai aur aap ki koi feedback nahi.</p>
+<p><code class="inl">localhost:3000</code> kholen aur samnay result dekhein: ek pura Kanban board — Backlog, To&nbsp;Do, In&nbsp;Progress, Review, Done — drag handles ke sath. Azma kar dekhein: ek card ko columns ke darmiyan drag karein, naya card add karein, delete karein, column rename karein. Yeh saari requirements poori karta hai, jo sirf us ek <code class="inl">agents.md</code> se bina aapki kisi behes ke tayyar hui hain.</p>
 
-<h2 id="feedback"><span class="num">03</span>Feedback se tez karein</h2>
-<p>Perfect nahi hoga &mdash; shayad aik stray Next.js error, janky drag-and-drop, ya column ke <em>andar</em> reorder na ho. Yahan
-targeted feedback dein. Aik message, kai fixes:</p>
+<h2 id="feedback"><span class="num">03</span>Targeted feedback se app ko nikharein</h2>
+<p>Shuru mein yeh 100% perfect nahi hoga — shayad Next.js ka koi stray error aa jaye, drag-and-drop thora janky lagay, ya ek hi column ke <em>andar</em> cards ko reorder na kiya ja sakta ho. Yahan aap targeted feedback dete hain. Ek hi message mein multiple fixes:</p>
 <div class="code reveal"><div class="cbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
   <span class="fname">agent · feedback</span></div>
 <pre>It’s mostly working nicely, but:
@@ -335,26 +332,22 @@ targeted feedback dein. Aik message, kai fixes:</p>
 • The drag-and-drop is a bit janky, and I can’t reorder
   within a column — can this be made more slick?
 • It would be nice to have more yellow and purple on screen.</pre></div>
-<p>Ise kaam karne dein. Wapas aata hai: purple aur yellow clearly add, interaction slicker, aur column ke andar reorder
-enabled. (Demo mein stray error poora band nahi hua &mdash; reminder ke yeh magic nahi, aap iterate karte rahein.) Look and
-feel zabardast hai; hamare liye kaafi.</p>
+<p>Ab agent ko apna kaam karne dein. Wapas aakar yeh saaf tor par purple aur yellow colors add kar chuka hoga, interaction ko slicker bana chuka hoga, aur column ke andar reordering enable kar di hogi. (Demo mein isne stray error ko mukammal khatam nahi kiya tha — yeh is baat ki reminder hai ke yeh koi jadoo nahi hai, aapko musalsal iterate karna parta hai.) Lekin overall look and feel shandar hai; hamare maqsad ke liye behtareen.</p>
 
-<div class="call tip reveal"><div class="t">Aapne abhi kya practice kiya</div>
-<p>Achhi <code class="inl">agents.md</code> likhna, <strong>YOLO</strong> mein chalana, agent loop dekhna, aur
-<strong>targeted feedback se iterate</strong> karna. Yeh IDE mein vibe coding ka core rhythm hai &mdash; aur agle hafton ki bunyad.</p></div>
+<div class="call tip reveal"><div class="t">Aap ne abhi kis cheez ki practice ki?</div>
+<p>Ek behtareen <code class="inl">agents.md</code> likhna, <strong>YOLO mode</strong> mein execution karna, agent loop ko live dekhna, aur <strong>targeted feedback ke sath iterate</strong> karna. Yehi kisi bhi IDE ke andar vibe coding ka bunyadi rhythm hai — aur aane walay hafton ke tamam projects ki bunyad bhi.</p></div>
 
-<div class="call idea reveal"><div class="t">Agar aapka toot gaya</div>
-<p>Bilkul normal. Specific error dein (&ldquo;buttons click par kuch nahi karte&rdquo;), ya sab delete karke fresh
-<code class="inl">agents.md</code> se dobara shuru karein jo galati ko cover kare. Simplify karein, phir wapas build karein.</p></div>
+<div class="call idea reveal"><div class="t">Agar aapka build toot jaye ya error de</div>
+<p>Yeh bilkul normal baat hai. Agent ko specific error batayein (“buttons par click karne se kuch nahi ho raha”), ya sab delete karke ek fresh <code class="inl">agents.md</code> ke sath dobara shuru karein jo us maslay ko pehle hi address kar le. Pehle cheezon ko simplify karein, phir dobara build karein.</p></div>
 
-<div class="takeaways reveal"><h3><span class="p">✓</span> Aham baatein</h3><ul>
-  <li><strong>Pehle plan:</strong> plan mode aapki agents.md se phased implementation plan khud banata hai.</li>
-  <li><strong>YOLO mode</strong> mein agent poora loop chalata hai &mdash; parhe, likhe, test kare, theek kare &mdash; bina approvals.</li>
-  <li>Aapne asal agent dekha: <strong>aik LLM jo goal ki taraf loop mein tools chala raha hai.</strong></li>
-  <li><strong>Targeted feedback</strong> (&ldquo;zyada yellow aur purple&rdquo;, &ldquo;column ke andar reorder&rdquo;) se refine hota hai.</li>
-  <li>Imperfect expected hai &mdash; iterate karte rahein, ya reset karke simplify karein.</li>
+<div class="takeaways reveal"><h3><span class="p">✓</span> Aham Nakaat (Key Takeaways)</h3><ul>
+  <li><strong>Pehle Plan karein:</strong> Plan mode aapki agents.md ko parh kar khud-ba-khud aik phased implementation plan bana deta hai.</li>
+  <li><strong>YOLO mode</strong> mein agent poora loop chalata hai — read, write, test, fix — bina kisi approval ya rukawat ke.</li>
+  <li>Aap ne ek live agent dekha: <strong>ek LLM jo kisi maqsad ko paane ke liye loop mein tools istemal karta hai.</strong></li>
+  <li><strong>Targeted feedback</strong> (“zyada yellow aur purple dein”, “column ke andar reorder allow karein”) se application ko polish kiya jata hai.</li>
+  <li>Shuru mein kharabiyan aana qudrati hai — ghabrane ke bajaye iterate karte rahein ya simplify karein.</li>
 </ul></div>
-<div class="pager"><a href="day3-tooling-setup.html"><div class="l">← Previous</div><div class="t">4.1 Tools & agents.md</div></a><a class="nx" href="lab1-first-prompt.html"><div class="l">Next →</div><div class="t">Lab 1 · One prompt, one app</div></a></div></div></main></div>
+<div class="pager"><a href="day3-tooling-setup.html"><div class="l">← Pichla</div><div class="t">4.1 Tools & agents.md</div></a><a class="nx" href="lab1-first-prompt.html"><div class="l">Agla →</div><div class="t">Lab 1 · One prompt, one app</div></a></div></div></main></div>
 <footer class="footer">
   <strong>Vibe Engineering with AI Coding Agents</strong> · SMIT — Saylani Mass IT Training.
   Instructor: <strong>Muhammad Uzair Khan</strong>. Course material for learners at every level.<br>

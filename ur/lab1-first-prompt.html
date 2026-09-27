@@ -282,79 +282,70 @@ h2:hover .anchor{opacity:1}
   <h1 class="page">Aik prompt, aik app</h1>
   <p class="lede">Sirf seedhi English mein describe karke aik chhoti, chalti app banayein &mdash; koi setup nahi, koi code editor nahi, koi account gymnastics nahi. Phir wahi prompt dobara chalayein aur dekhein dono nataij alag ho jaate hain. Wohi hairani sabaq hai.</p>
   <div class="meta"><span>🎯 <b>Maqsad:</b> chalti app + non-determinism ka ehsaas</span><span>⏱ ~35 min</span><span>💸 Sirf free tiers</span></div></div>
-<div class="call idea reveal"><div class="t">Shuru se pehle</div>
-<p>Yahan sab aapke browser mein chalta hai. Kuch install nahi. Agar aik tool slow ho ya zyada maange, agle par jump
-karein &mdash; is lab ke liye yeh interchangeable hain.</p></div>
+<div class="call idea reveal"><div class="t">Shuru karne se pehle</div>
+<p>Is lab mein har cheez aapke web browser ke andar chalti hai. Kuch bhi install karne ki zaroorat nahi. Agar koi ek tool slow ho ya ziada formalities maang raha ho, to foran agle tool par shift ho jayein — is lab ke maqsad ke liye yeh sab ek jese hain.</p></div>
 
-<h2 id="s1"><span class="num">01</span>Aik muft browser tool kholain <span class="subtle" style="font-size:16px;font-weight:500">· 3 min</span></h2>
-<p><strong>Aik</strong> chunein. Sab browser mein chalte hain:</p>
+<h2 id="s1"><span class="num">01</span>Ek muft browser tool kholein <span class="subtle" style="font-size:16px;font-weight:500">· 3 min</span></h2>
+<p>In mein se koi <strong>ek</strong> chunein. Sab browser mein hi chalti hain:</p>
 <div class="grid c2 reveal">
   <div class="card"><h4>Google AI Studio</h4><p class="subtle">aistudio.google.com</p>
-    <p>Instant preview aur kam friction ke sath prompt-to-app. Behtareen pehli choice.</p></div>
+    <p>Instant preview aur baghair kisi jhanjhat ke prompt-to-app. Shuruwat ke liye behtareen pehli choice.</p></div>
   <div class="card"><h4>bolt.new</h4><p class="subtle">bolt.new</p>
-    <p>App idea type karein aur live editor + preview mein bante dekhein.</p></div>
+    <p>Apna app idea type karein aur live code editor + preview mein app bante dekhein.</p></div>
   <div class="card"><h4>Claude.ai (Artifacts)</h4><p class="subtle">claude.ai</p>
-    <p>App describe karein; woh chalti single-page version banata hai jise aap inline run aur tweak kar sakte hain.</p></div>
+    <p>App describe karein; yeh ek functional single-page version banata hai jise aap screen par chala aur customize kar sakte hain.</p></div>
   <div class="card"><h4>Replit</h4><p class="subtle">replit.com</p>
-    <p>Agar login pehle se hai to aik tab mein prompt-to-deployed-app.</p></div>
+    <p>Agar login pehle se bana hua hai to ek hi tab ke andar prompt se deployed app tak ka safar.</p></div>
 </div>
 
 <h2 id="s2"><span class="num">02</span>Starter prompt paste karein <span class="subtle" style="font-size:16px;font-weight:500">· 5 min</span></h2>
-<p>Ise exactly jaisa likha hai copy karke chalayein:</p>
+<p>Is prompt ko bilkul wese hi copy karke run karein:</p>
 <div class="code reveal"><div class="cbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
   <span class="fname">starter prompt</span></div>
 <pre>Build a small web app: a daily habit tracker. I can add a habit,
 check it off for today, and see a simple streak count for each one.
 Make it a single page with a clean, modern look and a friendly empty
 state. Start it with two example habits so it isn’t blank.</pre></div>
-<p>Agent kya karta hai dekhein: woh <strong>plan karta, files likhta, aur chalti preview dikhata hai</strong>. Aapne aik
-bhi line code nahi likhi.</p>
-<div class="call def reveal"><div class="t">Kuch playful pasand hai?</div>
-<p>Class 2 wala demo prompt use karein: <em>“Please build a website for a 3D first-person shooter game in an arena
-against one computer opponent, controlled by arrow keys and space bar to shoot.”</em> Is lab ke liye dono theek hain.</p></div>
+<p>Ghaur karein ke agent kya karta hai: woh <strong>pehle plan karta hai, files likhta hai, aur ek chalti hui live preview dikhata hai</strong>. Aap ne code ki ek line bhi khud nahi likhi.</p>
+<div class="call def reveal"><div class="t">Kuch mazedar banana chahte hain?</div>
+<p>Aap Class 2 wala demo prompt bhi use kar sakte hain: <em>“Please build a website for a 3D first-person shooter game in an arena against one computer opponent, controlled by arrow keys and space bar to shoot.”</em> Is lab ke maqsad ke liye dono prompts behtareen hain.</p></div>
 
-<h2 id="s3"><span class="num">03</span>Ise apna banayein <span class="subtle" style="font-size:16px;font-weight:500">· 15 min</span></h2>
-<p>Ab baat-cheet se behtar karein. Kam az kam <strong>do</strong> follow-up messages bhejein. Try karein:</p>
+<h2 id="s3"><span class="num">03</span>Is app ko apna banayein <span class="subtle" style="font-size:16px;font-weight:500">· 15 min</span></h2>
+<p>Ab conversation ke zariye is app ko mazeed behtar banayein. Kam az kam <strong>do</strong> follow-up messages bhejein. Try karein:</p>
 <div class="grid c3 reveal">
   <div class="card"><div class="k">Design</div><p>“Make the design more colorful and add a dark-mode toggle.”</p></div>
   <div class="card"><div class="k">Feature</div><p>“Add a button to clear all entries, with a confirmation.”</p></div>
   <div class="card"><div class="k">Bug fix</div><p>“The Save button doesn’t clear the text box after saving — fix that.”</p></div>
 </div>
-<p class="subtle">Menu se apna idea chunein, ya khud invent karein. Goal yeh ehsaas hai ke app tab badalti hai jab aap
-sirf <em>describe</em> karte hain ke kya chahiye.</p>
+<p class="subtle">Diye gaye ideas mein se chun lein, ya apna koi naya feature sochein. Asal maqsad yeh tajurba karna hai ke jab aap plain English mein apni marzi batate hain to app live kaise tabdeel hoti hai.</p>
 
-<h2 id="s4"><span class="num">04</span>Twist: do baar chalayein <span class="subtle" style="font-size:16px;font-weight:500">· 7 min</span></h2>
+<h2 id="s4"><span class="num">04</span>Asal Twist: Isi prompt ko doosri baar chalayein <span class="subtle" style="font-size:16px;font-weight:500">· 7 min</span></h2>
 <div class="call warn reveal"><div class="t">Yahi asal sabaq hai</div>
-<p>Aik <strong>fresh chat / naya project</strong> kholain aur apna <strong>asli</strong> prompt dobara paste karein &mdash; unchanged.
-Dono nataij side by side compare karein.</p></div>
+<p>Ek <strong>fresh chat / bilkul naya project</strong> kholein aur apna <strong>original starter prompt</strong> bina kisi tabdeeli ke dobara paste karein. Phir dono results ko aamnay saamnay rakh kar compare karein.</p></div>
 <ul>
-  <li>Layout badla? Colors? Buttons ki wording?</li>
-  <li>Kya aik version mein koi feature tha jo doosre mein miss tha?</li>
-  <li>Kya aik perfect chala aur doosra toot gaya?</li>
+  <li>Kya layout badla? Colors tabdeel huay? Buttons ke labels mein farq aaya?</li>
+  <li>Kya kisi ek version mein koi aisa feature tha jo doosre mein reh gaya?</li>
+  <li>Kya ek version bilkul theek chala jabke doosra kahin crash ho gaya?</li>
 </ul>
-<p>Yeh farq <strong>non-determinism</strong> hai &mdash; wahi input har baar alag output de sakta hai. Yeh bug nahi; models
-kaise kaam karte hain uski property hai, aur iske around design karna hi <a href="day2-context-engineering.html">context
-engineering</a> hai.</p>
+<p>Yeh farq aur tanawwo asal mein <strong>non-determinism</strong> hai — yani ek hi input par har dafa mukhtalif output mil sakta hai. Yeh koi bug nahi hai; balki yeh AI models ki qudrati khaslat hai, aur is khaslat ko samajh kar model ko behtareen guide karna hi <a href="day2-context-engineering.html">context engineering</a> ka asal maqsad hai.</p>
 
-<h2 id="s5"><span class="num">05</span>Sochain <span class="subtle" style="font-size:16px;font-weight:500">· 5 min</span></h2>
-<p>Jawab likh lein &mdash; context engineering ki baat par inhein dobara use karenge:</p>
-<div class="takeaways reveal"><h3><span class="p">?</span> Teen sawal</h3><ul>
-  <li>Pehli koshish par agent ne kya <strong>zabardast sahi</strong> kiya?</li>
-  <li>Kahan <strong>confused</strong> hua ya galat assumption ki?</li>
-  <li>Kaun si aik instruction, shuru mein add karne se, woh galti <strong>rok</strong> sakti thi?</li>
+<h2 id="s5"><span class="num">05</span>Ghaur-o-fikr (Reflect) <span class="subtle" style="font-size:16px;font-weight:500">· 5 min</span></h2>
+<p>In sawalat ke jawab mukhtasaran note kar lein — context engineering ki class mein yeh bohat kaam aayenge:</p>
+<div class="takeaways reveal"><h3><span class="p">?</span> Teen zaroori sawalat</h3><ul>
+  <li>Pehli hi koshish mein agent ne konsi cheez hairan kun had tak <strong>bilkul sahi</strong> banayi?</li>
+  <li>Agent kahan <strong>confuse</strong> hua ya us ne konsi ghalat assumption li?</li>
+  <li>Aisi konsi ek wazeh instruction thi jo agar aap shuru mein hi de dete to woh ghalti <strong>na hoti</strong>?</li>
 </ul></div>
 
-<h2 id="trouble"><span class="num">06</span>Agar kuch galat ho jaye</h2>
+<h2 id="trouble"><span class="num">06</span>Agar koi masla pesh aaye</h2>
 <table class="tbl reveal"><thead><tr><th>Symptom</th><th>Kya karein</th></tr></thead><tbody>
-  <tr><td>Tool rate-limited ya slow hai</td><td>Step 1 se doosra tool chunein aur prompt dobara paste karein.</td></tr>
-  <tr><td>App nahi chalti</td><td>Agent ko exactly bataein kya toota hai (“buttons click par kuch nahi karte”) aur
-    khud theek karne dein.</td></tr>
-  <tr><td>Output jo maanga us jaisa nahi</td><td>Expected aur faidemand &mdash; reflection ke liye note karein. Yeh data hai, failure nahi.</td></tr>
+  <tr><td>Tool rate-limited ya slow ho jaye</td><td>Step 1 mein se koi doosra tool chunein aur prompt dobara paste kar dein.</td></tr>
+  <tr><td>App run na ho rahi ho</td><td>Agent ko seedha batayein ke kya masla hai (“buttons click par kuch perform nahi kar rahe”) aur use khud theek karne dein.</td></tr>
+  <tr><td>Output aapki mangi hui cheez se bilkul mukhtalif ho</td><td>Yeh bilkul qudrati aur sikhne ke liye mufeed hai — ise reflection ke liye note kar lein. Yeh data hai, nakami nahi.</td></tr>
 </tbody></table>
-<div class="call tip reveal"><div class="t">Ghar le jayein (optional, koi grade nahi)</div>
-<p>Ghar par original prompt aik baar aur chalayein aur teen jumle likhein ke runs mein kya badla. Saath le aayein &mdash;
-context engineering ka perfect on-ramp hai.</p></div>
-<div class="pager"><a href="day3-kanban-build.html"><div class="l">&larr; Pichla</div><div class="t">4.2 Kanban app banayein</div></a><a class="nx" href="lab2-kanban-agents-md.html"><div class="l">Agla &rarr;</div><div class="t">Lab 2 · agents.md + YOLO</div></a></div></div></main></div>
+<div class="call tip reveal"><div class="t">Ghar ka kaam (Optional, koi marks nahi)</div>
+<p>Apne original prompt ko ghar par ek baar mazeed chalayein aur 3 jumle likhein ke alag alag runs mein kya badla. Agli class mein zaroor share karein — context engineering samajhne ka yeh behtareen zariya hai.</p></div>
+<div class="pager"><a href="day3-kanban-build.html"><div class="l">← Pichla</div><div class="t">4.2 Kanban app banayein</div></a><a class="nx" href="lab2-kanban-agents-md.html"><div class="l">Agla →</div><div class="t">Lab 2 · agents.md + YOLO</div></a></div></div></main></div>
 <footer class="footer">
   <strong>Vibe Engineering with AI Coding Agents</strong> · SMIT — Saylani Mass IT Training.
   Instructor: <strong>Muhammad Uzair Khan</strong>. Course material for learners at every level.<br>
